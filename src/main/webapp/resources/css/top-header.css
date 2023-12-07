@@ -1,0 +1,198 @@
+.gnb[data-v-ace09ba4] {
+    top: 0;
+    z-index: 4;
+    position: fixed;
+    /* width: 100% */
+    left: 0;
+    right: 0;
+    border-bottom: 1px;
+    /*border-width: 0 0 1px;*/
+    border-bottom-color: #4d4d4d;
+}
+
+.header[data-v-77726920] {
+    background-color: #ffffff;
+}
+
+.header[data-v-77726920]>:not(.portal_target) {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+}
+
+.header_top .top_inner[data-v-77726920] {
+    display: flex;
+    height: 22px;
+    padding: 20px 40px 0;
+
+}
+
+.header_top .top_list[data-v-77726920] {
+    align-items: center;
+    display: flex;
+    margin-left: auto;
+}
+
+.header_top .top_item+.top_item[data-v-77726920] {
+    margin-left: 24px;
+}
+li, ol, ul {
+    list-style: none;
+}
+
+.header[data-v-77726920]>:not(.portal_target) {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+}
+.header_main{
+    margin-top: 13px;
+    border-bottom: 1px solid #f0f0f0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #7f8d8c;
+/*    헤더 페이지 아래에 줄 생기는 것*/
+}
+
+.md .header .main_inner[data-v-77726920], .mo .header .main_inner[data-v-77726920], .sm .header .main_inner[data-v-77726920] {
+    height: 44px;
+    padding: 8px 16px;
+}
+
+.main_inner[data-v-77726920] {
+    align-items: center;
+    display: flex;
+    height: 64px;
+    justify-content: space-between;
+    min-width: 320px;
+    padding: 20px 40px;
+
+
+    /*align-items: center;*/
+    /*display: flex;*/
+    /*height: 64px;*/
+    /*justify-content: space-between;*/
+    /*min-width: 320px;*/
+    /*padding: 20px 40px;*/
+    /*border-bottom-color: rgb(240, 240, 240);*/
+}
+
+.main_inner .right[data-v-77726920] {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: flex-end;
+    min-width: 120px;
+}
+
+.gnb_area[data-v-21940b30], .gnb_list[data-v-21940b30] {
+    align-items: center;
+    display: flex;
+}
+
+*, :after, :before {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+}
+
+.gnb_area[data-v-21940b30], .gnb_list[data-v-21940b30] {
+    align-items: center;
+    display: flex;
+}
+
+.gnb_item[data-v-70a33782] {
+    margin-right: 40px;
+}
+
+.gnb_item .gnb_link[data-v-70a33782] {
+    display: flex;
+    font-size: 18px;
+    letter-spacing: -.27px;
+    position: relative;
+}
+
+.search_btn_box[data-v-21940b30] {
+    display: flex;
+}
+
+.search_btn_box .btn_search[data-v-060bad62] {
+    display: inherit;
+}
+
+.search_btn_box .btn_search .nav-search[data-v-060bad62] {
+    height: 28px;
+    width: 28px;
+}
+
+:not(svg) {
+    transform-origin: 0px 0px;
+}
+
+.line-no-content {
+    height: 12px;
+    color: #0a0700;
+    border: #0a0700;
+}
+
+.gnb_item .gnb_link.active[data-v-70a33782] {
+    font-weight: 700;
+}
+.lg .tag_container+.sorting_container[data-v-838ba4a0] {
+    margin-top: 16px;
+}
+
+.lg .container[data-v-838ba4a0] {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.container[data-v-838ba4a0] {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+}
+.lg .sorting[data-v-838ba4a0] {
+    padding: 4px 0 16px;
+}
+.sorting[data-v-838ba4a0] {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 16px 12px;
+}
+
+.social_sorting>li[data-v-34267d59] {
+    display: inline-flex;
+}
+.choice.active[data-v-34267d59] {
+    font-weight: 700;
+}
+.choice[data-v-34267d59] {
+    color: rgba(34,34,34,.8);
+    font-size: 14px;
+    letter-spacing: -.21px;
+    line-height: 17px;
+}
+.social_sorting>li+li[data-v-34267d59]:before {
+    align-self: center;
+    background: #ebebeb;
+    content: "";
+    height: 10px;
+    margin-left: 12px;
+    margin-right: 12px;
+    width: 1px;
+}
+
+.page_title[data-v-ace09ba4] {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -.12px;
+    /*padding-bottom: 0px;*/
+    padding-top: 1px;
+    text-align: center;
+    margin-top:10px;
+}
+/*.header-fix{*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*    !* width: 100% *!*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*}*/
