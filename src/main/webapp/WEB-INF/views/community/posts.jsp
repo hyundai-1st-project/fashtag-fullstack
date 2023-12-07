@@ -90,7 +90,7 @@
 <%--                        <article class="hentry">--%>
 <%--                            <header class="entry-header">--%>
 <%--                                <div class="entry-thumbnail">--%>
-<%--                                    <a href="portfolio-item.html"><img src="https://cdn.hfashionmall.com/goods/YSBR/23/02/24/GM0123021746121_0_ORGINL.jpg?RS=960x960&amp;AR=0&amp;CS=640x960"--%>
+<%--                                    <a href="portfolio-item.html"><img src="https://cdn.hfashtagmall.com/goods/YSBR/23/02/24/GM0123021746121_0_ORGINL.jpg?RS=960x960&amp;AR=0&amp;CS=640x960"--%>
 <%--                                                                       alt="[FOURM THE STORE] 프린팅 티셔츠"></a>--%>
 <%--                                </div>--%>
 <%--                                <h2 class="entry-title"><a href="portfolio-item.html" rel="bookmark">Earl of Moreland</a></h2>--%>
@@ -103,7 +103,7 @@
 <%--                        <article class="hentry">--%>
 <%--                            <header class="entry-header">--%>
 <%--                                <div class="entry-thumbnail">--%>
-<%--                                    <a href="portfolio-item.html"><img src="https://cdn.hfashionmall.com/goods/APBR/23/10/26/GM0123102657598_1_ORGINL_1698393664667.jpg?RS=960x960&amp;AR=0&amp;CS=640x960"--%>
+<%--                                    <a href="portfolio-item.html"><img src="https://cdn.hfashtagmall.com/goods/APBR/23/10/26/GM0123102657598_1_ORGINL_1698393664667.jpg?RS=960x960&amp;AR=0&amp;CS=640x960"--%>
 <%--                                                                       alt="브러쉬 스트라이프 크루넥 스웨터" ></a>--%>
 <%--                                </div>--%>
 <%--                                <h2 class="entry-title"><a href="portfolio-item.html" rel="bookmark">Eliza and John</a></h2>--%>
@@ -116,7 +116,7 @@
 <%--                        <article class="hentry">--%>
 <%--                            <header class="entry-header">--%>
 <%--                                <div class="entry-thumbnail">--%>
-<%--                                    <a href="portfolio-item.html"><img src="https://cdn.hfashionmall.com/goods/YSBR/23/02/24/GM0123021746121_0_ORGINL.jpg?RS=960x960&amp;AR=0&amp;CS=640x960"--%>
+<%--                                    <a href="portfolio-item.html"><img src="https://cdn.hfashtagmall.com/goods/YSBR/23/02/24/GM0123021746121_0_ORGINL.jpg?RS=960x960&amp;AR=0&amp;CS=640x960"--%>
 <%--                                                                       alt="[FOURM THE STORE] 프린팅 티셔츠"></a>--%>
 <%--                                </div>--%>
 <%--                                <h2 class="entry-title"><a href="portfolio-item.html" rel="bookmark">Hot Afternoon</a></h2>--%>
@@ -142,7 +142,7 @@
 <%--                        <article class="hentry">--%>
 <%--                            <header class="entry-header">--%>
 <%--                                <div class="entry-thumbnail">--%>
-<%--                                    <a href="portfolio-item.html"><img src="https://cdn.hfashionmall.com/goods/APBR/23/10/26/GM0123102657598_1_ORGINL_1698393664667.jpg?RS=960x960&amp;AR=0&amp;CS=640x960"--%>
+<%--                                    <a href="portfolio-item.html"><img src="https://cdn.hfashtagmall.com/goods/APBR/23/10/26/GM0123102657598_1_ORGINL_1698393664667.jpg?RS=960x960&amp;AR=0&amp;CS=640x960"--%>
 <%--                                                                       alt="브러쉬 스트라이프 크루넥 스웨터" ></a>--%>
 <%--                                </div>--%>
 <%--                                <h2 class="entry-title"><a href="portfolio-item.html" rel="bookmark">Twilight</a></h2>--%>

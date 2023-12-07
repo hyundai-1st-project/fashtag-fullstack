@@ -21,7 +21,7 @@
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
 		  p:dataSource-ref="dataSource"
-		  p:typeAliasesPackage="net.developia.fashion.post.domain"/>
+		  p:typeAliasesPackage="org.betweenls.fashtag.post.domain"/>
 
-	<mybatis-spring:scan base-package="net.developia.fashion.post.mapper"/>
+	<mybatis-spring:scan base-package="org.betweenls.fashtag.post.mapper"/>
 </beans>

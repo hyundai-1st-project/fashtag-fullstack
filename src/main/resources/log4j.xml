@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="net.developia.fashion">
+	<logger name="org.betweenls.fashtag">
 		<level value="info" />
 	</logger>
 	

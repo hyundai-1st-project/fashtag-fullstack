@@ -1,6 +1,6 @@
-package net.developia.fashion.post.service;
+package org.betweenls.fashtag.post.service;
 
-import net.developia.fashion.post.domain.PostVO;
+import org.betweenls.fashtag.post.domain.PostVO;
 
 import java.util.List;
 

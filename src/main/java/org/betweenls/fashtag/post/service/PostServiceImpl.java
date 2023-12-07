@@ -1,9 +1,9 @@
-package net.developia.fashion.post.service;
+package org.betweenls.fashtag.post.service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.developia.fashion.post.domain.PostVO;
-import net.developia.fashion.post.mapper.PostMapper;
+import org.betweenls.fashtag.post.domain.PostVO;
+import org.betweenls.fashtag.post.mapper.PostMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

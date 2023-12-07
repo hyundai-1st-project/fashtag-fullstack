@@ -1,8 +1,8 @@
-package net.developia.fashion.post.controller;
+package org.betweenls.fashtag.post.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
-import net.developia.fashion.post.service.PostService;
+import org.betweenls.fashtag.post.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

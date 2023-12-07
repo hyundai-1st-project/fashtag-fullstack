@@ -2,15 +2,15 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="net.developia.fashion.post.mapper.PostMapper">
+<mapper namespace="org.betweenls.fashtag.post.mapper.PostMapper">
 
 	<select id="getAllPost"
-		resultType="net.developia.fashion.post.domain.PostVO"><![CDATA[
+		resultType="org.betweenls.fashtag.post.domain.PostVO"><![CDATA[
 	 SELECT * FROM posts
 	]]></select>
 
 <!--	<select id="getListWithPaging"-->
-<!--		resultType="net.developia.fashion.domain.PostVO">-->
+<!--		resultType="org.betweenls.fashtag.domain.PostVO">-->
 <!--	 <![CDATA[	-->
 <!--	 	select -->
 <!--	 		bno, title, content, writer, updatedate-->
@@ -41,7 +41,7 @@
 <!--	</insert>-->
 
 <!--	<select id="read"-->
-<!--		resultType="net.developia.fashion.domain.PostVO">-->
+<!--		resultType="org.betweenls.fashtag.domain.PostVO">-->
 <!--		SELECT * FROM tbl_board WHERE bno = #{bno}-->
 <!--	</select>-->
 

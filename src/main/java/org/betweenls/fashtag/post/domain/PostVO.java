@@ -1,4 +1,4 @@
-package net.developia.fashion.post.domain;
+package org.betweenls.fashtag.post.domain;
 
 import lombok.Data;
 
