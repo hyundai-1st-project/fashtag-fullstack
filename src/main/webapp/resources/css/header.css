@@ -196,3 +196,9 @@ li, ol, ul {
 /*    left: 0;*/
 /*    right: 0;*/
 /*}*/
+
+.main-logo{
+    font-family: 'Walter Turncoat', cursive;
+    font-size: 60px;
+    margin-top: 3px;
+}
