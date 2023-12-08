@@ -448,7 +448,7 @@ a {
 	-o-transition:all 0.2s ease-in-out;
 	transition:all 0.2s ease-in-out;
 }
-a:visited {
+a:visited:not(.content_hashtag) {
 	color:#666666;
 }
 a:hover {
