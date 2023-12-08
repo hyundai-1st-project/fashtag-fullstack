@@ -197,6 +197,7 @@
         <!-- #content -->
     </div>
     <!-- .container -->
+</div>
 <%@include file="../includes/footer.jsp"%>
 
 
