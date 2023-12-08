@@ -12,4 +12,5 @@ public class PostVO {
     private Date updatedAt;
     private Long readCount;
     private Long userId;
+    private Long likeCount;
 }
