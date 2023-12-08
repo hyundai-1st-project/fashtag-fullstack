@@ -76,7 +76,7 @@
           </div>
         </div>
       </div> <%--      main_inner--%>
-      <h1 class="page_title">posts</h1>
+      <h1 class="page_title">${pageTitle}</h1>
     </div><%--    header_main--%>
 
     <div data-v-77726920="" class="portal_target vue-portal-target"></div>
