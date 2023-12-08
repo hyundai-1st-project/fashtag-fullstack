@@ -19,6 +19,12 @@ public class PostServiceImpl implements PostService {
 		return mapper.getAllPost();
 	}
 
+	@Override
+	public List<PostVO> getHashtagPost(String hashtag) {
+//		log.info("get AllPost ");
+		return mapper.getHashtagPost(hashtag);
+	}
+
 	//	@Autowired
 //	public PostServiceImpl(PostMapper mapper) {
 //		this.mapper = mapper;
