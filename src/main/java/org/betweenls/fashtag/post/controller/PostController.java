@@ -27,7 +27,7 @@ public class PostController {
         List<String> hashtagList = new ArrayList<>(Arrays.asList
                 ("오뭐입", "OOTD", "겨울패션", "얼죽코", "패딩추천", "내뭐입","하이킹", "크리스마스"));
         model.addAttribute("hashtagList", hashtagList);
-
+        model.addAttribute("pageTitle", "#POSTS");
         return "community/posts";
     }
 
@@ -41,7 +41,7 @@ public class PostController {
         List<String> hashtagList = new ArrayList<>(Arrays.asList
                 ("오뭐입", "OOTD", "겨울패션", "얼죽코", "패딩추천", "내뭐입","하이킹", "크리스마스"));
         model.addAttribute("hashtagList", hashtagList);
-
+        model.addAttribute("pageTitle", hashtag);
         return "community/posts";
     }
 }
