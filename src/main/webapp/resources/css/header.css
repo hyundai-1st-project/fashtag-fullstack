@@ -202,3 +202,7 @@ li, ol, ul {
     font-size: 60px;
     margin-top: 3px;
 }
+
+.footer-logo{
+    text-align: center;
+}
