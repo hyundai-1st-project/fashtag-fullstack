@@ -17,7 +17,7 @@
                 <div data-v-838ba4a0="" class="container tag_container">
                     <div data-v-621b99be="" data-v-838ba4a0="" class="social_tag_shortcuts tag_shortcuts">
                         <c:forEach items="${hashtagList}" var="hash">
-                            <a data-v-621b99be="" href='/posts/<c:out value="${hash}"/>' class="" >
+                            <a data-v-621b99be="" href='/posts/tags/<c:out value="${hash}"/>' class="" >
                                 <div data-v-4fe1e795="" data-v-621b99be="" class="shortcut rounded">
                                     <picture data-v-44ba780a="" data-v-4fe1e795="" class="picture shortcut_image">
                                         <img
@@ -61,16 +61,42 @@
                                     <div class="entry-thumbnail">
                                         <a href="/posts/${post.postId}"><img class="post_image" src="${post.picture}" alt=""></a>
                                     </div>
-                                    <div class="post_userContainer">
-                                        <a href="/user/userid"><img class="post_userProfile" src="/resources/image/paris.png" /></a>
-                                        <h2 class="entry-title">userid</h2>
+                                    <%--포스트 이미지 끝--%>
+                                    <div data-v-12986062="" class="card_detail">
+                                        <div data-v-12986062="" class="user_box">
+                                            <picture data-v-44ba780a="" data-v-12986062="" class="picture img_profile">
+<%--                                                <source data-v-44ba780a="" type="image/webp" srcset="https://kream-phinf.pstatic.net/MjAyMDExMDZfMjAz/MDAxNjA0NjQ5OTM1NDk5.edZ7v2ODWVS7_M8PXg8B0PNU5UlsTWup2XHwuKkEEXsg.lNHXDE66TKM0yl1nIOO70PWNUtK4TcdgD1lImetPB48g.JPEG/p_8d36c20aaeb94c6681619dcd775f5286.jpeg?type=s_webp">--%>
+<%--                                                <source data-v-44ba780a="" srcset="https://kream-phinf.pstatic.net/MjAyMDExMDZfMjAz/MDAxNjA0NjQ5OTM1NDk5.edZ7v2ODWVS7_M8PXg8B0PNU5UlsTWup2XHwuKkEEXsg.lNHXDE66TKM0yl1nIOO70PWNUtK4TcdgD1lImetPB48g.JPEG/p_8d36c20aaeb94c6681619dcd775f5286.jpeg?type=s">--%>
+                                                <img data-v-44ba780a="" alt="사용자 프로필 이미지" src="/resources/image/post-image/6.webp" loading="lazy" class="image full_width">
+                                            </picture>
+                                            <span data-v-7ddd6c4e="" data-v-12986062="" class="user_name">
+                                              <span data-v-7ddd6c4e=""><a href="/user/mypage">user_nickname</a></span><!---->
+                                            </span>
+                                            <span data-v-12986062="" aria-label="좋아요" role="button" class="btn like">
+                                              <img src="/resources/image/icon/icon-heart-off.svg" class="like_icon" />
+                                              <span data-v-12986062="" class="like_count">${post.likeCount}</span>
+                                            </span>
+                                        </div>
+                                        <p data-v-12986062="" class="text_box">
+                                            <a href="/posts/tags/hashtag" class="content_hashtag">#오뭐입 </a>
+                                            <a href="/posts/tags/hashtag" class="content_hashtag">#내뭐입 </a>
+                                            <a href="/posts/tags/hashtag" class="content_hashtag">#hashtags </a>
+                                            <a href="/posts/tags/hashtag" class="content_hashtag" content="#크리스마스">#hahtags </a>
+                                            <a href="/posts/tags/hashtag" class="content_hashtag">#hhtags </a>
+                                            <a href="/posts/tags/hashtag" class="content_hashtag">#haags </a>
+                                            <a href="/posts/tags/hashtag" class="content_hashtag">#hashtags </a>
+                                            <a href="/posts/tags/hashtag" class="content_hashtag">#hashtags </a>
+                                            <a href="/posts/tags/hashtag" class="content_hashtag">#hasags </a>
+                                            <a href="/posts/tags/hashtag" class="content_hashtag">#hastags </a>
+                                            <a href="/posts/tags/hashtag" class="content_hashtag">#hasags </a>
+                                            <a href="/posts/tags/hashtag" class="content_hashtag">#hashags </a>
+                                            <a href="/posts/tags/hashtag" class="content_hashtag">#hashags </a>
+                                            <a href="/posts/tags/hashtag" class="content_hashtag">#hashtags </a>
+                                            <a href="/posts/tags/hashtag" class="content_hashtag">#hashtgs </a>
+                                        </p>
                                     </div>
-
-
-                                    <a class='portfoliotype' href='/posts/${post.postId}'>${post.readCount}</a>
-<%--                                    <a class='portfoliotype' href='/posts/${post.postId}'>${post.likes}</a>--%>
-<%--                                    <a class='portfoliotype' href='/posts/${post.postId}'>${post.commentCnt}</a>--%>
-                                    <p>${post.postContent}</p>
+                                        <%--유저 정보/ 해시태그 끝--%>
+<%--                                    ----------------------------------------------------%>
                                 </header>
                             </article>
                         </c:forEach>
@@ -172,3 +198,5 @@
     </div>
     <!-- .container -->
 <%@include file="../includes/footer.jsp"%>
+
+
