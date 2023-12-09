@@ -9,18 +9,21 @@
          pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>KreamPuff</title>
+  <title>#fashtag</title>
   <link rel='stylesheet' href='/resources/css/woocommerce-layout.css' type='text/css' media='all'/>
   <link rel='stylesheet' href='/resources/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
   <link rel='stylesheet' href='/resources/css/woocommerce.css' type='text/css' media='all'/>
   <link rel='stylesheet' href='/resources/css/font-awesome.min.css' type='text/css' media='all'/>
   <link rel='stylesheet' href='/resources/css/style.css?after' type='text/css' media='all'/>
-  <link rel='stylesheet' href='/resources/css/header.css?after' type='text/css' media='all'/><link rel='stylesheet' href='/resources/css/hashtagBar.css?after' type='text/css' media='all'/>
+  <link rel='stylesheet' href='/resources/css/header.css?after' type='text/css' media='all'/>
+  <link rel='stylesheet' href='/resources/css/user-card.css?after' type='text/css' media='all'/>
+    <link rel='stylesheet' href='/resources/css/hashtagBar.css?after' type='text/css' media='all'/>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
   <link rel='stylesheet' href='/resources/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
@@ -38,7 +41,7 @@
     <div data-v-77726920="" class="header_main">
       <div data-v-77726920="" class="main_inner">
         <h1 data-v-7546c27e="" data-v-77726920="">
-          <a data-v-7546c27e="" href="/" aria-label="홈" class="logo">
+          <a data-v-7546c27e="" href="/posts" aria-label="홈" class="logo">
             <h1 class="main-logo">#fashtag</h1>
 <%--           https://danmarshall.github.io/google-font-to-svg-path/ 로고 부분!! svg--%>
           </a>
@@ -49,13 +52,13 @@
             <nav data-v-21940b30="" id="pcGnbContainer" class="gnb">
               <ul data-v-21940b30="" id="pcGnbList" class="gnb_list">
                 <li data-v-70a33782="" data-v-21940b30="" class="gnb_item">
-                  <a data-v-70a33782="" href="/" class="nuxt-link-active gnb_link active"> POSTS </a>
+                  <a data-v-70a33782="" href="/posts" class="nuxt-link-active gnb_link active"> POSTS </a>
                 </li>
                 <li data-v-70a33782="" data-v-21940b30="" class="gnb_item">
-                  <a data-v-70a33782="" href="/social" class="nuxt-link-active gnb_link"> MYPAGE </a>
+                  <a data-v-70a33782="" href="/user/userid" class="nuxt-link-active gnb_link"> MYPAGE </a>
                 </li>
                 <li data-v-70a33782="" data-v-21940b30="" class="gnb_item">
-                  <a data-v-70a33782="" href="/search" class="gnb_link" > LOGIN </a>
+                  <a data-v-70a33782="" href="/user/login" class="gnb_link" > LOGIN </a>
                 </li>
               </ul>
             </nav>
@@ -73,7 +76,7 @@
           </div>
         </div>
       </div> <%--      main_inner--%>
-      <h1 data-v-ace09ba4="" class="page_title">POSTS</h1>
+      <h1 class="page_title">${pageTitle}</h1>
     </div><%--    header_main--%>
 
     <div data-v-77726920="" class="portal_target vue-portal-target"></div>
@@ -111,4 +114,3 @@
 <%--        </div>--%>
 <%--      </nav>--%>
 <%--    </header>--%>
-

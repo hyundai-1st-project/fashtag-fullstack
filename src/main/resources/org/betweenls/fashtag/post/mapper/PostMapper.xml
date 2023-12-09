@@ -6,8 +6,24 @@
 
 	<select id="getAllPost"
 		resultType="org.betweenls.fashtag.post.domain.PostVO"><![CDATA[
-	 SELECT * FROM posts
+		select p.postid,postContent, picture, createdat,updatedat,readcount,userid, nvl((select count(userid)
+																						 from likes
+																						 where postid = p.postid
+																						 group by postid), 0) likeCount
+		from posts p
 	]]></select>
+
+	<select id="getHashtagPost"
+			resultType="org.betweenls.fashtag.post.domain.PostVO"><![CDATA[
+		select p.postid,postContent, picture, createdat,updatedat,readcount,userid, (select count(userid)
+																					 from likes
+																					 where postid = p.postid
+																					 group by postid) likeCount
+		from posts p left outer join post_hashtag ph
+									 on p.postid = ph.postid left outer join hashtag h
+																			 on ph.hashtagId = h.hashtagid
+		where hashtag = #{hashtag}
+		]]></select>
 
 <!--	<select id="getListWithPaging"-->
 <!--		resultType="org.betweenls.fashtag.domain.PostVO">-->

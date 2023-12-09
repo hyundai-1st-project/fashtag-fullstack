@@ -143,7 +143,21 @@ insert into post_hashtag values(seq_post_hashtag.nextval, 10003, 10001);
 insert into post_hashtag values(seq_post_hashtag.nextval, 10003, 10010);
 insert into post_hashtag values(seq_post_hashtag.nextval, 10004, 10011);
 insert into post_hashtag values(seq_post_hashtag.nextval, 10005, 10001);
-insert into post_hashtag values(seq_post_hashtag.nextval, 10005, 10001);
+insert into post_hashtag values(seq_post_hashtag.nextval, 10005, 10012);
+
+insert into likes(likeid,userid,postid) values (seq_likes.nextval, 10000, 10002); 
+insert into likes(likeid,userid,postid) values (seq_likes.nextval, 10000, 10005);
+insert into likes(likeid,userid,postid) values (seq_likes.nextval, 10000, 10003);
+insert into likes(likeid,userid,postid) values (seq_likes.nextval, 10000, 10001);
+insert into likes(likeid,userid,postid) values (seq_likes.nextval, 10001, 10002);
+insert into likes(likeid,userid,postid) values (seq_likes.nextval, 10001, 10004);
+insert into likes(likeid,userid,postid) values (seq_likes.nextval, 10001, 10005);
+insert into likes(likeid,userid,postid) values (seq_likes.nextval, 10002, 10000);
+insert into likes(likeid,userid,postid) values (seq_likes.nextval, 10002, 10001);
+insert into likes(likeid,userid,postid) values (seq_likes.nextval, 10002, 10002);
+insert into likes(likeid,userid,postid) values (seq_likes.nextval, 10002, 10003);
+insert into likes(likeid,userid,postid) values (seq_likes.nextval, 10002, 10004);
+insert into likes(likeid,userid,postid) values (seq_likes.nextval, 10002, 10005);
 
 commit;
 --drop table posts cascade constraints;

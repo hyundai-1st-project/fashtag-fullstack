@@ -12,4 +12,5 @@ public interface PostService {
 //	public List<PostVO> getList();
 
 	public List<PostVO> getAllPost();
+	public List<PostVO> getHashtagPost(String hashtag);
 }
