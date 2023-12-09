@@ -5,8 +5,8 @@
   Time: 오후 3:19
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page pageEncoding="utf-8"%>
-<%@include file="../includes/header.jsp"%>
+<%@ page pageEncoding="utf-8" %>
+<%@include file="../includes/header.jsp" %>
 <link rel='stylesheet' href='/resources/css/post-detail.css' type='text/css'/>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -21,9 +21,9 @@
                 <p class="created-date" data-formatted-date="${post.formattedCreatedAt}"></p>
             </div>
             <div>
-            <button class="profile-btn">
-                <img class="action-btnImg" src="/resources/image/post-detail-image/detail-info-btn.png"/>
-            </button>
+                <button class="profile-btn">
+                    <img class="action-btnImg" src="/resources/image/post-detail-image/detail-info-btn.png"/>
+                </button>
             </div>
         </div>
 
@@ -32,15 +32,14 @@
         </div>
 
 
-
         <div class="contents-box">
             <div class="post-btns">
-                <img src="/resources/image/icon/icon-heart-off.svg" class="icon like_icon" />
-                <img src="/resources/image/icon/chat-icon.png" class="icon chat_icon" />
+                <img src="/resources/image/icon/icon-heart-off.svg" class="icon like_icon"/>
+                <img src="/resources/image/icon/chat-icon.png" class="icon chat_icon"/>
             </div>
             <div class="post-statistics">
-                좋아요<b><span data-v-12986062="" class="like_count" >${post.likeCount}</span></b>개&nbsp;&nbsp;
-                조회수 <b><span data-v-12986062="" class="read_count" >${post.readCount}</span></b>
+                좋아요<b><span data-v-12986062="" class="like_count">${post.likeCount}</span></b>개&nbsp;&nbsp;
+                조회수 <b><span data-v-12986062="" class="read_count">${post.readCount}</span></b>
             </div>
             <div class="post-content">
                 <p>${post.postContent}</p>
@@ -66,15 +65,20 @@
             <div class="post-comments">
                 댓글창
             </div>
+            <div data-v-4be3d37a="" class="layer_container">
+                <div data-v-4be3d37a="" class="layer_header"></div>
+                <div data-v-4be3d37a="" class="layer_content">
+                    <ul data-v-199a6e40="" data-v-4be3d37a="" class="action_list">
+                        <li data-v-199a6e40="" data-v-4be3d37a="" class="action_item update"> 게시물 수정</li>
+                        <li data-v-199a6e40="" data-v-4be3d37a="" class="action_item delete"> 게시물 삭제</li>
+                        <li data-v-199a6e40="" data-v-4be3d37a="" class="action_item cancel"> 취소</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 
-
-
-
-
-
 <script type="text/javascript" src="/resources/js/post-detail.js"></script>
-<%@include file="../includes/footer.jsp"%>
+<%@include file="../includes/footer.jsp" %>

@@ -31,3 +31,44 @@ $(document).ready(function () {
 
     $('.created-date').text(timeAgo);
 });
+
+
+
+//모달창 js
+$(document).ready(function() {
+    // action-btnImg를 클릭할 때 모달 띄우기
+    $('.action-btnImg').click(function() {
+        $('.layer_container[data-v-4be3d37a]').fadeIn();
+        // 주변 어둡게 설정
+        $('body').append('<div class="modal-backdrop"></div>');
+        $('.modal-backdrop').fadeIn();
+    });
+
+    // 모달 외부를 클릭하면 모달 닫기
+    $(document).on('mousedown', function(e) {
+        // 모달 바깥 영역을 클릭하고, 모달 자신이 아닌 경우 모달 닫기
+        if (!$(e.target).closest('.layer_container[data-v-4be3d37a]').length) {
+            $('.layer_container[data-v-4be3d37a]').fadeOut();
+            $('.modal-backdrop').remove(); // 어둡게 한 배경 제거
+        }
+    });
+
+    var currentURL = window.location.href;
+    var updateURL = currentURL + '/update';
+    var deleteURL = currentURL + '/delete';
+    // 수정 버튼 클릭 시 /update로 이동
+    $('.update').click(function() {
+        window.history.pushState({ path: updateURL }, '', updateURL);
+    });
+
+    // 삭제 버튼 클릭 시 /delete로 이동
+    $('.delete').click(function() {
+        window.history.pushState({ path: deleteURL }, '', deleteURL);
+    });
+
+    // 취소 버튼 클릭 시 모달 닫기
+    $('.cancel').click(function() {
+        $('.layer_container[data-v-4be3d37a]').fadeOut();
+        $('.modal-backdrop').remove(); // 어둡게 한 배경 제거
+    });
+});
