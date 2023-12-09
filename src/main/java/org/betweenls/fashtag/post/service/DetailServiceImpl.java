@@ -39,6 +39,8 @@ public class DetailServiceImpl implements DetailService {
         postDetail.setFormattedCreatedAt(sdf.format(postDetail.getCreatedAt()));
         log.info("formattedDate..." + postDetail.getFormattedCreatedAt());
 
+        postDetail.setLikeCount(Long.parseLong("0"));
+
         return postDetail;
     }
 //

@@ -27,22 +27,54 @@
             </div>
         </div>
 
-
-
-
         <div class="fashionImg-box">
             <img class="fashionImg" src="${post.picture}">
         </div>
 
 
 
-
         <div class="contents-box">
-            <p>조회수: ${post.readCount}</p>
-            <p>내용: ${post.postContent}</p>
+            <div class="post-btns">
+                <img src="/resources/image/icon/icon-heart-off.svg" class="icon like_icon" />
+                <img src="/resources/image/icon/chat-icon.png" class="icon chat_icon" />
+            </div>
+            <div class="post-statistics">
+                좋아요<b><span data-v-12986062="" class="like_count" >${post.likeCount}</span></b>개&nbsp;&nbsp;
+                조회수 <b><span data-v-12986062="" class="read_count" >${post.readCount}</span></b>
+            </div>
+            <div class="post-content">
+                <p>${post.postContent}</p>
+                <p data-v-12986062="" class="text_box">
+                    <a href="/posts/tags/hashtag" class="content_hashtag">#오뭐입 </a>
+                    <a href="/posts/tags/hashtag" class="content_hashtag">#내뭐입 </a>
+                    <a href="/posts/tags/hashtag" class="content_hashtag">#hashtags </a>
+                    <a href="/posts/tags/hashtag" class="content_hashtag" content="#크리스마스">#hahtags </a>
+                    <a href="/posts/tags/hashtag" class="content_hashtag">#hhtags </a>
+                    <a href="/posts/tags/hashtag" class="content_hashtag">#haags </a>
+                    <a href="/posts/tags/hashtag" class="content_hashtag">#hashtags </a>
+                    <a href="/posts/tags/hashtag" class="content_hashtag">#hashtags </a>
+                    <a href="/posts/tags/hashtag" class="content_hashtag">#hasags </a>
+                    <a href="/posts/tags/hashtag" class="content_hashtag">#hastags </a>
+                    <a href="/posts/tags/hashtag" class="content_hashtag">#hasags </a>
+                    <a href="/posts/tags/hashtag" class="content_hashtag">#hashags </a>
+                    <a href="/posts/tags/hashtag" class="content_hashtag">#hashags </a>
+                    <a href="/posts/tags/hashtag" class="content_hashtag">#hashtags </a>
+                    <a href="/posts/tags/hashtag" class="content_hashtag">#hashtgs </a>
+                </p>
+                <%--추후 글 길어질때 더보기 창 나오게 할 예정--%>
+            </div>
+            <div class="post-comments">
+                댓글창
+            </div>
         </div>
     </div>
 </section>
+
+
+
+
+
+
 
 <script type="text/javascript" src="/resources/js/post-detail.js"></script>
 <%@include file="../includes/footer.jsp"%>
