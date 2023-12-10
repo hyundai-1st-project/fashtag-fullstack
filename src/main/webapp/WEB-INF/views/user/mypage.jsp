@@ -12,6 +12,9 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <h1>마이페이지</h1>
+<sec:authorize access="isAuthenticated()">
+    <a href="/logout">로그아웃</a>
+</sec:authorize>
 
 <p>principal : <sec:authentication property="principal"/></p>
 

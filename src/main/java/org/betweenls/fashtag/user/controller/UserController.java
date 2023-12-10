@@ -1,7 +1,6 @@
 package org.betweenls.fashtag.user.controller;
 
 import lombok.extern.log4j.Log4j;
-import org.betweenls.fashtag.user.domain.LoginVO;
 import org.betweenls.fashtag.user.domain.UserVO;
 import org.betweenls.fashtag.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +55,7 @@ public class UserController {
     public String myPage(){
         UserVO userVO = userService.getUserDetail(10020);
         log.info(userVO);
-        return "/mypage";
+        return "/user/mypage";
     }
 
 }

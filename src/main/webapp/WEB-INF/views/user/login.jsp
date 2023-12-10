@@ -15,8 +15,10 @@
 <form method='post' action="/login">
     <div><input type='text' name="id" placeholder="아이디"></div>
     <div><input type='password' name="password" placeholder="비밀번호"></div>
-    <div><input type='submit' value="로그인"></div>
+    <div><input type='checkbox' name='remember-me'> 로그인 유지하기 </div>
+    <div><input type='submit'></div>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 </form>
 
-
-<%@include file="../includes/footer.jsp"%>
+</body>
+</html>
