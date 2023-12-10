@@ -53,17 +53,15 @@ $(document).ready(function() {
         }
     });
 
-    var currentURL = window.location.href;
-    var updateURL = currentURL + '/update';
-    var deleteURL = currentURL + '/delete';
+    const postId = $('.hidden-postId').data('post-id');
     // 수정 버튼 클릭 시 /update로 이동
     $('.update').click(function() {
-        window.history.pushState({ path: updateURL }, '', updateURL);
+        window.location.href =  `/posts/${postId}/update`;
     });
 
     // 삭제 버튼 클릭 시 /delete로 이동
     $('.delete').click(function() {
-        window.history.pushState({ path: deleteURL }, '', deleteURL);
+        window.location.href = `/posts/${postId}/delete`;
     });
 
     // 취소 버튼 클릭 시 모달 닫기

@@ -65,6 +65,14 @@
             <div class="post-comments">
                 댓글창
             </div>
+
+
+            <%--히든--%>
+            <p class="hidden-postId" style="visibility: hidden;" data-post-id="${post.postId}"></p>
+            <div >
+
+            </div>
+            <%--팝업창--%>
             <div data-v-4be3d37a="" class="layer_container">
                 <div data-v-4be3d37a="" class="layer_header"></div>
                 <div data-v-4be3d37a="" class="layer_content">
