@@ -6,20 +6,24 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+    <bean id="customLoginSuccess" class="org.betweenls.fashtag.user.security.CustomLoginSuccessHandler"/>
+    <bean id="customUserDetailsService" class="org.betweenls.fashtag.user.security.CustomUserDetailsService"/>
 
     <security:http>
         <security:csrf disabled="true" />
-        <security:intercept-url pattern="/user/**" access="permitAll()"/>
-        <security:intercept-url pattern="/user/my" access="hasAnyRole('ROLE_MEMBER')"/>
-        <security:form-login login-page="/user/login"/>
+        <security:intercept-url pattern="/join" access="permitAll"/>
+        <security:intercept-url pattern="/posts" access="permitAll"/>
+        <security:intercept-url pattern="/mypage" access="hasAnyRole('ROLE_MEMBER')"/>
+        <security:form-login login-page="/login"
+                             username-parameter="id" password-parameter="password"
+                             default-target-url="/posts"/>
+        <security:logout logout-url="/logout"
+                         logout-success-url="/posts" />
     </security:http>
 
     <security:authentication-manager>
-        <security:authentication-provider>
+        <security:authentication-provider user-service-ref="customUserDetailsService">
             <security:password-encoder ref="bcryptPasswordEncoder"/>
-            <security:user-service>
-                <security:user name="user1" password="{noop}user1" authorities="ROLE_MEMBER"/>
-            </security:user-service>
         </security:authentication-provider>
     </security:authentication-manager>
 

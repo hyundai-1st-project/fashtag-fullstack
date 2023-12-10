@@ -20,12 +20,37 @@
         values (#{userId}, 'ROLE_USER')
     </insert>
 
-    <select id="getUserDetail" parameterType="long" resultType="UserVO">
+    <resultMap id="userMap" type="org.betweenls.fashtag.user.domain.UserVO">
+        <id property="userId" column="userId"/>
+        <result property="id" column="id"/>
+        <result property="password" column="password"/>
+        <result property="profile" column="profile"/>
+        <result property="nickname" column="nickname"/>
+        <result property="username" column="username"/>
+        <result property="createdAt" column="createdAt"/>
+        <collection property="authList" resultMap="authMap"/>
+    </resultMap>
+
+    <resultMap id="authMap" type="org.betweenls.fashtag.user.domain.AuthVO">
+        <result property="userId" column="userId"/>
+        <result property="auth" column="auth"/>
+    </resultMap>
+
+    <select id="read" parameterType="String" resultMap="userMap">
+        SELECT
+            u.userId, u.id, u.password, u.profile, u.nickname, u.username, u.createdAt, a.auth
+        FROM users u
+                 LEFT OUTER JOIN auth a ON u.userId = a.userId
+        WHERE u.id = #{id}
+    </select>
+
+    <select id="getUserDetail" parameterType="long" resultMap="userMap">
         SELECT
             u.userId, u.id, u.password, u.profile, u.nickname, u.username, u.createdAt, a.auth
         FROM users u
                  LEFT OUTER JOIN auth a ON u.userId = a.userId
         WHERE u.userId = #{userId}
     </select>
+
 
 </mapper>

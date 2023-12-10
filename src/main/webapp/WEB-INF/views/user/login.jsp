@@ -8,11 +8,14 @@
 <%@ page pageEncoding="utf-8"%>
 <%@include file="../includes/header.jsp"%>
 
+<h2><c:out value="${error}"/></h2>
+<h2><c:out value="${logout}"/></h2>
+
 <h1>로그인 화면</h1>
 <form method='post' action="/login">
-    <div><input type='text' name='id'></div>
-    <div><input type='password' name='password'></div>
-    <div><input type='submit'></div>
+    <div><input type='text' name="id" placeholder="아이디"></div>
+    <div><input type='password' name="password" placeholder="비밀번호"></div>
+    <div><input type='submit' value="로그인"></div>
 </form>
 
 
