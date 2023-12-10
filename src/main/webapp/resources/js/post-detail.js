@@ -70,3 +70,25 @@ $(document).ready(function() {
         $('.modal-backdrop').remove(); // 어둡게 한 배경 제거
     });
 });
+
+
+// 아이콘 클릭 이벤트 리스너 등록
+$('.like_icon').on('click', function() {
+    var $likeIcon = $(this);
+    var $likeCount = $('.like_count');
+    var isLiked = $likeIcon.hasClass('liked'); // 좋아요 상태 확인
+
+    if (isLiked) {
+        // 좋아요 취소
+        $likeIcon.attr('src', '/resources/image/icon/icon-heart-off.svg');
+        $likeIcon.removeClass('liked');
+        var currentCount = parseInt($likeCount.text());
+        $likeCount.text(currentCount - 1); // 숫자 감소
+    } else {
+        // 좋아요 표시
+        $likeIcon.attr('src', '/resources/image/icon/icon-heart-on.svg');
+        $likeIcon.addClass('liked');
+        var currentCount = parseInt($likeCount.text());
+        $likeCount.text(currentCount + 1); // 숫자 증가
+    }
+});

@@ -73,6 +73,7 @@
 
             </div>
             <%--팝업창--%>
+            <%--추후에 작성자랑 작성자아닌경우 다르게 팝업창 설정할 예정--%>
             <div data-v-4be3d37a="" class="layer_container">
                 <div data-v-4be3d37a="" class="layer_header"></div>
                 <div data-v-4be3d37a="" class="layer_content">
