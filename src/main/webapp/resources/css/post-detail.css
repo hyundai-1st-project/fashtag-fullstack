@@ -292,3 +292,69 @@
     color: black; /* 검정색 텍스트 적용 */
     border: 1px solid #d3d3d3;
 }
+
+
+
+/*테스트*/
+/* 모달 스타일 */
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    z-index: 999;
+}
+
+/* 프로필 사진 스타일 */
+.profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin-right: 10px;
+}
+
+/* 댓글 입력창 및 등록 버튼 부분 */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-right: 10px;
+    min-height: 40px;
+    overflow-y: auto;
+    flex: 1;
+    background-color: #f0f0f0; /* 연한 회색 배경색 */
+    justify-content: space-between; /* 요소 사이에 공간 배분 */
+}
+
+.register-button {
+    padding: 0 !important;
+    margin-right: 5px;
+    background-color: transparent !important; /* 배경색을 투명하게 설정 */
+    border: none !important; /* 테두리를 제거 */
+    color: black !important;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 20px;
+
+    white-space: pre-wrap; /* 텍스트가 버튼을 넘어서도 다음 줄로 이동하도록 설정 */
+    word-break: break-word; /* 단어 단위로 줄 바꿈 설정 */
+}
+
+
+/* 숨겨진 submit input */
+.modal.hidden {
+    display: none;
+}
