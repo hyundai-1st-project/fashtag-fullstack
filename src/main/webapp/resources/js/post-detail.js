@@ -129,3 +129,58 @@ $('.like_icon').on('click', function() {
         $likeCount.text(currentCount + 1); // 숫자 증가
     }
 });
+
+
+
+
+
+const commentInput = document.getElementById('commentInput');
+const placeholder = commentInput.getAttribute('data-placeholder');
+const registerButton = document.getElementById('submitComment');
+
+// 입력이 시작될 때 placeholder 제거
+commentInput.addEventListener('focus', function () {
+    if (this.textContent.trim() === placeholder) {
+        this.textContent = '';
+    }
+});
+
+// 입력이 시작될 때 placeholder 제거
+commentInput.addEventListener('input', function () {
+    if (this.textContent.trim() !== '') {
+        this.classList.remove('placeholder'); // 내용이 있으면 placeholder 클래스 제거
+    } else {
+        this.classList.add('placeholder'); // 내용이 없으면 placeholder 클래스 추가
+    }
+    updateRegisterButtonVisibility(); // 등록 버튼 표시 여부 업데이트
+});
+
+// 입력란을 벗어났을 때 placeholder를 다시 표시
+commentInput.addEventListener('blur', function () {
+    if (this.textContent.trim() === '') {
+        this.classList.add('placeholder'); // 내용이 없으면 placeholder 클래스 추가
+        this.textContent = placeholder; // 내용이 없으면 placeholder 텍스트 설정
+    }
+    updateRegisterButtonVisibility(); // 등록 버튼 표시 여부 업데이트
+});
+
+// 등록 버튼의 표시 여부를 업데이트하는 함수
+function updateRegisterButtonVisibility() {
+    if (commentInput.classList.contains('placeholder')) {
+        registerButton.style.display = 'none'; // placeholder가 존재하면 버튼 숨김
+    } else {
+        registerButton.style.display = 'inline-block'; // placeholder가 없으면 버튼 표시
+    }
+}
+
+// 페이지 로드 시 초기 등록 버튼 상태 설정
+commentInput.textContent = placeholder;
+commentInput.classList.add('placeholder'); // 초기에 placeholder 설정
+updateRegisterButtonVisibility();
+
+// 입력란 내용이 바뀌면 등록 버튼 상태 업데이트
+setInterval(function () {
+    if (commentInput.textContent.trim() !== '') {
+        updateRegisterButtonVisibility(); // 내용이 있는 경우 버튼 표시
+    }
+}, 200);
