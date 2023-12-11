@@ -44,21 +44,9 @@
             <div class="post-content">
                 <p>${post.postContent}</p>
                 <p data-v-12986062="" class="text_box">
-                    <a href="/posts/tags/hashtag" class="content_hashtag">#오뭐입 </a>
-                    <a href="/posts/tags/hashtag" class="content_hashtag">#내뭐입 </a>
-                    <a href="/posts/tags/hashtag" class="content_hashtag">#hashtags </a>
-                    <a href="/posts/tags/hashtag" class="content_hashtag" content="#크리스마스">#hahtags </a>
-                    <a href="/posts/tags/hashtag" class="content_hashtag">#hhtags </a>
-                    <a href="/posts/tags/hashtag" class="content_hashtag">#haags </a>
-                    <a href="/posts/tags/hashtag" class="content_hashtag">#hashtags </a>
-                    <a href="/posts/tags/hashtag" class="content_hashtag">#hashtags </a>
-                    <a href="/posts/tags/hashtag" class="content_hashtag">#hasags </a>
-                    <a href="/posts/tags/hashtag" class="content_hashtag">#hastags </a>
-                    <a href="/posts/tags/hashtag" class="content_hashtag">#hasags </a>
-                    <a href="/posts/tags/hashtag" class="content_hashtag">#hashags </a>
-                    <a href="/posts/tags/hashtag" class="content_hashtag">#hashags </a>
-                    <a href="/posts/tags/hashtag" class="content_hashtag">#hashtags </a>
-                    <a href="/posts/tags/hashtag" class="content_hashtag">#hashtgs </a>
+                    <c:forEach items="${post.hashtags}" var="hashtag">
+                        <a href="/posts/tags/${hashtag}" class="content_hashtag">#${hashtag} </a>
+                    </c:forEach>
                 </p>
                 <%--추후 글 길어질때 더보기 창 나오게 할 예정--%>
             </div>
