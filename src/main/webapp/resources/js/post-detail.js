@@ -37,6 +37,8 @@ $(document).ready(function () {
 
 
 //모달창 js
+
+//글 수정-삭제 모달창
 $(document).ready(function() {
     // action-btnImg를 클릭할 때 모달 띄우기
     $('.action-btnImg').click(function() {
@@ -72,6 +74,39 @@ $(document).ready(function() {
         $('.modal-backdrop').remove(); // 어둡게 한 배경 제거
     });
 });
+
+//댓글 삭제 모달창
+$(document).ready(function() {
+    // 삭제버튼을 클릭할 때 모달 띄우기
+    $('.comment-box .delete-btn').click(function() {
+        $('.layer_yes-or-no[data-v-4be3d37a]').fadeIn();
+        // 주변 어둡게 설정
+        $('body').append('<div class="modal-backdrop"></div>');
+        $('.modal-backdrop').fadeIn();
+    });
+
+    // 모달 외부를 클릭하면 모달 닫기
+    $(document).on('mousedown', function(e) {
+        // 모달 바깥 영역을 클릭하고, 모달 자신이 아닌 경우 모달 닫기
+        if (!$(e.target).closest('.layer_yes-or-no[data-v-4be3d37a]').length) {
+            $('.layer_yes-or-no[data-v-4be3d37a]').fadeOut();
+            $('.modal-backdrop').remove(); // 어둡게 한 배경 제거
+        }
+    });
+
+    const commentId = $('.hidden-postId').data('post-id');//추후 수정!!
+    // 삭제 버튼 클릭 시 /delete로 이동
+    $('.layer_yes-or-no .layer_btn .btn-delete').click(function() {
+        window.location.href = `/comments/${commentId}/delete`;
+    });
+
+    // 취소 버튼 클릭 시 모달 닫기
+    $('.layer_yes-or-no .layer_btn .btn-cancel').click(function() {
+        $('.layer_yes-or-no[data-v-4be3d37a]').fadeOut();
+        $('.modal-backdrop').remove(); // 어둡게 한 배경 제거
+    });
+});
+
 
 
 // 아이콘 클릭 이벤트 리스너 등록
