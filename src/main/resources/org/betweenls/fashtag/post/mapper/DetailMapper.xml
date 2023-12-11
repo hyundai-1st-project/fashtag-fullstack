@@ -39,9 +39,20 @@
 	<!--		values-->
 	<!--		(seq_board.nextval, #{title}, #{content}, #{writer})-->
 	<!--	</insert>-->
-
+	<resultMap id="ResultMap" type="org.betweenls.fashtag.post.domain.PostVO">
+		<id property="postId" column="postId"></id>
+		<result property="postContent" column="postContent"></result>
+		<result property="picture" column="picture"></result>
+		<result property="createdAt" column="createdAt"></result>
+		<result property="updatedAt" column="updatedAt"></result>
+		<result property="readCount" column="readCount"></result>
+		<result property="userId" column="userId"></result>
+		<result property="likeCount" column="likeCount"></result>
+		<result property="nickname" column="nickname"></result>
+		<collection property="hashtags" column="postId" javaType="List" ofType="String" select="findHashtagByPostId"></collection>
+	</resultMap>
 	<select id="getPostDetail"
-			resultType="org.betweenls.fashtag.post.domain.PostVO">
+			resultMap="ResultMap">
 		select p.postid,postContent, picture, createdat,updatedat,readcount,userid, nvl((select count(userid)
 																						 from likes
 																						 where postid = p.postid
@@ -52,7 +63,25 @@
 		from posts p
 		where postId = #{postId}
 	</select>
+	<select id="findHashtagByPostId" resultType="String" parameterType="Long">
+		select substr(hashtag, 2)
+		from post_hashtag ph inner join hashtag h on ph.hashtagId = h.hashtagId
+		where postid = ${postId}
+	</select>
 
+
+<!--	<select id="getPostDetail"-->
+<!--			resultType="org.betweenls.fashtag.post.domain.PostVO">-->
+<!--		select p.postid,postContent, picture, createdat,updatedat,readcount,userid, nvl((select count(userid)-->
+<!--																						 from likes-->
+<!--																						 where postid = p.postid-->
+<!--																						 group by postid), 0) likeCount,-->
+<!--			   (select nickname-->
+<!--				from users-->
+<!--				where userId = p.userId) nickname-->
+<!--		from posts p-->
+<!--		where postId = #{postId}-->
+<!--	</select>-->
 	<!--	<delete id="delete">-->
 	<!--		delete from tbl_board where bno = #{bno}-->
 	<!--	</delete>-->
