@@ -243,7 +243,10 @@
     .layer_yes-or-no[data-v-4be3d37a] {
         max-height: 100%;
         width: 75%; /* 모바일에서 너비 조정 */
-        font-size: x-small;
+    }
+
+    .layer_yes-or-no .layer_btn button {
+        width: 30% !important;
     }
 }
 
@@ -257,6 +260,7 @@
     justify-content: center; /* 가로 방향 가운데 정렬 */
     width: 100%;
     margin-bottom: 20px; /* 버튼과 삭제 문구 간격 조정 */
+
 }
 
 
@@ -271,6 +275,7 @@
     cursor: pointer;
     margin-right: 15px; /* 버튼 사이 간격을 설정합니다. */
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .layer_yes-or-no .layer_btn button:last-child {
