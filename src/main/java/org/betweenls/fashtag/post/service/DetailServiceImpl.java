@@ -33,15 +33,7 @@ public class DetailServiceImpl implements DetailService {
     public PostVO getDetail(Long postId) {
         log.info("get...." + postId);
 
-        //날짜변환
-        PostVO postDetail = mapper.getPostDetail(postId);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-        postDetail.setFormattedCreatedAt(sdf.format(postDetail.getCreatedAt()));
-        log.info("formattedDate..." + postDetail.getFormattedCreatedAt());
-
-        postDetail.setLikeCount(Long.parseLong("0"));
-
-        return postDetail;
+        return mapper.getPostDetail(postId);
     }
 //
 //	@Override

@@ -18,7 +18,7 @@
             </a>
             <div class="profile-info">
                 <p class="username">${post.userId}</p>
-                <p class="created-date" data-formatted-date="${post.formattedCreatedAt}"></p>
+                <p class="created-date" data-formatted-date="${formattedCreatedAt}"></p>
             </div>
             <div>
                 <button class="profile-btn">
