@@ -6,16 +6,17 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-    <bean id="customLoginSuccess" class="org.betweenls.fashtag.user.security.CustomLoginSuccessHandler"/>
     <bean id="customUserDetailsService" class="org.betweenls.fashtag.user.security.CustomUserDetailsService"/>
 
     <security:http>
         <security:csrf disabled="true" />
-        <security:intercept-url pattern="/join" access="permitAll"/>
+        <security:intercept-url pattern="/login" access="permitAll"/>
+        <security:intercept-url pattern="/user/join" access="permitAll"/>
         <security:intercept-url pattern="/posts" access="permitAll"/>
         <security:intercept-url pattern="/mypage" access="hasAnyRole('ROLE_USER')"/>
         <security:form-login login-page="/login"
-                             username-parameter="id" password-parameter="password"
+                             username-parameter="id"
+                             password-parameter="password"
                              default-target-url="/posts"/>
         <security:logout logout-url="/logout"
                          logout-success-url="/posts"

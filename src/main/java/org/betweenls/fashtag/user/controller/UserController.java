@@ -21,16 +21,16 @@ public class UserController {
         userService.test();
     }
 
-    @GetMapping("/join")
+    @GetMapping("/user/join")
     public void getJoin(){
         log.info("회원가입 페이지");
     }
 
     @PostMapping( "/join")
-    public @ResponseBody String postJoin(UserVO joinUser){
+    public String postJoin(UserVO joinUser){
         log.info("회원 가입 : " + joinUser);
         userService.join(joinUser);
-        return "/user/login";
+        return "redirect:/login";
     }
 
     @GetMapping("/login")
