@@ -15,6 +15,7 @@ public interface DetailMapper {
 //	public void insertSelectKey(PostVO post);
 //
 	public PostVO getPostDetail(Long postId);
+	public List<String> getHashtagByPostId(Long postId);
 
 //	public int delete(long postId);
 //
