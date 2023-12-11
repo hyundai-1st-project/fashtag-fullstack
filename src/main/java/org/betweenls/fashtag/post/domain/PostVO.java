@@ -13,4 +13,5 @@ public class PostVO {
     private Long readCount;
     private Long userId;
     private Long likeCount;
+    private String nickname;
 }

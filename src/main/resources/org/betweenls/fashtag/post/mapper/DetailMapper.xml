@@ -42,7 +42,15 @@
 
 	<select id="getPostDetail"
 			resultType="org.betweenls.fashtag.post.domain.PostVO">
-		SELECT * FROM posts WHERE postId = #{postId}
+		select p.postid,postContent, picture, createdat,updatedat,readcount,userid, nvl((select count(userid)
+																						 from likes
+																						 where postid = p.postid
+																						 group by postid), 0) likeCount,
+																				   (select nickname
+																					from users
+																					where userId = p.userId) nickname
+		from posts p
+		where postId = #{postId}
 	</select>
 
 	<!--	<delete id="delete">-->
