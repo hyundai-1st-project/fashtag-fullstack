@@ -52,6 +52,19 @@
             </div>
             <div class="post-comments">
                 <div class="comments-count">댓글 <b>30</b>개</div>
+                <div class="modal">
+                    <img class="profile-picture"
+                         src="https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=0.88847xw:1xh;center,top&resize=1200:*"
+                         alt="프로필 사진">
+                    <!-- 댓글 입력창 -->
+                    <div class="input-wrapper">
+                        <div contenteditable="true" id="commentInput" data-placeholder="댓글을 입력해주세요">
+                            댓글을 입력해주세요
+                        </div>
+                        <!-- 등록 버튼 -->
+                        <input type="submit" id="submitComment" class="register-button" value="등록" />
+                    </div>
+                </div>
                 <div class="comments-content">
                     <div class="comment-box">
                         <a class="userImg-box" href="#">
@@ -115,7 +128,14 @@
             </div>
         </div>
     </div>
+
+
+
 </section>
+<%--댓글 다는 모달창--%>
+
+
+
 
 
 <script type="text/javascript" src="/resources/js/post-detail.js"></script>
