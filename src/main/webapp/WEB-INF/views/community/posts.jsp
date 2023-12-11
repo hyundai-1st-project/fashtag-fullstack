@@ -49,12 +49,24 @@
 
                     <ul data-v-34267d59="" data-v-838ba4a0="" class="social_sorting sorting">
                         <c:if test="${pageTitle eq '#POSTS'}">
-                        <li data-v-34267d59="">
-                            <a data-v-34267d59="" href="/posts?s=popular" class="choice active"> 인기순 </a>
-                        </li>
-                        <li data-v-34267d59="">
-                            <a data-v-34267d59="" href="/posts?s=newest" class="choice"> 최신순 </a>
-                        </li>
+                            <c:choose>
+                                <c:when test="${order eq 'popular'}">
+                                    <li data-v-34267d59="">
+                                        <a data-v-34267d59="" href="/posts?s=popular" class="choice active">인기순 </a>
+                                    </li>
+                                    <li data-v-34267d59="">
+                                        <a data-v-34267d59="" href="/posts?s=newest" class="choice">최신순</a>
+                                    </li>
+                                </c:when>
+                                <c:when test="${order eq 'newest'}">
+                                    <li data-v-34267d59="">
+                                        <a data-v-34267d59="" href="/posts?s=popular" class="choice">인기순 </a>
+                                    </li>
+                                    <li data-v-34267d59="">
+                                        <a data-v-34267d59="" href="/posts?s=newest" class="choice active">최신순</a>
+                                    </li>
+                                </c:when>
+                            </c:choose>
                         </c:if>
                     </ul>
 
