@@ -15,43 +15,49 @@
             <div id="primary" class="content-area column full">
                 <div style="height: 20px"></div>
                 <div data-v-838ba4a0="" class="container tag_container">
-                    <div data-v-621b99be="" data-v-838ba4a0="" class="social_tag_shortcuts tag_shortcuts">
-                        <c:forEach items="${hashtagList}" var="hash">
-                            <a data-v-621b99be="" href='/posts/tags/<c:out value="${hash}"/>' class="" >
-                                <div data-v-4fe1e795="" data-v-621b99be="" class="shortcut rounded">
-                                    <picture data-v-44ba780a="" data-v-4fe1e795="" class="picture shortcut_image">
-                                        <img
-                                                data-v-44ba780a=""
-                                                src=/resources/image/post-image/a.webp
-                                                loading="lazy"
-                                                class="image full_width"/>
-                                    </picture>
-                                    <div data-v-4fe1e795="" class="shortcut_title">
-                                        <p
-                                                data-v-8016a084=""
-                                                data-v-621b99be=""
-                                                class="display_paragraph"
-                                                data-v-4fe1e795=""
-                                                style="color: rgb(51, 51, 51); -webkit-line-clamp: 2"
-                                        >
-                                            <c:out value="${hash}"/>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </c:forEach>
+                    <c:if test="${pageTitle eq '#POSTS'}">
+                        <div data-v-621b99be="" data-v-838ba4a0="" class="social_tag_shortcuts tag_shortcuts">
 
-                    </div>
+                            <c:forEach items="${hashtagName}" var="hashtag" varStatus="status">
+                                <a data-v-621b99be="" href='/posts/tags/${hashtag}' class="" >
+                                    <div data-v-4fe1e795="" data-v-621b99be="" class="shortcut rounded">
+                                        <picture data-v-44ba780a="" data-v-4fe1e795="" class="picture shortcut_image">
+                                            <img
+                                                    data-v-44ba780a=""
+                                                    src=/resources/image/hashtag-image/${hashtag}.${hashtagExtension[status.index]}
+                                                    loading="lazy"
+                                                    class="image full_width"/>
+                                        </picture>
+                                        <div data-v-4fe1e795="" class="shortcut_title">
+                                            <p
+                                                    data-v-8016a084=""
+                                                    data-v-621b99be=""
+                                                    class="display_paragraph"
+                                                    data-v-4fe1e795=""
+                                                    style="color: rgb(51, 51, 51); -webkit-line-clamp: 2"
+                                            >
+                                                <c:out value="${hashtag}"/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </c:forEach>
+                        </div>
+                    </c:if>
                 </div>
                 <div data-v-838ba4a0="" class="container sorting_container">
+
                     <ul data-v-34267d59="" data-v-838ba4a0="" class="social_sorting sorting">
+                        <c:if test="${pageTitle eq '#POSTS'}">
                         <li data-v-34267d59="">
                             <a data-v-34267d59="" href="/posts?s=popular" class="choice active"> 인기순 </a>
                         </li>
                         <li data-v-34267d59="">
                             <a data-v-34267d59="" href="/posts?s=newest" class="choice"> 최신순 </a>
                         </li>
+                        </c:if>
                     </ul>
+
                 </div>
                 <main id="main" class="site-main">
                     <div class="grid portfoliogrid">
