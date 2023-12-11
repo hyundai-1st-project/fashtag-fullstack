@@ -8,5 +8,5 @@ public interface UserMapper {
 
     UserVO getUserDetail(long userId); // pk 값
 
-    UserVO read(String id); // 아이디
+    UserVO getUserById(String id); // 아이디
 }

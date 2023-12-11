@@ -64,6 +64,23 @@
         cursor: pointer;
         margin-top: 10px; /* Added margin for spacing */
     }
+
+    .join-button {
+        display: inline-block;
+        width: calc(100% - 22px);
+        text-decoration: none;
+        background-color: #ccc;
+        color: white;
+        padding: 8px 0;
+        border-radius: 3px;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .join-button:hover {
+        background-color: #999;
+    }
+
 </style>
 
 <form class="loginForm" method='post' action="/login">
@@ -81,6 +98,7 @@
         <input type='checkbox' name='remember-me'> 로그인 유지하기
     </div>
     <button id="login-button" type="submit">로그인</button>
+    <a href="/user/join" class="join-button">회원 가입</a>
 </form>
 
 </body>

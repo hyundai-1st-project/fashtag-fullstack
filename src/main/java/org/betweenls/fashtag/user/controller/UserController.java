@@ -1,9 +1,12 @@
 package org.betweenls.fashtag.user.controller;
 
 import lombok.extern.log4j.Log4j;
+import org.betweenls.fashtag.user.domain.CustomUser;
 import org.betweenls.fashtag.user.domain.UserVO;
 import org.betweenls.fashtag.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,14 +37,12 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(String error, String logout, Model model){
-        log.info("error : " + error);
-        log.info("logout : " + logout);
-        if(error != null) {
-            model.addAttribute("error", "Login Error Check Your Account");
-        }
-        if(logout != null) {
-            model.addAttribute("logout", "Logout!!");
+    public String login(@RequestParam(value = "error", required = false) String error,
+                        @RequestParam(value = "exception", required = false) String exception,
+                        Model model) {
+        if ("true".equals(error)) {
+            model.addAttribute("error", error);
+            model.addAttribute("exception", exception);
         }
         return "/user/login";
     }
@@ -52,10 +53,29 @@ public class UserController {
     }
 
     @GetMapping("/mypage")
-    public String myPage(){
-        UserVO userVO = userService.getUserDetail(10020);
-        log.info(userVO);
+    public String myPage() {
+
+        // @AuthenticationPrincipal CustomUser customUser
+//        if (customUser != null) {
+//            // CustomUser를 이용한 작업 수행
+//            UserVO userVO = customUser.getUserVO();
+//            log.info(customUser);
+//            // 사용자 정보 활용
+//        }
+
         return "/user/mypage";
+    }
+
+    @GetMapping("/edit")
+    @PreAuthorize("isAuthenticated()")
+    public String edit(){
+        return "/user/edit";
+    }
+
+    @PostMapping("/edit")
+    @PreAuthorize("isAuthenticated()")
+    public String editForm(){
+        return "redirect:/mypage";
     }
 
 }

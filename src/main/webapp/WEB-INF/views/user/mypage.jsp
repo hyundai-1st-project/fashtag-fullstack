@@ -9,17 +9,17 @@
 <%@include file="../includes/header.jsp"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%--<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>--%>
 
 <h1>마이페이지</h1>
-<sec:authorize access="isAuthenticated()">
-    <a href="/logout">로그아웃</a>
-</sec:authorize>
+<div>
+<%--    이름 <div th:text="${userVO.getId()}"></div>--%>
+</div>
 
-<p>principal : <sec:authentication property="principal"/></p>
+<sec:authentication property="principal.userVO" var="user" />
+<c:out value="${user.userId}" />
 
 
-<p>UserVO : <sec:authentication property="principal.userVO"/></p>
 <%--<p>사용자이름 : <sec:authentication property="principal.userVO"/></p>--%>
 <%--<p>사용자아이디 : <sec:authentication property="principal.userVO.id"/></p>--%>
 
