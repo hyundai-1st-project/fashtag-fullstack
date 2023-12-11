@@ -14,9 +14,9 @@ import java.util.List;
 public class PostServiceImpl implements PostService {
 	private PostMapper mapper;
 	@Override
-	public List<PostVO> getAllPost() {
+	public List<PostVO> getAllPost(String order) {
 //		log.info("get AllPost ");
-		return mapper.getAllPost();
+		return mapper.getAllPost(order);
 	}
 
 	@Override

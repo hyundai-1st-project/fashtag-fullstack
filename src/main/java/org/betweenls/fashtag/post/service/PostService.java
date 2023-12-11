@@ -11,6 +11,6 @@ public interface PostService {
 //	public boolean remove(Long bno);
 //	public List<PostVO> getList();
 
-	public List<PostVO> getAllPost();
+	public List<PostVO> getAllPost(String order);
 	public List<PostVO> getHashtagPost(String hashtag);
 }

@@ -11,6 +11,7 @@
 																						 where postid = p.postid
 																						 group by postid), 0) likeCount
 		from posts p
+		order by ${order} desc
 	]]></select>
 
 	<select id="getHashtagPost"
