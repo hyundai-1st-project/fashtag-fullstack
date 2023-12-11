@@ -63,15 +63,35 @@
                 <%--추후 글 길어질때 더보기 창 나오게 할 예정--%>
             </div>
             <div class="post-comments">
-                댓글창
+                <div class="comments-count">댓글 <b>30</b>개</div>
+                <div class="comments-content">
+                    <div class="comment-box">
+                        <a class="userImg-box" href="#">
+                            <img class="userImg" src="https://i.namu.wiki/i/R0AhIJhNi8fkU2Al72pglkrT8QenAaCJd1as-d_iY6MC8nub1iI5VzIqzJlLa-1uzZm--TkB-KHFiT-P-t7bEg.webp" alt="프로필 사진">
+                        </a>
+                        <div class="profile-info">
+                            <span class="username">hi_wooooany</span>
+                            <span class="content">좋아요❤️</span>
+                            <p class="created-date" data-formatted-date="${formattedCreatedAt}"></p>
+                        </div>
+                        <div class="delete-btn">삭제</div>
+                    </div>
+                    <div class="comment-box">
+                        <a class="userImg-box" href="#">
+                            <img class="userImg" src="https://i.namu.wiki/i/R0AhIJhNi8fkU2Al72pglkrT8QenAaCJd1as-d_iY6MC8nub1iI5VzIqzJlLa-1uzZm--TkB-KHFiT-P-t7bEg.webp" alt="프로필 사진">
+                        </a>
+                        <div class="profile-info">
+                            <span class="username">hi_wooooany</span>
+                            <span class="content">좋아요❤️️️️</span>
+                            <p class="created-date" data-formatted-date="${formattedCreatedAt}"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
             <%--히든--%>
             <p class="hidden-postId" style="visibility: hidden;" data-post-id="${post.postId}"></p>
-            <div >
-
-            </div>
             <%--팝업창--%>
             <%--추후에 작성자랑 작성자아닌경우 다르게 팝업창 설정할 예정--%>
             <div data-v-4be3d37a="" class="layer_container">
