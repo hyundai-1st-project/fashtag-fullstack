@@ -119,10 +119,9 @@
                 <div data-v-4be3d37a="" class="alert_box high"><p data-v-4be3d37a="" class="alert_desc">삭제하시겠습니까?</p>
                 </div>
                 <div data-v-4be3d37a="" class="layer_btn">
-                    <button data-v-0a6aebaa="" type="button" class="btn outlinegrey medium" data-v-4be3d37a=""> 취소
+                    <button data-v-0a6aebaa="" type="button" class="btn-cancel" data-v-4be3d37a=""> 취소
                     </button>
-                    <button data-v-0a6aebaa="" type="button" class="btn solid
-         medium" data-v-4be3d37a=""> 확인
+                    <button data-v-0a6aebaa="" type="button" class="btn-delete" data-v-4be3d37a=""> 확인
                     </button>
                 </div>
             </div>
