@@ -1,4 +1,4 @@
--- Å×ÀÌºí »ý¼º
+-- ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½
 CREATE TABLE Users (
 	userId	NUMBER(10,0)		NOT NULL,
 	id	VARCHAR2(20)		NOT NULL,
@@ -45,7 +45,20 @@ CREATE TABLE Post_hashtag (
 	hashtagId	NUMBER(10,0)		NOT NULL
 );
 
---Á¦¾à Á¶°Ç Ãß°¡
+CREATE TABLE persistent_logins (
+                                   series VARCHAR(64) PRIMARY KEY,
+                                   username VARCHAR(64) NOT NULL,
+                                   token VARCHAR(64) NOT NULL,
+                                   last_used TIMESTAMP NOT NULL
+);
+
+create table auth(
+                     userId NUMBER(10,0) NOT NULL,
+                     auth varchar2(50) NOT NULL,
+                     constraint fk_auth foreign key(userId) references users
+);
+
+--ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 ALTER TABLE Users ADD CONSTRAINT PK_USERS PRIMARY KEY (
 	userId
 );
@@ -76,7 +89,7 @@ ALTER TABLE Images ADD CONSTRAINT PK_IMAGES PRIMARY KEY (
 
 ALTER TABLE Images ADD CONSTRAINT state_check CHECK( state IN ('profile', 'post'));
 
---½ÃÄö½º »ý¼º
+--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 CREATE SEQUENCE seq_posts
   START WITH 10000 INCREMENT BY 1;
   
@@ -101,34 +114,34 @@ CREATE SEQUENCE seq_likes
   
   
 insert into users(userid, id, password, nickname,username) 
-values (seq_users.nextval, 'kumct12', 'lklk4569', 'hi_wooooany', 'ÀÌ»ó¿ø');
+values (seq_users.nextval, 'kumct12', 'lklk4569', 'hi_wooooany', 'ï¿½Ì»ï¿½ï¿½');
 
 insert into users(userid, id, password, nickname,username) 
-values (seq_users.nextval, 'test', 'test', 'testnickname', '±è»ó±¸');
+values (seq_users.nextval, 'test', 'test', 'testnickname', 'ï¿½ï¿½ï¿½');
 
 insert into users(userid, id, password, nickname,username) 
-values (seq_users.nextval, 'test2', 'test2', 'nickTest', 'ÇÏÀº¿µ');
+values (seq_users.nextval, 'test2', 'test2', 'nickTest', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
 
-insert into posts(postid, POSTCONTENT, picture,USERID) values (seq_posts.nextval, '°Ü¿ïÀº Ãß¿ö','/resources/image/post-image/a.webp', 10000);
-insert into posts(postid, POSTCONTENT, picture,USERID) values (seq_posts.nextval, '¿©¸§Àº ´õ¿ö','/resources/image/post-image/b.webp', 10001);
-insert into posts(postid, POSTCONTENT, picture,USERID) values (seq_posts.nextval, '°¡À»Àº ÁÁ¾Æ','/resources/image/post-image/c.webp', 10000);
-insert into posts(postid, POSTCONTENT, picture,USERID) values (seq_posts.nextval, 'º½µµ ÁÁ¾Æ','/resources/image/post-image/1.webp', 10002);
-insert into posts(postid, POSTCONTENT, picture,USERID) values (seq_posts.nextval, '¿©¸§ÀÌ ÃÖ°í¾ß','/resources/image/post-image/2.webp', 10002);
-insert into posts(postid, POSTCONTENT, picture,USERID) values (seq_posts.nextval, '°Ü¿ïÀº ¾ÆÆÄ¿ä','/resources/image/post-image/3.jpg', 10001);
+insert into posts(postid, POSTCONTENT, picture,USERID) values (seq_posts.nextval, 'ï¿½Ü¿ï¿½ï¿½ï¿½ ï¿½ß¿ï¿½','/resources/image/post-image/a.webp', 10000);
+insert into posts(postid, POSTCONTENT, picture,USERID) values (seq_posts.nextval, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½','/resources/image/post-image/b.webp', 10001);
+insert into posts(postid, POSTCONTENT, picture,USERID) values (seq_posts.nextval, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½','/resources/image/post-image/c.webp', 10000);
+insert into posts(postid, POSTCONTENT, picture,USERID) values (seq_posts.nextval, 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½','/resources/image/post-image/1.webp', 10002);
+insert into posts(postid, POSTCONTENT, picture,USERID) values (seq_posts.nextval, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½ï¿½','/resources/image/post-image/2.webp', 10002);
+insert into posts(postid, POSTCONTENT, picture,USERID) values (seq_posts.nextval, 'ï¿½Ü¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¿ï¿½','/resources/image/post-image/3.jpg', 10001);
 
-insert into hashtag values(seq_hashtag.nextval, '#¾óÁ×ÄÚ');
-insert into hashtag values(seq_hashtag.nextval, '#°Ü¿ïÆÐ¼Ç');
-insert into hashtag values(seq_hashtag.nextval, '#ÆÐµù');
-insert into hashtag values(seq_hashtag.nextval, '#Æ®·»µð');
-insert into hashtag values(seq_hashtag.nextval, '#°Ü¿ï');
-insert into hashtag values(seq_hashtag.nextval, '#ÇÏÀÌÅ·');
+insert into hashtag values(seq_hashtag.nextval, '#ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
+insert into hashtag values(seq_hashtag.nextval, '#ï¿½Ü¿ï¿½ï¿½Ð¼ï¿½');
+insert into hashtag values(seq_hashtag.nextval, '#ï¿½Ðµï¿½');
+insert into hashtag values(seq_hashtag.nextval, '#Æ®ï¿½ï¿½ï¿½ï¿½');
+insert into hashtag values(seq_hashtag.nextval, '#ï¿½Ü¿ï¿½');
+insert into hashtag values(seq_hashtag.nextval, '#ï¿½ï¿½ï¿½ï¿½Å·');
 insert into hashtag values(seq_hashtag.nextval, '#OOTD');
-insert into hashtag values(seq_hashtag.nextval, '#Å©¸®½º¸¶½º');
-insert into hashtag values(seq_hashtag.nextval, '#½Å¹ß');
-insert into hashtag values(seq_hashtag.nextval, '#³ªÀÌÅ°');
-insert into hashtag values(seq_hashtag.nextval, '#¿À¹¹ÀÔ');
-insert into hashtag values(seq_hashtag.nextval, '#³»¹¹ÀÔ');
-insert into hashtag values(seq_hashtag.nextval, '#»ç¶û');
+insert into hashtag values(seq_hashtag.nextval, '#Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
+insert into hashtag values(seq_hashtag.nextval, '#ï¿½Å¹ï¿½');
+insert into hashtag values(seq_hashtag.nextval, '#ï¿½ï¿½ï¿½ï¿½Å°');
+insert into hashtag values(seq_hashtag.nextval, '#ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
+insert into hashtag values(seq_hashtag.nextval, '#ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
+insert into hashtag values(seq_hashtag.nextval, '#ï¿½ï¿½ï¿½');
 
 insert into post_hashtag values(seq_post_hashtag.nextval, 10000, 10000);
 insert into post_hashtag values(seq_post_hashtag.nextval, 10000, 10001);
