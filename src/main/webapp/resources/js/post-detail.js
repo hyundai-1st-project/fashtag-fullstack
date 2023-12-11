@@ -20,8 +20,10 @@ function getTimeAgo(date) {
         return `${days}일 전`;
     } else if (hours > 0) {
         return `${hours}시간 전`;
-    } else {
+    } else if (minutes > 0) {
         return `${minutes}분 전`;
+    } else {
+        return `${seconds}초 전`;
     }
 }
 
