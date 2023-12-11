@@ -67,7 +67,9 @@
                 <div class="comments-content">
                     <div class="comment-box">
                         <a class="userImg-box" href="#">
-                            <img class="userImg" src="https://i.namu.wiki/i/R0AhIJhNi8fkU2Al72pglkrT8QenAaCJd1as-d_iY6MC8nub1iI5VzIqzJlLa-1uzZm--TkB-KHFiT-P-t7bEg.webp" alt="프로필 사진">
+                            <img class="userImg"
+                                 src="https://i.namu.wiki/i/R0AhIJhNi8fkU2Al72pglkrT8QenAaCJd1as-d_iY6MC8nub1iI5VzIqzJlLa-1uzZm--TkB-KHFiT-P-t7bEg.webp"
+                                 alt="프로필 사진">
                         </a>
                         <div class="profile-info">
                             <span class="username">hi_wooooany</span>
@@ -78,7 +80,9 @@
                     </div>
                     <div class="comment-box">
                         <a class="userImg-box" href="#">
-                            <img class="userImg" src="https://i.namu.wiki/i/R0AhIJhNi8fkU2Al72pglkrT8QenAaCJd1as-d_iY6MC8nub1iI5VzIqzJlLa-1uzZm--TkB-KHFiT-P-t7bEg.webp" alt="프로필 사진">
+                            <img class="userImg"
+                                 src="https://i.namu.wiki/i/R0AhIJhNi8fkU2Al72pglkrT8QenAaCJd1as-d_iY6MC8nub1iI5VzIqzJlLa-1uzZm--TkB-KHFiT-P-t7bEg.webp"
+                                 alt="프로필 사진">
                         </a>
                         <div class="profile-info">
                             <span class="username">hi_wooooany</span>
@@ -90,9 +94,14 @@
             </div>
 
 
-            <%--히든--%>
+
+
+
+
+            <%--히든Id--%>
             <p class="hidden-postId" style="visibility: hidden;" data-post-id="${post.postId}"></p>
             <%--팝업창--%>
+            <%--글 수정 삭제 팝업창--%>
             <%--추후에 작성자랑 작성자아닌경우 다르게 팝업창 설정할 예정--%>
             <div data-v-4be3d37a="" class="layer_container">
                 <div data-v-4be3d37a="" class="layer_header"></div>
@@ -102,6 +111,19 @@
                         <li data-v-199a6e40="" data-v-4be3d37a="" class="action_item delete"> 게시물 삭제</li>
                         <li data-v-199a6e40="" data-v-4be3d37a="" class="action_item cancel"> 취소</li>
                     </ul>
+                </div>
+            </div>
+
+            <%--댓글 삭제 팝업창--%>
+            <div data-v-4be3d37a="" class="layer_yes-or-no">
+                <div data-v-4be3d37a="" class="alert_box high"><p data-v-4be3d37a="" class="alert_desc">삭제하시겠습니까?</p>
+                </div>
+                <div data-v-4be3d37a="" class="layer_btn">
+                    <button data-v-0a6aebaa="" type="button" class="btn outlinegrey medium" data-v-4be3d37a=""> 취소
+                    </button>
+                    <button data-v-0a6aebaa="" type="button" class="btn solid
+         medium" data-v-4be3d37a=""> 확인
+                    </button>
                 </div>
             </div>
         </div>
