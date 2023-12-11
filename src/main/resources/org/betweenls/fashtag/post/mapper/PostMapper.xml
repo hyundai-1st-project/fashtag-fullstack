@@ -34,24 +34,9 @@
 		from post_hashtag ph inner join hashtag h on ph.hashtagId = h.hashtagId
 		where postid = ${postId}
 	</select>
-	
-	
-	
-<!--	<select id="getAllPost"-->
-<!--		resultType="org.betweenls.fashtag.post.domain.PostVO"><![CDATA[-->
-<!--		select p.postid,postContent, picture, createdat,updatedat,readcount,userid, nvl((select count(userid)-->
-<!--																						 from likes-->
-<!--																						 where postid = p.postid-->
-<!--																						 group by postid), 0) likeCount,-->
-<!--			   (select nickname-->
-<!--				from users-->
-<!--				where userId = p.userId) nickname-->
-<!--		from posts p-->
-<!--		order by ${order} desc-->
-<!--	]]></select>-->
 
 	<select id="getHashtagPost"
-			resultType="org.betweenls.fashtag.post.domain.PostVO"><![CDATA[
+			resultMap="ResultMap"><![CDATA[
 		select p.postid,postContent, picture, createdat,updatedat,readcount,userid, (select count(userid)
 																					 from likes
 																					 where postid = p.postid
