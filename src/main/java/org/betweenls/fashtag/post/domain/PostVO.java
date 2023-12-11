@@ -13,7 +13,4 @@ public class PostVO {
     private Long readCount;
     private Long userId;
     private Long likeCount;
-
-    //Date String Formatting
-    private String formattedCreatedAt;
 }
