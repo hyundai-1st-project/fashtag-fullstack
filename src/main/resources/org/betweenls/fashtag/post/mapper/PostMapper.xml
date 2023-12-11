@@ -3,13 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.betweenls.fashtag.post.mapper.PostMapper">
-
 	<select id="getAllPost"
 		resultType="org.betweenls.fashtag.post.domain.PostVO"><![CDATA[
 		select p.postid,postContent, picture, createdat,updatedat,readcount,userid, nvl((select count(userid)
 																						 from likes
 																						 where postid = p.postid
-																						 group by postid), 0) likeCount
+																						 group by postid), 0) likeCount,
+			   (select nickname
+				from users
+				where userId = p.userId) nickname
 		from posts p
 		order by ${order} desc
 	]]></select>
@@ -19,7 +21,10 @@
 		select p.postid,postContent, picture, createdat,updatedat,readcount,userid, (select count(userid)
 																					 from likes
 																					 where postid = p.postid
-																					 group by postid) likeCount
+																					 group by postid) likeCount,
+			   (select nickname
+				from users
+				where userId = p.userId) nickname
 		from posts p left outer join post_hashtag ph
 									 on p.postid = ph.postid left outer join hashtag h
 																			 on ph.hashtagId = h.hashtagid

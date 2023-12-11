@@ -88,7 +88,7 @@
                                                 <img data-v-44ba780a="" alt="사용자 프로필 이미지" src="/resources/image/post-image/6.webp" loading="lazy" class="image full_width">
                                             </picture>
                                             <span data-v-7ddd6c4e="" data-v-12986062="" class="user_name">
-                                              <span data-v-7ddd6c4e=""><a href="/user/mypage">user_nickname</a></span><!---->
+                                              <span data-v-7ddd6c4e=""><a href="/user/mypage">${post.nickname}</a></span><!---->
                                             </span>
                                             <span data-v-12986062="" aria-label="좋아요" role="button" class="btn like">
                                               <img src="/resources/image/icon/icon-heart-off.svg" class="like_icon" />
