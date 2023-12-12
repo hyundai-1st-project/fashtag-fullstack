@@ -78,7 +78,20 @@ function deleteBtnAction() {
 }
 
 
+//채팅버튼 누르면 댓글 입력창으로 화면이동 및 커서 focus되는 함수
+$(function(){
+    $(".icon.chat_icon").on("click", function() {
+        // commentInput 요소의 위치로 스크롤 이동
+        const $commentInput = $("#commentInput");
+        const offset = ($(window).height() - $($commentInput[0]).outerHeight()) / 2;
 
+        $('html, body').animate({
+            scrollTop: $($commentInput[0]).offset().top - offset
+        }, 'slow');
+
+        $commentInput.focus(); // commentInput으로 커서 이동
+    });
+});
 
 //*********댓글입력창 js*********//
 
