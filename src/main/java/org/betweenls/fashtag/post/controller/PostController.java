@@ -5,6 +5,9 @@ import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.betweenls.fashtag.post.domain.PostVO;
 import org.betweenls.fashtag.post.service.PostService;
+import org.betweenls.fashtag.user.domain.CustomUser;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,6 +64,17 @@ public class PostController {
         model.addAttribute("list", service.getHashtagPost(hashtag));
         model.addAttribute("pageTitle", hashtag);
         return "community/posts";
+    }
+
+
+    @GetMapping("/posts/new")
+    public String NewPosts(Model model) {
+        //로그인 안된 상태면
+//        return "user/login";
+
+
+        // 로그인 된 상태면
+        return "community/new";
     }
 
 
