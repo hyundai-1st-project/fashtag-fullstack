@@ -72,7 +72,7 @@ public class PostController {
         //로그인 안된 상태면
 //        return "user/login";
 
-        
+
         // 로그인 된 상태면
         return "community/new";
     }
