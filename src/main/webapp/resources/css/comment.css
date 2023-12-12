@@ -41,7 +41,7 @@
 }
 
 
-.comment-input {
+.input_txt.origin {
     background-color: transparent;
     border: 1px solid transparent;
     caret-color: #222;
