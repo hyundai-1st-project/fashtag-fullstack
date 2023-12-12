@@ -134,6 +134,7 @@ $('.like_icon').on('click', function() {
 
 
 
+//댓글입력 모달창 관련 js//
 const commentInput = document.getElementById('commentInput');
 const placeholder = commentInput.getAttribute('data-placeholder');
 const registerButton = document.getElementById('submitComment');
@@ -184,3 +185,41 @@ setInterval(function () {
         updateRegisterButtonVisibility(); // 내용이 있는 경우 버튼 표시
     }
 }, 200);
+
+
+
+
+
+
+//버튼클릭할때 댓글 모달 나타나게 하는 js//
+
+// 모달을 나타내는 함수
+function showModal() {
+    var modal = document.querySelector('.comment-input-modal');
+    modal.style.display = 'flex'; // 모달을 보이게 함
+}
+
+// 모달을 숨기는 함수
+function hideModal() {
+    var modal = document.querySelector('.comment-input-modal');
+    modal.style.display = 'none'; // 모달을 숨김
+}
+
+// 클릭 이벤트 설정
+var icon = document.querySelector('.chat_icon'); // 아이콘 선택
+icon.addEventListener('click', function() {
+    var modal = document.querySelector('.comment-input-modal');
+    if (modal.style.display === 'none' || modal.style.display === '') {
+        showModal(); // 모달이 숨겨져 있을 때 클릭하면 보이게 함
+    } else {
+        hideModal(); // 모달이 보이고 있을 때 클릭하면 숨김
+    }
+});
+
+// 모달 외부 클릭 시 모달 닫기
+document.addEventListener('click', function(event) {
+    var modal = document.querySelector('.comment-input-modal');
+    if (!event.target.closest('.comment-input-modal') && !event.target.classList.contains('chat_icon')) {
+        hideModal(); // 모달 외부를 클릭하면 모달을 숨김
+    }
+});
