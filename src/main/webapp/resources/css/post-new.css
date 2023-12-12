@@ -56,3 +56,17 @@
 
     padding: 10px;
 }
+
+.social_common_empty[data-v-77ec7817] .btn {
+    font-weight: 600;
+}
+
+.outline[data-v-0a6aebaa] {
+    border: 1px solid #d3d3d3;
+}
+
+.top-container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+}
