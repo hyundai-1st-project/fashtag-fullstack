@@ -7,8 +7,11 @@ import java.util.List;
 
 public interface PostMapper {
 //	public List<PostVO> getPost();
-	public List<PostVO> getAllPost();
+	public List<PostVO> getAllPost(String order);
 	public List<PostVO> getHashtagPost(String hashtag);
+
+	public List<String> getHashtagByPostId(Long postId);
+
 //	public List<PostVO> getListWithPaging(Criteria cri);
 
 //	public void insert(PostVO post);

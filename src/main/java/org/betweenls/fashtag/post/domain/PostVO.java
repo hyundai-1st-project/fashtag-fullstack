@@ -3,6 +3,8 @@ package org.betweenls.fashtag.post.domain;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
+
 @Data
 public class PostVO {
     private Long postId;
@@ -13,7 +15,6 @@ public class PostVO {
     private Long readCount;
     private Long userId;
     private Long likeCount;
-
-    //Date String Formatting
-    private String formattedCreatedAt;
+    private String nickname;
+    private List<String> hashtags;
 }
