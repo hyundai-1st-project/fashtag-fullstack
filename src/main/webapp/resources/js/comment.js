@@ -93,60 +93,20 @@ $(function(){
     });
 });
 
-//*********댓글입력창 js*********//
+/*********** 댓글 입력창 JS ****************/
+$(function() {
+    $('#commentInput').on('input', function() {
+        let commentInput = $(this).text().trim();
+        let registerButton = $('.register-button');
 
-// const commentInput = $('#commentInput');
-// const placeholder = commentInput.attr('data-placeholder');
-// const registerButton = $('#submitComment');
-//
-// // 입력이 시작될 때 placeholder 제거
-// commentInput.on('focus', function () {
-//     if ($(this).text().trim() === placeholder) {
-//         $(this).text('');
-//     }
-// });
-//
-// // 입력이 시작될 때 placeholder 제거
-// commentInput.on('input', function () {
-//     if ($(this).text().trim() !== '') {
-//         $(this).removeClass('placeholder'); // 내용이 있으면 placeholder 클래스 제거
-//     } else {
-//         $(this).addClass('placeholder'); // 내용이 없으면 placeholder 클래스 추가
-//     }
-//     updateRegisterButtonVisibility(); // 등록 버튼 표시 여부 업데이트
-// });
-//
-// // 입력란을 벗어났을 때 placeholder를 다시 표시
-// commentInput.on('blur', function () {
-//     if ($(this).text().trim() === '') {
-//         $(this).addClass('placeholder'); // 내용이 없으면 placeholder 클래스 추가
-//         $(this).text(placeholder); // 내용이 없으면 placeholder 텍스트 설정
-//     }
-//     updateRegisterButtonVisibility(); // 등록 버튼 표시 여부 업데이트
-// });
-//
-// // 등록 버튼의 표시 여부를 업데이트하는 함수
-// function updateRegisterButtonVisibility() {
-//     if (commentInput.hasClass('placeholder')) {
-//         registerButton.css('display', 'none'); // placeholder가 존재하면 버튼 숨김
-//     } else {
-//         registerButton.css('display', 'inline-block'); // placeholder가 없으면 버튼 표시
-//     }
-// }
-//
-// // 페이지 로드 시 초기 등록 버튼 상태 설정
-// commentInput.text(placeholder);
-// commentInput.addClass('placeholder'); // 초기에 placeholder 설정
-// updateRegisterButtonVisibility();
-//
-// // 입력란 내용이 바뀌면 등록 버튼 상태 업데이트
-// setInterval(function () {
-//     if (commentInput.text().trim() !== '') {
-//         updateRegisterButtonVisibility(); // 내용이 있는 경우 버튼 표시
-//     }
-// }, 200);
-
-
+        if (commentInput.length > 0) {
+            registerButton.css('display', 'flex');
+        } else {
+            registerButton.css('display', 'none');
+            $(this).html("");
+        }
+    });
+});
 
 
 //*********댓글 삭제 모달 이벤트 js*********//
@@ -170,24 +130,6 @@ $(function() {
         if (!$(e.target).closest('.layer_yes-or-no[data-v-4be3d37a]').length) {
             $('.layer_yes-or-no[data-v-4be3d37a]').fadeOut();
             $('.modal-backdrop').remove(); // 어둡게 한 배경 제거
-        }
-    });
-});
-
-
-//test
-$(document).ready(function() {
-    $('#commentInput').on('input', function() {
-        var commentInput = $(this).text().trim();
-        var placeholder = $('.input_txt.dummy');
-        var registerButton = $('.register-button');
-
-        if (commentInput.length > 0) {
-            placeholder.css('display', 'none');
-            registerButton.css('display', 'flex');
-        } else {
-            placeholder.css('display', 'block');
-            registerButton.css('display', 'none');
         }
     });
 });
