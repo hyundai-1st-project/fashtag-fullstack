@@ -17,5 +17,6 @@ public class CommentVO {
 
     //comments 테이블에 없는것
     private String nickname;
+    private String profile;
     private String formattedCreatedAt;
 }
