@@ -14,7 +14,7 @@
 																				   where userId = c.userId) profile
 		from comments c
 		where c.postId = #{postId}
-		order by commentId;
+		order by commentId
 	</select>
 
 
