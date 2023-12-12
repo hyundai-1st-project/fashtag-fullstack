@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserVO getUserDetail(long userId) {
+    public UserVO getUserByUserId(long userId) {
         return userMapper.getUserDetail(userId);
     }
 
@@ -41,5 +41,16 @@ public class UserServiceImpl implements UserService {
     public UserVO getUserById(String id) {
         return userMapper.getUserById(id);
     }
+
+    @Override
+    public int idcheck(String id) {
+        return userMapper.idcheck(id);
+    }
+
+    @Override
+    public int nicknameCheck(String nickname) {
+        return userMapper.nicknameCheck(nickname);
+    }
+
 
 }

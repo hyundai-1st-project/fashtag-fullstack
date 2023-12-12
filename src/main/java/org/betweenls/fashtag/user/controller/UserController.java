@@ -5,9 +5,10 @@ import org.betweenls.fashtag.user.domain.CustomUser;
 import org.betweenls.fashtag.user.domain.UserVO;
 import org.betweenls.fashtag.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,15 +21,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/test")
-    public void test(){
-        log.info("테스트");
-        userService.test();
-    }
-
-    @GetMapping("/user/join")
-    public void getJoin(){
+    @GetMapping("/join")
+    public String getJoin(){
         log.info("회원가입 페이지");
+        return "/user/join";
     }
 
     @PostMapping( "/join")
@@ -38,11 +34,32 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @PostMapping("/idcheck")
+    public ResponseEntity<String> idcheck(@RequestParam("id") String id) {
+        int cnt = userService.idcheck(id); // 1 : 아이디 존재
+        log.info(cnt);
+        if (cnt == 0) {
+            return new ResponseEntity<>("available", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("duplicate", HttpStatus.OK);
+        }
+    }
+
+    @PostMapping("/nicknamecheck")
+    public ResponseEntity<String> nicknameCheck(@RequestParam("nickname") String nickname) {
+        int cnt = userService.nicknameCheck(nickname); // 1 : nickname
+        log.info(cnt);
+        if (cnt == 0) {
+            return new ResponseEntity<>("available", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("duplicate", HttpStatus.OK);
+        }
+    }
+
     @GetMapping("/login")
     public String login(@RequestParam(value = "error", required = false) String error,
                         @RequestParam(value = "exception", required = false) String exception,
                         Model model) {
-
         if ("true".equals(error)) {
             model.addAttribute("error", error);
             model.addAttribute("exception", exception);
@@ -55,31 +72,48 @@ public class UserController {
         log.info("로그아웃");
     }
 
-    @GetMapping("/mypage")
-    public String myPage(Model model) { // @AuthenticationPrincipal CustomUser customUser
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        CustomUser user = (CustomUser) authentication.getPrincipal();
-        long userId = user.getUserVO().getUserId();
-
-        log.info(user.getUserVO().getId());
-
-        model.addAttribute("userVO", user.getUserVO());
+    @GetMapping("/mypage/{userId}")
+    public String myPage(Model model, @PathVariable Long userId) { // @AuthenticationPrincipal CustomUser customUser
 
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (customUser != null) {
-//            // CustomUser를 이용한 작업 수행
-////            UserVO userVO = customUser.getUserVO();
-//            log.info(customUser.getUserVO());
-//            // 사용자 정보 활용
-//        }
+//        CustomUser user = (CustomUser) authentication.getPrincipal();
+//        long userId = user.getUserVO().getUserId();
+
+
+        UserVO userVO = userService.getUserByUserId(userId);
+        model.addAttribute("userVO", userVO);
+
+        log.info(userId);
 
         return "/user/mypage";
     }
 
-    @GetMapping("/edit")
-    @PreAuthorize("isAuthenticated()")
-    public String edit(){
+    @GetMapping("/user/{userId}/edit")
+    public String edit(@PathVariable Long userId,
+                       Model model){
+        // 현재 edit 페이지에 접근한 유저가 나인지 판별
+
+        // 내가 현재 로그인한 사용자의 정보
+
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && "anonymousUser".equals(authentication.getPrincipal())) {
+            // 사용자는 인증되지 않음
+            // 로그인 페이지로 리디렉션하거나 인증을 유도할 수 있음
+        }else{
+            UserVO user = ((CustomUser) authentication.getPrincipal()).getUserVO();
+            long getUserId = user.getUserId();
+        }
+        if (authentication == null) {
+
+
+//            // 내가 접속한 페이지의 유저 정보
+//            UserVO userVO = userService.getUserByUserId(userId);
+//            if(getUserId != userVO.getUserId()){
+//
+//            }
+        }
+
         return "/user/edit";
     }
 
