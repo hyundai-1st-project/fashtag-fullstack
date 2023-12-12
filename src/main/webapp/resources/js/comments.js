@@ -16,18 +16,25 @@ function getCommentList(){
         type : "GET",
         dataType : "json",
         success : function(comments){
-            let html = "";
+            let html = `
+            <div class="comments-count">댓글 <b>${comments.length}</b>개</div>
+            <div class="comments-content">
+            `;
             comments.forEach(function(comment){
-                html += `<div class="comment-box">`
-                html += `<a class="userImg-box" href="#">`
-                html += `<img class="userImg" src="${comment.profile}" alt="프로필 사진"></a>`
-                html += `<div class="profile-info">`
-                html += `<span class="username">${comment.nickname}</span>`
-                html += `<span class="content">${comment.commentContent}️</span>`
-                html += `<p class="created-date" data-formatted-date="${getTimeAgo(comment.formmatedCreatedAt)}"></p> </div>`
-                html += `<div class="delete-btn">삭제</div> </div>`
+                html += `<div class="comment-box">
+                <a class="userImg-box" href="#">
+                <img class="userImg" src="${comment.profile}" alt="프로필 사진"></a>
+                <div class="profile-info">
+                <span class="username">${comment.nickname}</span>
+                <span class="content">${comment.commentContent}️</span>
+                <p class="created-date" data-formatted-date="${comment.formmatedCreatedAt}">${getTimeAgo(comment.formattedCreatedAt)}</p> </div>
+                <div class="delete-btn">삭제</div> </div>
+                `
             })
-            $(".comments-content").html(html);
+            html += `</div>`
+            const $comments = $(".post-comments");
+            $comments.html(html);
+            $comments.find('.delete-btn').on('click',function(){deleteBtnAction()})
         },
         error : function(){
             alert('댓글을 가져올 수 없습니다.');
@@ -170,14 +177,19 @@ document.addEventListener('click', function(event) {
 });
 
 
-//댓글 삭제 모달창
-$(document).ready(function() {
-    // 삭제버튼을 클릭할 때 모달 띄우기
-    $('.comment-box .delete-btn').click(function() {
-        $('.layer_yes-or-no[data-v-4be3d37a]').fadeIn();
-        // 주변 어둡게 설정
-        $('body').append('<div class="modal-backdrop"></div>');
-        $('.modal-backdrop').fadeIn();
+
+$(function() {
+    const commentId = $('.hidden-postId').data('post-id');//추후 수정!!
+
+    // 삭제 버튼 클릭 시 /delete로 이동
+    $('.layer_yes-or-no .layer_btn .btn-delete').click(function() {
+        window.location.href = `/comments/delete/${commentId}`;
+    });
+
+    // 취소 버튼 클릭 시 모달 닫기
+    $('.layer_yes-or-no .layer_btn .btn-cancel').click(function() {
+        $('.layer_yes-or-no[data-v-4be3d37a]').fadeOut();
+        $('.modal-backdrop').remove(); // 어둡게 한 배경 제거
     });
 
     // 모달 외부를 클릭하면 모달 닫기
@@ -188,16 +200,16 @@ $(document).ready(function() {
             $('.modal-backdrop').remove(); // 어둡게 한 배경 제거
         }
     });
-
-    const commentId = $('.hidden-postId').data('post-id');//추후 수정!!
-    // 삭제 버튼 클릭 시 /delete로 이동
-    $('.layer_yes-or-no .layer_btn .btn-delete').click(function() {
-        window.location.href = `/comments/${commentId}/delete`;
-    });
-
-    // 취소 버튼 클릭 시 모달 닫기
-    $('.layer_yes-or-no .layer_btn .btn-cancel').click(function() {
-        $('.layer_yes-or-no[data-v-4be3d37a]').fadeOut();
-        $('.modal-backdrop').remove(); // 어둡게 한 배경 제거
-    });
 });
+
+
+
+function deleteBtnAction() {
+        $('.layer_yes-or-no[data-v-4be3d37a]').fadeIn();
+        // 주변 어둡게 설정
+        $('body').append('<div class="modal-backdrop"></div>');
+        $('.modal-backdrop').fadeIn();
+}
+
+
+//댓글 삭제 모달창 함수
