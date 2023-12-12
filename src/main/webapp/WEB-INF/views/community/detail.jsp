@@ -143,6 +143,6 @@
 
 
 
-
 <script type="text/javascript" src="/resources/js/post-detail.js"></script>
+<script type="text/javascript" src="/resources/js/comments.js"></script>
 <%@include file="../includes/footer.jsp" %>
