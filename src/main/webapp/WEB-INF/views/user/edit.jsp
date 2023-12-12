@@ -1,31 +1,24 @@
 <%--
   Created by IntelliJ IDEA.
   User: sangmin
-  Date: 12/10/23
-  Time: 4:49 AM
+  Date: 12/11/23
+  Time: 10:09 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page pageEncoding="utf-8"%>
 <%@include file="../includes/header.jsp"%>
 
-
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <style>
 
-    .loginForm h2 {
+    .joinForm h2 {
         text-align: center;
         margin-top: 100px;
     }
 
-    .loginForm h5 {
-        text-align: center;
-        margin-top: 10px;
-        font-size: 14px;
-        color: red;
-    }
-
-    .loginForm {
+    .joinForm {
         position:absolute;
         width:400px;
         height:400px;
@@ -52,8 +45,8 @@
         margin-bottom: 5px;
     }
 
-    .login-need {
-        width: calc(100% - 22px);
+    input, #join-button {
+        width: calc(100% - 22px); /* Adjusted width */
         border: 0;
         outline: none;
         color: #636e72;
@@ -62,14 +55,12 @@
         background: none;
     }
 
-    .login-need::placeholder {
+    input::placeholder {
         color: #ccc; /* Lighter color for placeholder text */
     }
-
-    #login-button {
+    #join-button {
         width: calc(100% - 22px); /* Adjusted width */
         height: 45px;
-        border: 0;
         background-color: rgba(204, 204, 204, 0.74);
         color: white;
         padding: 8px 0; /* Adjusted padding */
@@ -79,34 +70,30 @@
     }
 </style>
 
-<form class="loginForm" method='post' action="/login">
-    <h2>로그인</h2>
+<p>principal : <sec:authentication property="principal"/></p>
+<p>UserVO : <sec:authentication property="principal.userVO"/></p>
 
-    <h5><c:out value="${exception}"/></h5>
-
+<form class="joinForm" role="form" method='post' action="/join">
+    <h2>회원 정보 수정</h2>
     <div class="textForm">
-        <label>아이디 <br></label>
-        <input class="login-need" type='text' name="id" placeholder="아이디">
+        <label for='id'>아이디 <br></label>
+        <input type='text' id='id' name='id' value="< ">
     </div>
     <div class="textForm">
-        <label>비밀번호 <br></label>
-        <input class="login-need" type='password' name="password" placeholder="비밀번호">
+        <label for='password'>비밀번호 <br></label>
+        <input type='password' id='password' name='password' placeholder="영문, 숫자, 특수문자 조합 8~16자">
     </div>
-
-    <div>
-        <input type='checkbox' name='remember-me'> 로그인 유지하기
+    <div class="textForm">
+        <label for='nickname'>닉네임 <br></label>
+        <input type='text' id='nickname' name='nickname' placeholder="ex) 패션꾸러기">
     </div>
-    <div><a href="/user/join">회원 가입</a> </div>
-    <button id="login-button" type="submit">로그인</button>
+    <div class="textForm">
+        <label for='username'>이름 <br></label>
+        <input type='text' id='username' name='username' placeholder="본명을 입력해주세요.">
+    </div>
+    <button id="join-button" type="submit">수정완료</button>
 </form>
-<%--<h1>로그인 화면</h1>--%>
-<%--<form method='post' action="/login">--%>
-<%--    <div><input type='text' name="id" placeholder="아이디"></div>--%>
-<%--    <div><input type='password' name="password" placeholder="비밀번호"></div>--%>
-<%--    <div><input type='checkbox' name='remember-me'> 로그인 유지하기 </div>--%>
-<%--    <div><input type='submit'></div>--%>
-<%--&lt;%&ndash;    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">&ndash;%&gt;--%>
-<%--</form>--%>
 
+<%--<%@include file="../includes/footer.jsp"%>--%>
 </body>
 </html>

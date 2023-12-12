@@ -33,8 +33,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserVO getUserDetail(long id) {
-        return userMapper.getUserDetail(id);
+    public UserVO getUserDetail(long userId) {
+        return userMapper.getUserDetail(userId);
+    }
+
+    @Override
+    public UserVO getUserById(String id) {
+        return userMapper.getUserById(id);
     }
 
 }
