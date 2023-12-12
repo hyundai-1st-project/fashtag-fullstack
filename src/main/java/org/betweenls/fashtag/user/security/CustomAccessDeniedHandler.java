@@ -13,9 +13,16 @@ import org.springframework.stereotype.Service;
 
 public class CustomAccessDeniedHandler implements AccessDeniedHandler{
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response,
+    public void handle(HttpServletRequest request,
+                       HttpServletResponse response,
                        AccessDeniedException accessDeniedException) throws IOException, ServletException {
-        response.sendRedirect("/login");
+
+        String referrer = request.getHeader("Referer");
+        if (referrer != null) {
+            response.sendRedirect(referrer);
+        } else {
+            response.sendRedirect("/login");
+        }
 
     }
 

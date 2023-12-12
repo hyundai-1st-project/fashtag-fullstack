@@ -9,4 +9,8 @@ public interface UserMapper {
     UserVO getUserDetail(long userId); // pk 값
 
     UserVO getUserById(String id); // 아이디
+
+    int idcheck(String id);
+
+    int nicknameCheck(String nickname);
 }

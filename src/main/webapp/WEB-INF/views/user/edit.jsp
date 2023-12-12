@@ -70,6 +70,7 @@
     }
 </style>
 
+
 <p>principal : <sec:authentication property="principal"/></p>
 <p>UserVO : <sec:authentication property="principal.userVO"/></p>
 

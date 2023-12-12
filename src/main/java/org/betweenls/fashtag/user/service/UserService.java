@@ -7,7 +7,11 @@ public interface UserService {
 
     void join(UserVO userVO);
 
-    UserVO getUserDetail(long id);
+    UserVO getUserByUserId(long id);
 
     UserVO getUserById(String username);
+
+    int idcheck(String userid);
+
+    int nicknameCheck(String nickname);
 }

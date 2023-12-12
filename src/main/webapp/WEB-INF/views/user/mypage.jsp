@@ -55,6 +55,7 @@
     }
 
 </style>
+
 <div class="container">
     <br/>
     <div style="margin-top: 30px; display: flex;">
@@ -64,7 +65,7 @@
         <div style="flex: 1; padding-left: 20px;">
             <div style="margin-top: 20px;">
                 <h4>Nickname</h4>
-                <button type="button" class="btn-border btn-small"> 프로필 편집 </button>
+                <button type="button" class="btn-border btn-small"> <a href="/user/${userId}/edit">프로필 편집</a></button>
             </div>
             <div style="margin-top: 20px;">
                 <div style="width: 25%;">
