@@ -52,5 +52,17 @@
         WHERE u.userId = #{userId}
     </select>
 
+    <select id="idcheck" parameterType="String" resultType="Integer">
+        SELECT COUNT(*) FROM users
+        WHERE
+            id = #{id}
+    </select>
+
+    <select id="nicknameCheck" parameterType="String" resultType="Integer">
+        SELECT COUNT(*) FROM users
+        WHERE
+            nickname = #{nickname}
+    </select>
+
 
 </mapper>
