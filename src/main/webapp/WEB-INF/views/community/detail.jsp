@@ -112,5 +112,5 @@
 
 
 <script type="text/javascript" src="/resources/js/post-detail.js"></script>
-<script type="text/javascript" src="/resources/js/comments.js"></script>
+<script type="text/javascript" src="/resources/js/comment.js"></script>
 <%@include file="../includes/footer.jsp" %>
