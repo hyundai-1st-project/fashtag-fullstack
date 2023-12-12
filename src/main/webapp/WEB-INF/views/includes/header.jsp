@@ -10,6 +10,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -55,10 +57,17 @@
                   <a data-v-70a33782="" href="/posts" class="nuxt-link-active gnb_link active"> POSTS </a>
                 </li>
                 <li data-v-70a33782="" data-v-21940b30="" class="gnb_item">
-                  <a data-v-70a33782="" href="/user/userid" class="nuxt-link-active gnb_link"> MYPAGE </a>
+                  <a data-v-70a33782="" href="/mypage" class="nuxt-link-active gnb_link"> MYPAGE </a>
                 </li>
                 <li data-v-70a33782="" data-v-21940b30="" class="gnb_item">
-                  <a data-v-70a33782="" href="/user/login" class="gnb_link" > LOGIN </a>
+                  <sec:authorize access="isAnonymous()">
+                    <a data-v-70a33782="" href="/login" class="gnb_link">LOGIN</a>
+                  </sec:authorize>
+                  <sec:authorize access="isAuthenticated()">
+                    <a data-v-70a33782="" href="/logout" class="gnb_link">LOGOUT</a>
+                  </sec:authorize>
+
+<%--                  <a data-v-70a33782="" href="/user/login" class="gnb_link" > LOGIN </a>--%>
                 </li>
               </ul>
             </nav>
