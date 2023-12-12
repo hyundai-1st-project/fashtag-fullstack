@@ -38,6 +38,31 @@ function getCommentList(){
     })
 }
 
+//댓글 Insert하는 Ajax
+$(function() {
+    $('.register-button').on('click', function(e) {
+        e.preventDefault();
+        const commentText = $('#commentInput').text(); // 입력된 텍스트 가져오기
+
+        $.ajax({
+            url: '/comment/insert',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ text: commentText }), // JSON 형태로 데이터 전송
+            success: function(response) {
+                console.log('성공: ' + response); // 성공 시 콘솔에 출력
+                $('#commentInput').html("");
+                getCommentList();
+            },
+            error: function(xhr, status, error) {
+                console.error('에러: ' + error); // 에러 시 콘솔에 출력
+                alert('댓글을 추가할 수 없습니다.');
+            }
+        });
+    });
+});
+
+
 
 //댓글 삭제 모달창 띄우는 함수
 function deleteBtnAction() {
