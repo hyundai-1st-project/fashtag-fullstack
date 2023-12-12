@@ -33,9 +33,8 @@
         <div data-v-0c9f3f9e="" data-v-257b1b9e="" data-v-708ef468="" class="unit" data-v-8b96a82e="">
             <h4 data-v-0c9f3f9e="" class="title">내용</h4>
             <div data-v-0c9f3f9e="" class="unit_content">
-                <input data-v-5ee806c3="" type="text" placeholder="내용을 입력하세요." autocomplete="off" maxlength="50" class="input_txt text_fill">
-<%--            <p data-v-24a03828="" data-v-257b1b9e="" class="desc desc_modify placeholder" data-v-0c9f3f9e=""> 나를 소개하세요 </p>--%>
-<%--            <button data-v-0a6aebaa="" data-v-257b1b9e="" type="button" class="btn btn_modify outlinegrey small" data-v-0c9f3f9e=""> 변경 </button>--%>
+                <textarea class="content-text" rows="10" cols="80"></textarea>
+                <input data-v-5ee806c3="" type="text" placeholder="내용을 입력하세요." autocomplete="off" maxlength="50" class="input_txt text_fill"/>
             </div>
         </div>
         <div data-v-0c9f3f9e="" data-v-257b1b9e="" data-v-708ef468="" class="unit padding-top-15" data-v-8b96a82e="">
