@@ -45,8 +45,10 @@
                         </div>
                     </c:if>
                 </div>
-                <div data-v-838ba4a0="" class="container sorting_container">
-
+                <div data-v-838ba4a0="" class="container top-container">
+                    <button onclick="location.href='/posts/new'" type="button" class="btn-border btn-small">
+                        게시글 작성
+                    </button>
                     <ul data-v-34267d59="" data-v-838ba4a0="" class="social_sorting sorting">
                         <c:if test="${pageTitle eq '#POSTS'}">
                             <c:choose>
