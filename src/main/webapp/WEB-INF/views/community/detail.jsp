@@ -56,29 +56,15 @@
             </div>
             <div class="post-comments">
                 <div class="comments-count">댓글 <b class="commentNum"></b>개</div>
-<%--                <div class="comment-input">--%>
-<%--                    <img class="profile-picture"--%>
-<%--                         src="https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=0.88847xw:1xh;center,top&resize=1200:*"--%>
-<%--                         alt="프로필 사진">--%>
-<%--                    <!-- 댓글 입력창 -->--%>
-<%--                    <div class="input-wrapper">--%>
-<%--                        <div contenteditable="true" id="commentInput" data-placeholder="댓글을 남기세요...">--%>
-<%--                            댓글을 남기세요...--%>
-<%--                        </div>--%>
-<%--                        <!-- 등록 버튼 -->--%>
-<%--                        <input type="submit" id="submitComment" class="register-button" value="등록"/>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-                <div data-v-1c92df6c="" class="comment-input">
-                    <a data-v-1c92df6c="" href="/social/users/@zja633y7"
+                <div class="comment-input">
+                    <a href="#"
                        class="profile_link"><img class="profile-picture"
                                                  src="https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=0.88847xw:1xh;center,top&resize=1200:*"
                                                  alt="프로필 사진"></a>
-                    <div data-v-1c92df6c="" class="input-wrapper">
-                        <div data-v-51bab914="" data-v-1c92df6c="" contenteditable="true" autocorrect="off"
+                    <div class="input-wrapper">
+                        <div contenteditable="true" placeholder="댓글을 남기세요…"
                              autocapitalize="off" spellcheck="false" class="input_txt origin" id="commentInput"></div>
-                        <div data-v-1c92df6c="" placeholder="댓글을 남기세요…" class="input_txt dummy">댓글을 남기세요…</div>
-                        <a data-v-1c92df6c="" href="#" class="register-button" style="display: none;"> 등록 </a></div>
+                        <a href="#" class="register-button" style="display: none;"> 등록 </a></div>
                 </div>
                 <div class="comments-content"></div>
             </div>
