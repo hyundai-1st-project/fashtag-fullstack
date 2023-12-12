@@ -29,8 +29,11 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("해당 사용자를 찾을 수 없습니다.:"+id);
         }
 
-        log.warn("queried by member mapper: " + vo);
-        return vo == null ? null : new CustomUser(vo);
+        CustomUser customUser = new CustomUser(vo);
+//        customUser.setUserVO(vo);
+
+        log.warn("queried by member mapper: " + customUser.getUserVO());
+        return customUser;
     }
 
 }
