@@ -1,5 +1,39 @@
 //*********댓글ajax*********//
 
+//댓글 불러오기 TEST
+
+//렌더링할때마다 getCommentList함수 호출
+$(function() {
+    getCommentList();
+});
+
+
+//해당 post의 모든댓글 불러와서 뷰에 뿌려주는 함수
+const postId = $('.hidden-postId').data('post-id');
+function getCommentList(){
+    $.ajax({
+        url : `/comment/list/${postId}`,
+        type : "GET",
+        dataType : "json",
+        success : function(comments){
+            let html = "";
+            comments.forEach(function(comment){
+                html += `<div class="comment-box">`
+                html += `<a class="userImg-box" href="#">`
+                html += `<img class="userImg" src="${comment.profile}" alt="프로필 사진"></a>`
+                html += `<div class="profile-info">`
+                html += `<span class="username">${comment.nickname}</span>`
+                html += `<span class="content">${comment.commentContent}️</span>`
+                html += `<p class="created-date" data-formatted-date="${getTimeAgo(comment.formmatedCreatedAt)}"></p> </div>`
+                html += `<div class="delete-btn">삭제</div> </div>`
+            })
+            $(".comments-content").html(html);
+        },
+        error : function(){
+            alert('댓글을 가져올 수 없습니다.');
+        }
+    })
+}
 
 
 
@@ -7,6 +41,37 @@
 
 
 
+
+
+
+//날짜를 뷰에 뿌릴 형식으로 변환하는 함수
+function getTimeAgo(date) {
+    const currentDate = new Date();
+    const postDate = new Date(date);
+    const postLocalDate = new Date(postDate.getTime() + postDate.getTimezoneOffset() * 60 * 1000);
+
+    const timeDifference = currentDate - postLocalDate;
+    const seconds = Math.floor(timeDifference / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const months = Math.floor(days / 30);
+    const years = Math.floor(months / 12);
+
+    if (years > 0) {
+        return `${years}년 전`;
+    } else if (months > 0) {
+        return `${months}달 전`;
+    } else if (days > 0) {
+        return `${days}일 전`;
+    } else if (hours > 0) {
+        return `${hours}시간 전`;
+    } else if (minutes > 0) {
+        return `${minutes}분 전`;
+    } else {
+        return `${seconds}초 전`;
+    }
+}
 
 
 
