@@ -7,22 +7,29 @@
 
     <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     <bean id="customUserDetailsService" class="org.betweenls.fashtag.user.security.CustomUserDetailsService"/>
+    <bean id="customLoginFail" class="org.betweenls.fashtag.user.security.CustomLoginFailHandler"/>
+    <bean id="customAccessDeniedHandler" class="org.betweenls.fashtag.user.security.CustomAccessDeniedHandler"/>
+    <bean id="customLoginSuccessHandler" class="org.betweenls.fashtag.user.security.CustomLoginSuccessHandler"/>
 
-    <security:http>
+    <security:http auto-config="true" use-expressions="true">
         <security:csrf disabled="true" />
         <security:intercept-url pattern="/login" access="permitAll"/>
         <security:intercept-url pattern="/user/join" access="permitAll"/>
-        <security:intercept-url pattern="/posts" access="permitAll"/>
+        <security:intercept-url pattern="/posts/**" access="permitAll"/>
         <security:intercept-url pattern="/mypage" access="hasAnyRole('ROLE_USER')"/>
         <security:form-login login-page="/login"
+                             always-use-default-target="true"
                              username-parameter="id"
                              password-parameter="password"
-                             default-target-url="/posts"/>
+                             authentication-failure-handler-ref="customLoginFail"
+                             authentication-success-handler-ref="customLoginSuccessHandler"/>
         <security:logout logout-url="/logout"
                          logout-success-url="/posts"
-                         delete-cookies="remeber-me, JSESSION_ID"/>
+                         delete-cookies="remember-me, JSESSION_ID"/>
         <security:remember-me data-source-ref="dataSource"
                               token-validity-seconds="604800"/>
+<!--        <security:access-denied-handler error-page="/login" />-->
+        <security:access-denied-handler ref="customAccessDeniedHandler"/>
     </security:http>
 
     <security:authentication-manager>

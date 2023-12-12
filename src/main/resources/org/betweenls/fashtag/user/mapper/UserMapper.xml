@@ -36,7 +36,7 @@
         <result property="auth" column="auth"/>
     </resultMap>
 
-    <select id="read" parameterType="String" resultMap="userMap">
+    <select id="getUserById" parameterType="String" resultMap="userMap">
         SELECT
             u.userId, u.id, u.password, u.profile, u.nickname, u.username, u.createdAt, a.auth
         FROM users u

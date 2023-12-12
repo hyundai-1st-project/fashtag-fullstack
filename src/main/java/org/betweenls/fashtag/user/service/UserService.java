@@ -9,4 +9,5 @@ public interface UserService {
 
     UserVO getUserDetail(long id);
 
+    UserVO getUserById(String username);
 }

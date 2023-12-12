@@ -1,11 +1,13 @@
 package org.betweenls.fashtag.user.domain;
 
-import lombok.Data;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserVO {
     private long userId;
     private String id;
