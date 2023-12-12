@@ -1,7 +1,5 @@
 //*********댓글ajax*********//
 
-//댓글 불러오기 TEST
-
 //렌더링할때마다 getCommentList함수 호출
 $(function() {
     getCommentList();
@@ -16,10 +14,8 @@ function getCommentList(){
         type : "GET",
         dataType : "json",
         success : function(comments){
-            let html = `
-            <div class="comments-count">댓글 <b>${comments.length}</b>개</div>
-            <div class="comments-content">
-            `;
+            let html = "";
+            $(".commentNum").html(`${comments.length}`);
             comments.forEach(function(comment){
                 html += `<div class="comment-box">
                 <a class="userImg-box" href="#">
@@ -31,8 +27,7 @@ function getCommentList(){
                 <div class="delete-btn">삭제</div> </div>
                 `
             })
-            html += `</div>`
-            const $comments = $(".post-comments");
+            const $comments = $(".comments-content");
             $comments.html(html);
             $comments.find('.delete-btn').on('click',function(){deleteBtnAction()})
         },
@@ -44,20 +39,14 @@ function getCommentList(){
 
 
 
-
-
-
-
-
-
-
 //날짜를 뷰에 뿌릴 형식으로 변환하는 함수
 function getTimeAgo(date) {
     const currentDate = new Date();
     const postDate = new Date(date);
-    const postLocalDate = new Date(postDate.getTime() + postDate.getTimezoneOffset() * 60 * 1000);
+    // const postLocalDate = new Date(postDate.getTime() + postDate.getTimezoneOffset() * 60 * 1000); //오라클시간 한국시간 아닐때 설정
 
-    const timeDifference = currentDate - postLocalDate;
+
+    const timeDifference = currentDate - postDate;
     const seconds = Math.floor(timeDifference / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
@@ -80,13 +69,20 @@ function getTimeAgo(date) {
     }
 }
 
+//댓글 삭제 모달창 띄우는 함수
+function deleteBtnAction() {
+    $('.layer_yes-or-no[data-v-4be3d37a]').fadeIn();
+    // 주변 어둡게 설정
+    $('body').append('<div class="modal-backdrop"></div>');
+    $('.modal-backdrop').fadeIn();
+}
 
 
 
 
-//*********모달창 관련 js*********//
+//*********댓글입력창 js*********//
 
-//댓글입력 모달창 관련 js//
+//댓글입력창 js//
 const commentInput = document.getElementById('commentInput');
 const placeholder = commentInput.getAttribute('data-placeholder');
 const registerButton = document.getElementById('submitComment');
@@ -141,43 +137,7 @@ setInterval(function () {
 
 
 
-
-
-//버튼클릭할때 댓글 모달 나타나게 하는 js//
-
-// 모달을 나타내는 함수
-function showModal() {
-    var modal = document.querySelector('.comment-input-modal');
-    modal.style.display = 'flex'; // 모달을 보이게 함
-}
-
-// 모달을 숨기는 함수
-function hideModal() {
-    var modal = document.querySelector('.comment-input-modal');
-    modal.style.display = 'none'; // 모달을 숨김
-}
-
-// 클릭 이벤트 설정
-var icon = document.querySelector('.chat_icon'); // 아이콘 선택
-icon.addEventListener('click', function() {
-    var modal = document.querySelector('.comment-input-modal');
-    if (modal.style.display === 'none' || modal.style.display === '') {
-        showModal(); // 모달이 숨겨져 있을 때 클릭하면 보이게 함
-    } else {
-        hideModal(); // 모달이 보이고 있을 때 클릭하면 숨김
-    }
-});
-
-// 모달 외부 클릭 시 모달 닫기
-document.addEventListener('click', function(event) {
-    var modal = document.querySelector('.comment-input-modal');
-    if (!event.target.closest('.comment-input-modal') && !event.target.classList.contains('chat_icon')) {
-        hideModal(); // 모달 외부를 클릭하면 모달을 숨김
-    }
-});
-
-
-
+//*********댓글 삭제 모달 이벤트 js*********//
 $(function() {
     const commentId = $('.hidden-postId').data('post-id');//추후 수정!!
 
@@ -201,15 +161,3 @@ $(function() {
         }
     });
 });
-
-
-
-function deleteBtnAction() {
-        $('.layer_yes-or-no[data-v-4be3d37a]').fadeIn();
-        // 주변 어둡게 설정
-        $('body').append('<div class="modal-backdrop"></div>');
-        $('.modal-backdrop').fadeIn();
-}
-
-
-//댓글 삭제 모달창 함수
