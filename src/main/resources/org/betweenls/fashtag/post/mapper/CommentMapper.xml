@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.betweenls.fashtag.post.mapper.CommentMapper">
+
+
+	<select id="getCommentList" resultType="org.betweenls.fashtag.post.domain.CommentVO">
+		select c.commentId, c.commentContent, c.createdAt, c.updatedAt, c.postId, c.userId,  (select nickname
+																				  from users
+																				  where userId = c.userId) nickname,
+																				  (select profile
+																				   from users
+																				   where userId = c.userId) profile
+		from comments c
+		where c.postId = #{postId}
+		order by commentId;
+	</select>
+
+
+</mapper>
