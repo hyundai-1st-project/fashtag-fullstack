@@ -1,0 +1,58 @@
+.mo .my_profile[data-v-708ef468], .sm .my_profile[data-v-708ef468] {
+    padding: 0 24px 80px;
+}
+.btn-border {
+    align-items: center;
+    background-color: #fff;
+    color: rgba(34,34,34,.8);
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+.btn-small {
+    border-radius: 10px;
+    font-size: 12px;
+    height: 34px;
+    letter-spacing: -.06px;
+    padding: 2px 14px;
+}
+.profile_group .modify .input_txt[data-v-5ee806c3] {
+    font-size: 15px;
+    letter-spacing: -.15px;
+    padding: 7px 0;
+}
+
+.input_txt[data-v-5ee806c3] {
+    border: 0;
+    border-bottom: 1px solid #ebebeb;
+    font-size: 15px;
+    letter-spacing: -.15px;
+    line-height: 22px;
+    padding: 8px 0;
+    width: 100%;
+}
+
+.post-image {
+    width: 85%;
+    height: 85%;
+    cursor: pointer;
+}
+
+.bottom-border{
+    border-bottom: 1px solid #ebebeb;
+}
+
+.padding-top-15{
+    padding-top: 15px;
+}
+
+.post-new-section {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 17%;
+    max-width: 660px;
+
+    padding: 10px;
+}
