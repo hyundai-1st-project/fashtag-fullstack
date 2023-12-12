@@ -64,6 +64,17 @@ public class PostController {
     }
 
 
+    @GetMapping("/posts/new")
+    public String NewPosts(Model model) {
+        //로그인 안된 상태면
+//        return "user/login";
+
+
+        // 로그인 된 상태면
+        return "community/new";
+    }
+
+
 
     private static void hashtagBarListAdd(File[] files, List<String> hashtagName, List<String> hashtagExtension) {
         for (File file : files) {
