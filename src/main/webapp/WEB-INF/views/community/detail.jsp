@@ -63,8 +63,8 @@
                                                  alt="프로필 사진"></a>
                     <div class="input-wrapper">
                         <div contenteditable="true" placeholder="댓글을 남기세요…"
-                             autocapitalize="off" spellcheck="false" class="input_txt origin" id="commentInput"></div>
-                        <a href="#" class="register-button" style="display: none;"> 등록 </a></div>
+                             autocapitalize="off" spellcheck="false" class="comment-input" id="commentInput"></div>
+                        <a href="/comment/insert" class="register-button" style="display: none;"> 등록 </a></div>
                 </div>
                 <div class="comments-content"></div>
             </div>
