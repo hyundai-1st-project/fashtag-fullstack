@@ -50,6 +50,12 @@
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		<multipart-config>
+			<location>C:\dev\fashtag-fullstack\src\main\webapp\resources\image\posts-upload-image</location>
+			<max-file-size>209715200</max-file-size>
+			<max-request-size>419430400</max-request-size>
+			<file-size-threshold>20971520</file-size-threshold>
+		</multipart-config>
 	</servlet>
 		
 	<servlet-mapping>
