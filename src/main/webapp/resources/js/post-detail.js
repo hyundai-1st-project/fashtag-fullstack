@@ -4,7 +4,8 @@ function getTimeAgo(date) {
     const postDate = new Date(date);
     // const postLocalDate = new Date(postDate.getTime() + postDate.getTimezoneOffset() * 60 * 1000); //오라클 시간이 한국시간이 아닐 때 설정
 
-    const timeDifference = currentDate - postDate;
+    let timeDifference = currentDate - postDate;
+    if(timeDifference<0) timeDifference=0; //insert 직후 시간차 오류 방지 로직
     const seconds = Math.floor(timeDifference / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
