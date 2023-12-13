@@ -35,4 +35,10 @@ public class CommentServiceImpl implements CommentService {
         log.info("insert..." + comment);
         return mapper.insertComment(comment);
     }
+
+    @Override
+    public int removeComment(Long commentId){
+        log.info("delete..."+commentId);
+        return mapper.deleteCommentByCommentId(commentId);
+    }
 }
