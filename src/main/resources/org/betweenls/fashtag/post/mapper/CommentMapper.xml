@@ -22,5 +22,10 @@
 		values (seq_comments.nextval, #{commentContent}, #{postId}, #{userId})
 	</insert>
 
+	<delete id="deleteCommentByCommentId">
+		delete comments
+		where commentId=${commentId}
+	</delete>
+
 
 </mapper>
