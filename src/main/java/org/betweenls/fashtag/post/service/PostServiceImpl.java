@@ -47,6 +47,10 @@ public class PostServiceImpl implements PostService {
 		mapper.insertPost_hashtag(postId, hashtagId);
 	}
 	@Override
+	public int delete(long postId) {
+		return mapper.delete(postId);
+	}
+	@Override
 	public String uploadFile(MultipartFile uploadFile, HttpServletRequest request) {
 
 		String uploadDirectory = request.getServletContext().getRealPath("/resources/image/posts-upload-image/");

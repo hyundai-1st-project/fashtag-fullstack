@@ -64,11 +64,6 @@ $(document).ready(function() {
         window.location.href =  `/posts/update/${postId}`;
     });
 
-    // 삭제 버튼 클릭 시 /delete로 이동
-    $('.delete').click(function() {
-        window.location.href = `/posts/delete/${postId}`;
-    });
-
     // 취소 버튼 클릭 시 모달 닫기
     $('.cancel').click(function() {
         $('.layer_container[data-v-4be3d37a]').fadeOut();
