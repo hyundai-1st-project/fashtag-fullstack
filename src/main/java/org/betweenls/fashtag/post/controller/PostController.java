@@ -9,10 +9,7 @@ import org.betweenls.fashtag.user.service.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -85,6 +82,14 @@ public class PostController {
         model.addAttribute("pageTitle", hashtag);
         return "community/posts";
     }
+
+    @PostMapping("/posts/{postId}")
+    public String delete(@PathVariable Long postId) {
+        int a = postService.delete(postId);
+        return "redirect:/posts?s=newest";
+    }
+
+    @GetMapping("/posts/{postId}")
 
     private void insertPostAndHashtag(PostVO postVO) {
         postService.insertPost(postVO);

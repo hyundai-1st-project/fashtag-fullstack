@@ -16,6 +16,7 @@ public interface PostService {
 	public Long getHashtagIdByHashtagName(String hashtagName);
 	public void insertHashtag(String hashtagName);
 	public void insertPost_hashtag(@Param("postId") Long postId, @Param("hashtagId") Long hashtagId);
+	public int delete(long postId);
 //	public PostVO get(Long postId);
 //	public boolean modify(PostVO board);
 //	public boolean remove(Long bno);

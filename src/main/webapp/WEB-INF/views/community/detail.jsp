@@ -25,9 +25,11 @@
                 <p class="created-date" data-formatted-date="${formattedCreatedAt}"></p>
             </div>
             <div>
-                <button class="profile-btn">
-                    <img class="action-btnImg" src="/resources/image/post-detail-image/detail-info-btn.png"/>
-                </button>
+                <c:if test="${post.userId eq user.userId}">
+                    <button class="profile-btn">
+                        <img class="action-btnImg" src="/resources/image/post-detail-image/detail-info-btn.png"/>
+                    </button>
+                </c:if>
             </div>
         </div>
 
@@ -98,7 +100,9 @@
     </div>
 
 </section>
-
+<script>
+    var postId = ${post.postId};
+</script>
 
 <script type="text/javascript" src="/resources/js/post-detail.js"></script>
 <script type="text/javascript" src="/resources/js/comment.js"></script>
