@@ -30,10 +30,10 @@ public class DetailServiceImpl implements DetailService {
 //	}
 //
     @Override
-    public PostVO getDetail(Long postId) {
+    public PostVO getPostDetail(Long postId) {
         log.info("get...." + postId);
 
-        return mapper.getPostDetail(postId);
+        return mapper.getPostDetailByPostId(postId);
     }
 //
 //	@Override
