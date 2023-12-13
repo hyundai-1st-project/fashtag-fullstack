@@ -14,10 +14,11 @@ public interface PostMapper {
 	public Long getHashtagIdByHashtagName(String hashtagName);
 	public void insertHashtag(String hashtagName);
 	public void insertPost_hashtag(@Param("postId") Long postId, @Param("hashtagId") Long hashtagId);
+	public int delete(long postId);
 
 //	public void insertSelectKey(PostVO post);
 //	public PostVO read(Long postId);
-//	public int delete(long postId);
+
 //	public int update(PostVO post);
 //	public List<PostVO> getListWithPaging(Criteria cri);
 // 	public List<PostVO> getPost();
