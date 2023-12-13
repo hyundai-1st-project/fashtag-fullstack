@@ -18,7 +18,7 @@ public class DetailController {
     private DetailService service;
     @GetMapping("/posts/{postId}")
     public String list(Model model, @PathVariable Long postId) {
-        PostVO postDetail = service.getDetail(postId);
+        PostVO postDetail = service.getPostDetail(postId);
         model.addAttribute("post", postDetail);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");

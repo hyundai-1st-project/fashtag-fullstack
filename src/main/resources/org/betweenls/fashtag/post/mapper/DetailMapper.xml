@@ -51,7 +51,7 @@
 		<result property="nickname" column="nickname"></result>
 		<collection property="hashtags" column="postId" javaType="List" ofType="String" select="findHashtagByPostId"></collection>
 	</resultMap>
-	<select id="getPostDetail"
+	<select id="getPostDetailByPostId"
 			resultMap="ResultMap">
 		select p.postid,p.postContent, p.picture, p.createdat,p.updatedat,p.readcount,p.userid, nvl((select count(userid)
 																						 from likes
