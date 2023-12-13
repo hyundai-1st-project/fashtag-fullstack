@@ -5,7 +5,7 @@
 <mapper namespace="org.betweenls.fashtag.post.mapper.CommentMapper">
 
 
-	<select id="getCommentList" resultType="org.betweenls.fashtag.post.domain.CommentVO">
+	<select id="getCommentListByPostId" resultType="org.betweenls.fashtag.post.domain.CommentVO">
 		select c.commentId, c.commentContent, c.createdAt, c.updatedAt, c.postId, c.userId,  (select nickname
 																				  from users
 																				  where userId = c.userId) nickname,
@@ -16,6 +16,11 @@
 		where c.postId = #{postId}
 		order by commentId
 	</select>
+
+	<insert id="insertComment" parameterType="org.betweenls.fashtag.post.domain.CommentVO">
+		insert into comments (commentId, commentContent, postId, userId)
+		values (seq_comments.nextval, #{commentContent}, #{postId}, #{userId})
+	</insert>
 
 
 </mapper>
