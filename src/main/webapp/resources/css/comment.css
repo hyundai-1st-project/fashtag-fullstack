@@ -97,14 +97,16 @@
 
 
 .comments-content .comment-box .userImg-box {
+    height: 40px; /* 가로비율 유지 */
     margin-top: 6px;
     display: inline-block;
     margin-right: 13px;
 }
 
 .comments-content .comment-box .userImg {
-    width: 40px; /* 이미지를 부모 요소인 <a> 태그 크기에 맞게 설정 */
-    height: 40px; /* 가로비율 유지 */
+    width: 40px;
+    max-width: 40px; /* 이미지를 부모 요소인 <a> 태그 크기에 맞게 설정 */
+    height: 100%; /* 가로비율 유지 */
     border-radius: 50%; /* 동그란 형태로 설정 */
     object-fit: cover;
 }
