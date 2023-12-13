@@ -40,7 +40,7 @@
 
         <div class="contents-box">
             <div class="post-btns">
-                <img post-id="${post.postId}" src="/resources/image/icon/${"likeState" == "Y"? "icon-heart-on": "icon-heart-off"}.svg" class="icon like_icon" id="like-btn"/>
+                <img post-id="${post.postId}" src="/resources/image/icon/${likeStatus == "Y"? "icon-heart-on": "icon-heart-off"}.svg" class="icon like_icon" id="like-btn"/>
                 <img src="/resources/image/icon/chat-icon.png" class="icon chat_icon" id="like-count"/>
             </div>
             <div class="post-statistics">
