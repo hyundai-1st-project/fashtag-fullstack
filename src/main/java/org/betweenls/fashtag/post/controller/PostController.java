@@ -88,9 +88,7 @@ public class PostController {
         int a = postService.delete(postId);
         return "redirect:/posts?s=newest";
     }
-
-    @GetMapping("/posts/{postId}")
-
+    
     private void insertPostAndHashtag(PostVO postVO) {
         postService.insertPost(postVO);
         List<String> hashtags = postVO.getHashtags();
