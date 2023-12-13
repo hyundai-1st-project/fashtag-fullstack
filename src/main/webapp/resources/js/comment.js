@@ -23,8 +23,8 @@ function getCommentList(){
                 <div class="profile-info">
                 <span class="username">${comment.nickname}</span>
                 <span class="content">${comment.commentContent}️</span>
-                <p class="created-date" data-formatted-date="${comment.formmatedCreatedAt}">${getTimeAgo(comment.formattedCreatedAt)}</p> </div>
-                <div class="delete-btn">삭제</div> </div>
+                <p class="created-date" data-formatted-date="${comment.formmatedCreatedAt}">${getTimeAgo(comment.formattedCreatedAt)} <span class="delete-btn">삭제</span></p> </div>
+                </div>
                 `
                 //getTimeAgo 함수는 post-detail.js에 있음
             })
@@ -43,12 +43,13 @@ $(function() {
     $('.register-button').on('click', function(e) {
         e.preventDefault();
         const commentHTML = $('#commentInput')[0].innerHTML; // 입력된 텍스트 가져오기
+        console.log(commentHTML);
 
         $.ajax({
             url: '/comment/insert',
             type: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify({ commentHTML: commentHTML }), // JSON 형태로 데이터 전송
+            data: JSON.stringify({ commentContent: commentHTML, postId: postId, userId: 10090}), // JSON 형태로 데이터 전송
             success: function(response) {
                 console.log('성공: ' + response); // 성공 시 콘솔에 출력
                 $('#commentInput').html("");
@@ -108,7 +109,7 @@ $(function() {
 $(function() {
     const commentId = $('.hidden-postId').data('post-id');//추후 수정!!
 
-    // 삭제 버튼 클릭 시 /delete로 이동
+    // 삭제 버튼 클릭 시 /comments/delete 요청
     $('.layer_yes-or-no .layer_btn .btn-delete').click(function() {
         window.location.href = `/comments/delete/${commentId}`;
     });
