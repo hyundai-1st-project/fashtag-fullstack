@@ -74,6 +74,10 @@
 		values (seq_post_hashtag.nextval, #{postId}, #{hashtagId})
 	</insert>
 
+	<delete id="delete">
+		delete from posts where postId = #{postId}
+	</delete>
+
 	<!--	<select id="getListWithPaging"-->
 <!--		resultType="org.betweenls.fashtag.domain.PostVO">-->
 <!--	 <![CDATA[	-->
@@ -107,9 +111,7 @@
 <!--		SELECT * FROM tbl_board WHERE bno = #{bno}-->
 <!--	</select>-->
 
-<!--	<delete id="delete">-->
-<!--		delete from tbl_board where bno = #{bno}-->
-<!--	</delete>-->
+
 
 <!--	<update id="update">-->
 <!--		update tbl_board-->
