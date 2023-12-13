@@ -23,10 +23,10 @@ function getCommentList(){
                 <div class="profile-info">
                 <span class="username">${comment.nickname}</span>
                 <span class="content">${comment.commentContent}️</span>
-                <p class="created-date" data-formatted-date="${comment.formmatedCreatedAt}">${getTimeAgo(comment.formattedCreatedAt)} <span class="delete-btn">삭제<b style="display:none">${comment.commentId}</b></span></p> </div>
-                </div>
-                `
-                //getTimeAgo 함수는 post-detail.js에 있음
+                <p class="created-date" data-formatted-date="${comment.formmatedCreatedAt}">${getTimeAgo(comment.formattedCreatedAt)} 
+                `//getTimeAgo 함수는 post-detail.js에 있음
+                if(loginUserId===comment.userId) html += `<span class="delete-btn">삭제<b style="display:none">${comment.commentId}</b></span>`//댓글 등록한 이용자만 삭제 버튼 보임
+                html += `</p> </div></div>`
             })
             const $comments = $(".comments-content");
             $comments.html(html);
@@ -51,7 +51,7 @@ $(function() {
             url: '/comment/insert',
             type: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify({ commentContent: commentHTML, postId: postId, userId: 10090}), // JSON 형태로 데이터 전송
+            data: JSON.stringify({ commentContent: commentHTML, postId: postId, userId: loginUserId}), // JSON 형태로 데이터 전송
             success: function(response) {
                 console.log('성공: ' + response); // 성공 시 콘솔에 출력
                 $('#commentInput').html("");
@@ -78,18 +78,29 @@ function deleteBtnAction() {
 
 //채팅버튼 누르면 댓글 입력창으로 화면이동 및 커서 focus되는 함수
 $(function(){
-    $(".icon.chat_icon").on("click", function() {
-        // commentInput 요소의 위치로 스크롤 이동
-        const $commentInput = $("#commentInput");
-        const offset = ($(window).height() - $($commentInput[0]).outerHeight()) / 2;
+    $(".icon.chat_icon").on("mousedown", function() {
+        if(!loginUserId) window.location.href = "/login"
+        else {
+            // commentInput 요소의 위치로 스크롤 이동
+            const $commentInput = $("#commentInput");
+            const offset = ($(window).height() - $($commentInput[0]).outerHeight()) / 2;
 
-        $('html, body').animate({
-            scrollTop: $($commentInput[0]).offset().top - offset
-        }, 'slow');
+            $('html, body').animate({
+                scrollTop: $($commentInput[0]).offset().top - offset
+            }, 'slow');
 
-        $commentInput.focus(); // commentInput으로 커서 이동
+            $commentInput.focus(); // commentInput으로 커서 이동
+        }
     });
 });
+
+
+$(function() {
+    if(!loginUserId)
+        $('.input-wrapper').on('mousedown', function() {
+            window.location.href = "/login"
+        })
+})
 
 /*********** 댓글 입력창 JS ****************/
 $(function() {
