@@ -18,6 +18,21 @@
     letter-spacing: -.06px;
     padding: 2px 14px;
 }
+.label-button{
+    padding: 2px 14px;
+    align-items: center;
+    background-color: #fff;
+    color: rgba(34,34,34,.8);
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    height: 34px;
+}
 .profile_group .modify .input_txt[data-v-5ee806c3] {
     font-size: 15px;
     letter-spacing: -.15px;
@@ -37,7 +52,6 @@
 .post-image {
     width: 85%;
     height: 85%;
-    cursor: pointer;
 }
 
 .bottom-border{
@@ -77,4 +91,27 @@
     line-height: 22px;
     width: 100%;
     resize: none;
+}
+
+.hashtag-div{
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.plus-icon{
+    height: 100%;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+.minus-icon {
+    height: 74%;
+    padding-top: 6px;
+    cursor: pointer;
+}
+.image-div{
+    height: 38px;
+    display: flex;
+    align-items: center;
 }
