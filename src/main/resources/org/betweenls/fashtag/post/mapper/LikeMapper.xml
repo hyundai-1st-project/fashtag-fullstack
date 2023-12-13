@@ -4,12 +4,12 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.betweenls.fashtag.post.mapper.LikeMapper">
 
-	<insert id="insertComment" parameterType="org.betweenls.fashtag.post.domain.LikeVO">
+	<insert id="insertLike" parameterType="org.betweenls.fashtag.post.domain.LikeVO">
 		insert into likes (likeId, userId, postId)
 		values (seq_likes.nextval, #{userId}, #{postId})
 	</insert>
 
-	<delete id="deleteCommentByCommentId">
+	<delete id="deleteLike" parameterType="org.betweenls.fashtag.post.domain.LikeVO">
 		delete likes
 		where userId=#{userId} AND postId=#{postId}
 	</delete>
