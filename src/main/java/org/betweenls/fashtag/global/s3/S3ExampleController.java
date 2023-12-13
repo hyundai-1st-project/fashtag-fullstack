@@ -20,12 +20,13 @@ public class S3ExampleController {
     @PostMapping("/upload-test")
     public void upload(@RequestPart(value="photo") MultipartFile titlePhoto) throws IOException {
 
-        String basicFileName ="title" ; // 파일 이름
-        String dirName = "user/userId";  // 폴더 이름
+        String basicFileName ="defaultImage" ; // 파일 이름
+        String dirName = "user/user-profile-image";  // 폴더 이름
 //        String dirName = "post/";  // 폴더 이름
-        String courseTitlePhotoKey = s3UploaderService.upload(titlePhoto, dirName, basicFileName);
+        String courseTitlePhotoKey = s3UploaderService.uploadMultipartFile(titlePhoto, dirName, basicFileName);
         log.info(courseTitlePhotoKey);
     }
+
 
     @DeleteMapping("/file-delete")
     public void delete(String key){

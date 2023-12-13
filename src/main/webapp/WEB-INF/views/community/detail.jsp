@@ -18,7 +18,7 @@
     <div class="post-detail">
         <div class="profile-box">
             <a class="userImg-box" href="#">
-                <img class="userImg" src="${post.profile}" alt="프로필 사진">
+                <img class="userImg" src="${url}${post.profile}" alt="프로필 사진">
             </a>
             <div class="profile-info">
                 <p class="username">${post.nickname}</p>
@@ -34,7 +34,7 @@
         </div>
 
         <div class="fashionImg-box">
-            <img class="fashionImg" src="${post.picture}">
+            <img class="fashionImg" src="${url}${post.picture}">
         </div>
 
 

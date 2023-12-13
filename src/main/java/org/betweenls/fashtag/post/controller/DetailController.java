@@ -2,6 +2,7 @@ package org.betweenls.fashtag.post.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
+import org.betweenls.fashtag.global.s3.S3UploaderService;
 import org.betweenls.fashtag.post.domain.PostVO;
 import org.betweenls.fashtag.post.service.DetailService;
 import org.betweenls.fashtag.user.domain.UserVO;
@@ -19,6 +20,7 @@ import java.text.SimpleDateFormat;
 public class DetailController {
     private DetailService detailService;
     private UserService userService;
+    private S3UploaderService s3UploaderService;
     @GetMapping("/posts/{postId}")
     public String list(Model model, @PathVariable Long postId) {
         PostVO postDetail = detailService.getPostDetail(postId);
@@ -29,6 +31,7 @@ public class DetailController {
         model.addAttribute("formattedCreatedAt", formattedCreatedAt);
         UserVO userVO = userService.loginCheck();
         model.addAttribute("user", userVO);
+        model.addAttribute("url", s3UploaderService.getUrl());
 
         return "community/detail";
     }
