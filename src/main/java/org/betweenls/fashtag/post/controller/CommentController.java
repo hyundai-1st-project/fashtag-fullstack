@@ -21,6 +21,7 @@ import java.util.List;
 @RequestMapping("comment")
 public class CommentController {
     private CommentService service;
+
     @GetMapping(value ="/list/{postId}", produces = "application/json; charset=utf-8")
     @ResponseBody
     public ResponseEntity<List<CommentVO>> getCommentList(Model model, @PathVariable Long postId) {
@@ -29,4 +30,15 @@ public class CommentController {
 
         return new ResponseEntity<>(service.getCommentList(postId), HttpStatus.OK);
     }
+
+    @PostMapping("/insert")
+    public ResponseEntity<String> insertComment(@RequestBody CommentVO commentRequest) {
+        log.info("commentRequest: " + commentRequest);
+
+        service.insertComment(commentRequest);
+        // 성공했음을 ResponseEntity로 반환
+        return new ResponseEntity<>("insert 성공", HttpStatus.OK);
+    }
+
+
 }
