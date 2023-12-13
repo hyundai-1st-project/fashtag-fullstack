@@ -5,6 +5,8 @@ $(function() {
     getCommentList();
 });
 
+//전역변수 선언
+let currentCommentId = 0;
 
 //해당 post의 모든댓글 불러와서 뷰에 뿌려주는 함수
 const postId = $('.hidden-postId').data('post-id');
@@ -31,8 +33,8 @@ function getCommentList(){
             const $comments = $(".comments-content");
             $comments.html(html);
             $comments.find('.delete-btn').on('click',function(){
-                const commentId = $(this).find('b').text();
-                deleteBtnAction(commentId)});
+                currentCommentId =  $(this).find('b').text();
+                deleteBtnAction()});
         },
         error : function(){
             alert('댓글을 가져올 수 없습니다.');
@@ -108,15 +110,18 @@ $(function() {
 
 
 //*********댓글 삭제 모달 이벤트 js*********//
-$(function(commentId) {
+$(function() {
     // 삭제 버튼 클릭 시 /comments/delete 요청
     $('.layer_yes-or-no .layer_btn .btn-delete').click(function(e) {
         e.preventDefault();
         $.ajax({
             type : 'delete',
-            url : `/comment/delete/${commentId}`,
+            url : `/comment/delete/${currentCommentId}`,
             success : function(deleteResult, status, xhr) {
                 console.log(`삭제성공: ${deleteResult}`);
+                $('.layer_yes-or-no[data-v-4be3d37a]').fadeOut();
+                $('.modal-backdrop').remove(); // 어둡게 한 배경 제거
+                getCommentList();
             },
             error : function(xhr, status, error) {
                 console.error('에러: ' + error); // 에러 시 콘솔에 출력
