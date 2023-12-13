@@ -10,7 +10,7 @@ $(function() {
 const postId = $('.hidden-postId').data('post-id');
 function getCommentList(){
     $.ajax({
-        url : `/comment/list/${postId}`,
+        url : `/comment/${postId}`,
         type : "GET",
         dataType : "json",
         success : function(comments){
@@ -23,14 +23,16 @@ function getCommentList(){
                 <div class="profile-info">
                 <span class="username">${comment.nickname}</span>
                 <span class="content">${comment.commentContent}️</span>
-                <p class="created-date" data-formatted-date="${comment.formmatedCreatedAt}">${getTimeAgo(comment.formattedCreatedAt)} <span class="delete-btn">삭제</span></p> </div>
+                <p class="created-date" data-formatted-date="${comment.formmatedCreatedAt}">${getTimeAgo(comment.formattedCreatedAt)} <span class="delete-btn">삭제<b style="display:none">${comment.commentId}</b></span></p> </div>
                 </div>
                 `
                 //getTimeAgo 함수는 post-detail.js에 있음
             })
             const $comments = $(".comments-content");
             $comments.html(html);
-            $comments.find('.delete-btn').on('click',function(){deleteBtnAction()})
+            $comments.find('.delete-btn').on('click',function(){
+                const commentId = $(this).find('b').text();
+                deleteBtnAction(commentId)});
         },
         error : function(){
             alert('댓글을 가져올 수 없습니다.');
@@ -106,12 +108,21 @@ $(function() {
 
 
 //*********댓글 삭제 모달 이벤트 js*********//
-$(function() {
-    const commentId = $('.hidden-postId').data('post-id');//추후 수정!!
-
+$(function(commentId) {
     // 삭제 버튼 클릭 시 /comments/delete 요청
-    $('.layer_yes-or-no .layer_btn .btn-delete').click(function() {
-        window.location.href = `/comments/delete/${commentId}`;
+    $('.layer_yes-or-no .layer_btn .btn-delete').click(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type : 'delete',
+            url : `/comment/delete/${commentId}`,
+            success : function(deleteResult, status, xhr) {
+                console.log(`삭제성공: ${deleteResult}`);
+            },
+            error : function(xhr, status, error) {
+                console.error('에러: ' + error); // 에러 시 콘솔에 출력
+                alert('댓글을 삭제할 수 없습니다.');
+            }
+        });
     });
 
     // 취소 버튼 클릭 시 모달 닫기
