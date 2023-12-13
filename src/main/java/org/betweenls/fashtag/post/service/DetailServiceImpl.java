@@ -13,8 +13,10 @@ import java.text.SimpleDateFormat;
 public class DetailServiceImpl implements DetailService {
     private DetailMapper mapper;
     @Override
-    public PostVO getDetail(Long postId) {
-        return mapper.getPostDetail(postId);
+    public PostVO getPostDetail(Long postId) {
+        log.info("get...." + postId);
+
+        return mapper.getPostDetailByPostId(postId);
     }
 
 }
