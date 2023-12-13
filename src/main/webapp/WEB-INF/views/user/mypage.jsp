@@ -69,7 +69,7 @@
             </div>
             <div style="margin-top: 20px;">
                 <div style="width: 25%;">
-                    <h5>게시글 수</h5> 5
+                    <h5>게시글 수</h5> ${myPage.postSize}
                 </div>
                 <!-- 다른 요소들을 추가하려면 여기에 계속해서 작성하시면 됩니다 -->
             </div>
@@ -78,6 +78,7 @@
     <br/>
     <div class="row">
         <div class="col-12">
+
             <a href="/posts/tags/hashtag" class="btn btn-light btn-sm ig-btn-primary">#오뭐입</a>
             <a href="/posts/tags/hashtag" class="btn btn-light btn-sm ig-btn-primary">#내뭐입</a>
             <a href="/posts/tags/hashtag" class="btn btn-light btn-sm ig-btn-primary">#hashtags</a>
