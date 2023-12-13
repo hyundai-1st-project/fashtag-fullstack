@@ -5,6 +5,7 @@ import lombok.extern.java.Log;
 import org.betweenls.fashtag.global.s3.S3UploaderService;
 import org.betweenls.fashtag.post.domain.PostVO;
 import org.betweenls.fashtag.post.service.DetailService;
+import org.betweenls.fashtag.post.service.LikeService;
 import org.betweenls.fashtag.user.domain.UserVO;
 import org.betweenls.fashtag.user.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import java.text.SimpleDateFormat;
 public class DetailController {
     private DetailService detailService;
     private UserService userService;
+    private LikeService likeService;
     private S3UploaderService s3UploaderService;
     @GetMapping("/posts/{postId}")
     public String list(Model model, @PathVariable Long postId) {
@@ -30,8 +32,15 @@ public class DetailController {
         String formattedCreatedAt = sdf.format(postDetail.getCreatedAt());
         model.addAttribute("formattedCreatedAt", formattedCreatedAt);
         UserVO userVO = userService.loginCheck();
+
+        String likeStatus = "N";
+        if (userVO != null) {
+            likeStatus = likeService.getLikeStatus(postId, userVO.getUserId());
+        }
+
         model.addAttribute("user", userVO);
         model.addAttribute("url", s3UploaderService.getUrl());
+        model.addAttribute("likeStatus", likeStatus);
 
         return "community/detail";
     }
