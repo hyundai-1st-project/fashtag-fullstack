@@ -14,7 +14,7 @@
 																				   where userId = c.userId) profile
 		from comments c
 		where c.postId = #{postId}
-		order by commentId
+		order by commentId desc
 	</select>
 
 	<insert id="insertComment" parameterType="org.betweenls.fashtag.post.domain.CommentVO">
