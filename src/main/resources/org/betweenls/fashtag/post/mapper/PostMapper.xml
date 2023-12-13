@@ -74,8 +74,17 @@
 		values (seq_post_hashtag.nextval, #{postId}, #{hashtagId})
 	</insert>
 
-	<delete id="delete">
+	<delete id="deletePostByPostId">
 		delete from posts where postId = #{postId}
+	</delete>
+	<delete id="deletePost_hashtagByPostId">
+		delete from Post_hashtag where postId = #{postId}
+	</delete>
+	<delete id="deleteLikeByPostId">
+		delete from Likes where postId = #{postId}
+	</delete>
+	<delete id="deleteCommentByPostId">
+		delete from Comments where postId = #{postId}
 	</delete>
 
 	<!--	<select id="getListWithPaging"-->
