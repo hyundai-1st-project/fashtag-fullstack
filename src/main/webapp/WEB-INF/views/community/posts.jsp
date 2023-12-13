@@ -87,7 +87,7 @@
                                             <picture data-v-44ba780a="" data-v-12986062="" class="picture img_profile">
 <%--                                                <source data-v-44ba780a="" type="image/webp" srcset="https://kream-phinf.pstatic.net/MjAyMDExMDZfMjAz/MDAxNjA0NjQ5OTM1NDk5.edZ7v2ODWVS7_M8PXg8B0PNU5UlsTWup2XHwuKkEEXsg.lNHXDE66TKM0yl1nIOO70PWNUtK4TcdgD1lImetPB48g.JPEG/p_8d36c20aaeb94c6681619dcd775f5286.jpeg?type=s_webp">--%>
 <%--                                                <source data-v-44ba780a="" srcset="https://kream-phinf.pstatic.net/MjAyMDExMDZfMjAz/MDAxNjA0NjQ5OTM1NDk5.edZ7v2ODWVS7_M8PXg8B0PNU5UlsTWup2XHwuKkEEXsg.lNHXDE66TKM0yl1nIOO70PWNUtK4TcdgD1lImetPB48g.JPEG/p_8d36c20aaeb94c6681619dcd775f5286.jpeg?type=s">--%>
-                                                <img data-v-44ba780a="" alt="사용자 프로필 이미지" src="/resources/image/post-image/6.webp" loading="lazy" class="image full_width">
+                                                <img data-v-44ba780a="" alt="사용자 프로필 이미지" src="${post.profile}" loading="lazy" class="image full_width">
                                             </picture>
                                             <span data-v-7ddd6c4e="" data-v-12986062="" class="user_name">
                                               <span data-v-7ddd6c4e=""><a href="/user/mypage">${post.nickname}</a></span><!---->

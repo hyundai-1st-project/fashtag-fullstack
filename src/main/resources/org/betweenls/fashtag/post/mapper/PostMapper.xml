@@ -18,14 +18,12 @@
 
 	<select id="getAllPost" resultMap="ResultMap">
 		<![CDATA[
-		select p.postid,postContent, picture, createdat,updatedat,readcount,userid, nvl((select count(userid)
-																						 from likes
-																						 where postid = p.postid
-																						 group by postid), 0) likeCount,
-			   (select nickname
-				from users
-				where userId = p.userId) nickname
-		from posts p
+		select p.postid,p.postContent, p.picture, p.createdat,p.updatedat,p.readcount,p.userid, u.nickname, u.profile, nvl((select count(userid)
+																														  from likes
+																														  where postid = p.postid
+																														  group by postid), 0) likeCount
+		from posts p inner join users u
+								on p.userid = u.userid
 		order by ${order} desc
 		]]>
 	</select>
@@ -43,7 +41,10 @@
 																					 group by postid) likeCount,
 			   (select nickname
 				from users
-				where userId = p.userId) nickname
+				where userId = p.userId) nickname,
+		    (select profile
+			from users
+			where userId = p.userId) profile
 		from posts p left outer join post_hashtag ph
 									 on p.postid = ph.postid left outer join hashtag h
 																			 on ph.hashtagId = h.hashtagid
