@@ -19,7 +19,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<CommentVO> getCommentList(Long postId) {
         log.info("get...." + postId);
-        List<CommentVO> commentList = mapper.getCommentList(postId);
+        List<CommentVO> commentList = mapper.getCommentListByPostId(postId);
 
         //댓글 각각의 createdAt을 String변환한 후 CommentVO에 set
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
@@ -28,5 +28,11 @@ public class CommentServiceImpl implements CommentService {
         }
 
         return commentList;
+    }
+
+    @Override
+    public int insertComment(CommentVO comment) {
+        log.info("insert..." + comment);
+        return mapper.insertComment(comment);
     }
 }
