@@ -61,10 +61,10 @@
                 <div class="comment-input">
                     <a href="#"
                        class="profile_link"><img class="profile-picture"
-                                                 src="https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=0.88847xw:1xh;center,top&resize=1200:*"
+                                                 src="${user!=null?user.profile:"/resources/image/user-image/profile.png"}"
                                                  alt="프로필 사진"></a>
                     <div class="input-wrapper">
-                        <div contenteditable="true" placeholder="댓글을 남기세요…"
+                        <div contenteditable="true" placeholder="${user!=null?"댓글을 남기세요...":"로그인 후 댓글을 작성해주세요."}"
                              autocapitalize="off" spellcheck="false" class="input_txt origin" id="commentInput"></div>
                         <a href="/comment/insert" class="register-button"> 등록 </a></div>
                 </div>
@@ -101,7 +101,7 @@
 
 </section>
 <script>
-    var postId = ${post.postId};
+    const postId = ${post.postId};
 </script>
 
 <script type="text/javascript" src="/resources/js/post-detail.js"></script>
