@@ -4,7 +4,7 @@ const heart_on = '/resources/image/icon/icon-heart-on.svg'
 let post_id, $likeIcon, $likeCount, isLiked;
 
 // 좋아요 버튼 누를때 EventListener
-$('#like-btn').on('click', function(e) {
+$('.like_icon').on('click', function(e) {
     e.preventDefault();
     if(!loginUserId) window.location.href = "/login";
     else{
