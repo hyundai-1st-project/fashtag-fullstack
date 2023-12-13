@@ -14,4 +14,10 @@
 		where userId=#{userId} AND postId=#{postId}
 	</delete>
 
+	<select id="getLikeStatus" parameterType="org.betweenls.fashtag.post.domain.LikeVO" resultType="string">
+		select decode(count(likeId), 1, 'Y', 'N')
+		from likes
+		where userId=#{userId} AND postId=#{postId}
+	</select>
+
 </mapper>
