@@ -42,13 +42,13 @@ function getCommentList(){
 $(function() {
     $('.register-button').on('click', function(e) {
         e.preventDefault();
-        const commentText = $('#commentInput').text(); // 입력된 텍스트 가져오기
+        const commentHTML = $('#commentInput')[0].innerHTML; // 입력된 텍스트 가져오기
 
         $.ajax({
             url: '/comment/insert',
             type: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify({ text: commentText }), // JSON 형태로 데이터 전송
+            data: JSON.stringify({ commentHTML: commentHTML }), // JSON 형태로 데이터 전송
             success: function(response) {
                 console.log('성공: ' + response); // 성공 시 콘솔에 출력
                 $('#commentInput').html("");
