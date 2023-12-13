@@ -96,7 +96,7 @@
                                             </span>
 <%--                                            <span data-v-12986062="" aria-label="좋아요" role="button" class="btn like">--%>
                                               <img post-id="${post.postId}" src="/resources/image/icon/${"LikeState" == "Y"? "icon-heart-on": "icon-heart-off"}.svg" class="like_icon" id="like-btn"/>
-                                              <span data-v-12986062="" class="like_count" id=`${post.postId}-like-count`>${post.likeCount}</span>
+                                              <span data-v-12986062="" class="like_count" id="like-count-${post.postId}">${post.likeCount}</span>
 <%--                                            </span>--%>
                                         </div>
                                         <p data-v-12986062="" class="text_box">
