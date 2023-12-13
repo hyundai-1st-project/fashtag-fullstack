@@ -37,4 +37,13 @@ public class LikeServiceImpl implements LikeService {
         log.info("delete..."+like);
         return mapper.deleteLike(like);
     }
+
+    @Override
+    public String getLikeStatus(Long postId, Long userId){
+        log.info("getLikeStatus..."+"postId: " + postId+" userId: "+ userId);
+        LikeVO like = new LikeVO();
+        like.setPostId(postId);
+        like.setUserId(userId);
+        return mapper.getLikeStatus(like);
+    }
 }
