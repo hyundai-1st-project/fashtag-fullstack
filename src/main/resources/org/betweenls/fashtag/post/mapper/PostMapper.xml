@@ -48,9 +48,32 @@
 									 on p.postid = ph.postid left outer join hashtag h
 																			 on ph.hashtagId = h.hashtagid
 		where hashtag = #{hashtag}
-		]]></select>
+		]]>
+	</select>
 
-<!--	<select id="getListWithPaging"-->
+	<insert id="insertPost">
+		<selectKey keyProperty="postId" resultType="java.lang.Long" order="BEFORE">
+			SELECT seq_posts.nextval as postId FROM dual
+		</selectKey>
+		insert into posts (postId, postContent, picture, userId)
+		values (#{postId}, #{postContent}, #{picture}, #{userId})
+	</insert>
+
+	<select id="getHashtagIdByHashtagName" resultType="java.lang.Long">
+		select hashtagId from hashtag h where h.hashtag = #{hashtagName}
+	</select>
+
+	<insert id="insertHashtag">
+		insert into hashtag (hashtagId, hashtag)
+		values (seq_hashtag.nextval, #{hashtagName})
+	</insert>
+
+	<insert id="insertPost_hashtag" parameterType="map">
+		insert into Post_hashtag (postHashtagId, postId, hashtagId)
+		values (seq_post_hashtag.nextval, #{postId}, #{hashtagId})
+	</insert>
+
+	<!--	<select id="getListWithPaging"-->
 <!--		resultType="org.betweenls.fashtag.domain.PostVO">-->
 <!--	 <![CDATA[	-->
 <!--	 	select -->
@@ -66,10 +89,7 @@
 <!--	 ]]>-->
 <!--	</select>-->
 
-<!--	<insert id="insert">-->
-<!--		insert into tbl_board (bno, title, content, writer)-->
-<!--		values (seq_board.nextval, #{title}, #{content}, #{writer})-->
-<!--	</insert>-->
+
 
 <!--	<insert id="insertSelectKey">-->
 <!--		<selectKey keyProperty="bno" order="BEFORE"-->
