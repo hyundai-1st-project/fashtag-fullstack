@@ -10,8 +10,8 @@ public interface UserService {
     UserVO getUserByUserId(long id);
 
     UserVO getUserById(String username);
-
     int idcheck(String userid);
-
     int nicknameCheck(String nickname);
+    public UserVO loginCheck();
+
 }

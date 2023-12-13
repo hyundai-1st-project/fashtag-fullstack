@@ -13,5 +13,6 @@
 <script src='/resources/js/scripts.js'></script>
 <script src='/resources/js/masonry.pkgd.min.js'></script>
 <script type="text/javascript" src="/resources/js/like-count.js"></script>
+<script type="text/javascript" src="/resources/js/posts-new.js"></script>
 </body>
 </html>

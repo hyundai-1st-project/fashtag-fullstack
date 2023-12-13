@@ -14,7 +14,7 @@
     <div class="post-detail">
         <div class="profile-box">
             <a class="userImg-box" href="#">
-                <img class="userImg" src="/resources/image/paris.png" alt="프로필 사진">
+                <img class="userImg" src="${post.profile}" alt="프로필 사진">
             </a>
             <div class="profile-info">
                 <p class="username">${post.nickname}</p>
@@ -51,16 +51,45 @@
                 <%--추후 글 길어질때 더보기 창 나오게 할 예정--%>
             </div>
             <div class="post-comments">
-                댓글창
+                <div class="comments-count">댓글 <b>30</b>개</div>
+                <div class="comments-content">
+                    <div class="comment-box">
+                        <a class="userImg-box" href="#">
+                            <img class="userImg"
+                                 src="https://i.namu.wiki/i/R0AhIJhNi8fkU2Al72pglkrT8QenAaCJd1as-d_iY6MC8nub1iI5VzIqzJlLa-1uzZm--TkB-KHFiT-P-t7bEg.webp"
+                                 alt="프로필 사진">
+                        </a>
+                        <div class="profile-info">
+                            <span class="username">hi_wooooany</span>
+                            <span class="content">좋아요❤️</span>
+                            <p class="created-date" data-formatted-date="${formattedCreatedAt}"></p>
+                        </div>
+                        <div class="delete-btn">삭제</div>
+                    </div>
+                    <div class="comment-box">
+                        <a class="userImg-box" href="#">
+                            <img class="userImg"
+                                 src="https://i.namu.wiki/i/R0AhIJhNi8fkU2Al72pglkrT8QenAaCJd1as-d_iY6MC8nub1iI5VzIqzJlLa-1uzZm--TkB-KHFiT-P-t7bEg.webp"
+                                 alt="프로필 사진">
+                        </a>
+                        <div class="profile-info">
+                            <span class="username">hi_wooooany</span>
+                            <span class="content">좋아요❤️️️️</span>
+                            <p class="created-date" data-formatted-date="${formattedCreatedAt}"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
-            <%--히든--%>
+
+
+
+
+            <%--히든Id--%>
             <p class="hidden-postId" style="visibility: hidden;" data-post-id="${post.postId}"></p>
-            <div >
-
-            </div>
             <%--팝업창--%>
+            <%--글 수정 삭제 팝업창--%>
             <%--추후에 작성자랑 작성자아닌경우 다르게 팝업창 설정할 예정--%>
             <div data-v-4be3d37a="" class="layer_container">
                 <div data-v-4be3d37a="" class="layer_header"></div>
@@ -72,9 +101,47 @@
                     </ul>
                 </div>
             </div>
+
+
+
+            <%--댓글 입력 팝업창--%>
+            <div class="comment-input-modal">
+                <img class="profile-picture"
+                     src="https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=0.88847xw:1xh;center,top&resize=1200:*"
+                     alt="프로필 사진">
+                <!-- 댓글 입력창 -->
+                <div class="input-wrapper">
+                    <div contenteditable="true" id="commentInput" data-placeholder="댓글을 남기세요...">
+                        댓글을 남기세요...
+                    </div>
+                    <!-- 등록 버튼 -->
+                    <input type="submit" id="submitComment" class="register-button" value="등록" />
+                </div>
+            </div>
+
+
+
+            <%--댓글 삭제 팝업창--%>
+            <div data-v-4be3d37a="" class="layer_yes-or-no">
+                <div data-v-4be3d37a="" class="alert_box high"><p data-v-4be3d37a="" class="alert_desc">삭제하시겠습니까?</p>
+                </div>
+                <div data-v-4be3d37a="" class="layer_btn">
+                    <button data-v-0a6aebaa="" type="button" class="btn-cancel" data-v-4be3d37a=""> 취소
+                    </button>
+                    <button data-v-0a6aebaa="" type="button" class="btn-delete" data-v-4be3d37a=""> 확인
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
+
+
+
 </section>
+<%--댓글 다는 모달창--%>
+
+
+
 
 
 <script type="text/javascript" src="/resources/js/post-detail.js"></script>
