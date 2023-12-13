@@ -53,14 +53,12 @@
 	</resultMap>
 	<select id="getPostDetail"
 			resultMap="ResultMap">
-		select p.postid,postContent, picture, createdat,updatedat,readcount,userid, nvl((select count(userid)
+		select p.postid,p.postContent, p.picture, p.createdat,p.updatedat,p.readcount,p.userid, nvl((select count(userid)
 																						 from likes
 																						 where postid = p.postid
 																						 group by postid), 0) likeCount,
-																				   (select nickname
-																					from users
-																					where userId = p.userId) nickname
-		from posts p
+																				    u.nickname, u.profile
+		from posts p inner join users u on p.userId = u.userId
 		where postId = #{postId}
 	</select>
 	<select id="findHashtagByPostId" resultType="String" parameterType="Long">
