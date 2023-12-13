@@ -8,8 +8,6 @@ $(function() {
 //전역변수 선언
 let currentCommentId = 0;
 
-//해당 post의 모든댓글 불러와서 뷰에 뿌려주는 함수
-const postId = $('.hidden-postId').data('post-id');
 function getCommentList(){
     $.ajax({
         url : `/comment/${postId}`,

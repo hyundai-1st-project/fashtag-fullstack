@@ -11,8 +11,8 @@
 <link rel='stylesheet' href='/resources/css/comment.css' type='text/css'/>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<%--히든Id--%>
-<p class="hidden-postId" style="visibility: hidden;" data-post-id="${post.postId}"></p>
+
+
 
 <section class="post-detail-section">
     <div class="post-detail">

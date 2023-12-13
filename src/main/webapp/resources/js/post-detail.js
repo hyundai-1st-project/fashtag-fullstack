@@ -58,7 +58,6 @@ $(document).ready(function() {
         }
     });
 
-    const postId = $('.hidden-postId').data('post-id');
     // 수정 버튼 클릭 시 /update로 이동
     $('.update').click(function() {
         window.location.href =  `/posts/update/${postId}`;
