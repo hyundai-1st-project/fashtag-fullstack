@@ -8,6 +8,7 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +22,7 @@ import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
+@Getter
 @Service
 public class S3UploaderService {
 
@@ -34,7 +36,10 @@ public class S3UploaderService {
     @Value("${cloud.aws.region.static}")
     private String region;
 
-    public String upload(MultipartFile multipartFile, String dirName, String basicFileName) throws IOException {
+    @Value("${cloud.aws.s3.bucket.url}")
+    private String url;
+
+    public String uploadMultipartFile(MultipartFile multipartFile, String dirName, String basicFileName) throws IOException {
 
         // MultipartFile -> File로 전환 :: S3에 MultipartFile 타입은 전송 x
         File convFile = new File(multipartFile.getOriginalFilename());
@@ -42,15 +47,18 @@ public class S3UploaderService {
         FileOutputStream fos = new FileOutputStream(convFile);
         fos.write(multipartFile.getBytes());
         fos.close();
-
-        return upload(convFile, dirName, basicFileName);
+        String fileName = dirName + "/" + basicFileName;
+        String uploadImageUrl = putS3(convFile, fileName);
+//        removeNewFile(uploadFile);
+        return fileName;
+//        return upload(convFile, dirName, basicFileName);
     }
 
     // S3로 파일 업로드
     private String upload(File uploadFile, String dirName, String basicFileName) {
         String fileName = dirName + "/" + basicFileName;
         String uploadImageUrl = putS3(uploadFile, fileName);
-        removeNewFile(uploadFile);
+//        removeNewFile(uploadFile);
         return fileName;
     }
 

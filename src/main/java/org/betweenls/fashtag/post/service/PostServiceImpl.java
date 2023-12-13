@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.betweenls.fashtag.post.domain.PostVO;
 import org.betweenls.fashtag.post.mapper.PostMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,9 +47,34 @@ public class PostServiceImpl implements PostService {
 	public void insertPost_hashtag(@Param("postId") Long postId, @Param("hashtagId") Long hashtagId){
 		mapper.insertPost_hashtag(postId, hashtagId);
 	}
+
 	@Override
-	public int delete(long postId) {
-		return mapper.delete(postId);
+	public int deletePostByPostId(long postId) {
+		return mapper.deletePostByPostId(postId);
+	}
+
+	@Override
+	public int deletePost_hashtagByPostId(long postId) {
+		return mapper.deletePost_hashtagByPostId(postId);
+	}
+
+	@Override
+	public int deleteLikeByPostId(long postId) {
+		return mapper.deleteLikeByPostId(postId);
+	}
+
+	@Override
+	public int deleteCommentByPostId(long postId) {
+		return mapper.deleteCommentByPostId(postId);
+	}
+
+//	@Transactional
+	@Override
+	public void deletePostWithForeignKey(Long postId) {
+		deleteCommentByPostId(postId);
+		deleteLikeByPostId(postId);
+		deletePost_hashtagByPostId(postId);
+		deletePostByPostId(postId);
 	}
 	@Override
 	public String uploadFile(MultipartFile uploadFile, HttpServletRequest request) {

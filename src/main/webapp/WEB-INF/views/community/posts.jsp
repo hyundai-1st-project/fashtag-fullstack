@@ -79,7 +79,7 @@
                             <article class="hentry">
                                 <header class="entry-header">
                                     <div class="entry-thumbnail">
-                                        <a href="/posts/${post.postId}"><img class="post_image" src="${post.picture}" alt=""></a>
+                                        <a href="/posts/${post.postId}"><img class="post_image" src="${url}${post.picture}" alt=""></a>
                                     </div>
                                     <%--포스트 이미지 끝--%>
                                     <div data-v-12986062="" class="card_detail">
@@ -87,10 +87,12 @@
                                             <picture data-v-44ba780a="" data-v-12986062="" class="picture img_profile">
 <%--                                                <source data-v-44ba780a="" type="image/webp" srcset="https://kream-phinf.pstatic.net/MjAyMDExMDZfMjAz/MDAxNjA0NjQ5OTM1NDk5.edZ7v2ODWVS7_M8PXg8B0PNU5UlsTWup2XHwuKkEEXsg.lNHXDE66TKM0yl1nIOO70PWNUtK4TcdgD1lImetPB48g.JPEG/p_8d36c20aaeb94c6681619dcd775f5286.jpeg?type=s_webp">--%>
 <%--                                                <source data-v-44ba780a="" srcset="https://kream-phinf.pstatic.net/MjAyMDExMDZfMjAz/MDAxNjA0NjQ5OTM1NDk5.edZ7v2ODWVS7_M8PXg8B0PNU5UlsTWup2XHwuKkEEXsg.lNHXDE66TKM0yl1nIOO70PWNUtK4TcdgD1lImetPB48g.JPEG/p_8d36c20aaeb94c6681619dcd775f5286.jpeg?type=s">--%>
-                                                <img data-v-44ba780a="" alt="사용자 프로필 이미지" src="${post.profile}" loading="lazy" class="image full_width">
+                                                <a href="/mypage/${post.userId}">
+                                                <img data-v-44ba780a="" alt="사용자 프로필 이미지" src="${url}${post.profile}" loading="lazy" class="image full_width">
+                                                </a>
                                             </picture>
                                             <span data-v-7ddd6c4e="" data-v-12986062="" class="user_name">
-                                              <span data-v-7ddd6c4e=""><a href="/user/mypage">${post.nickname}</a></span><!---->
+                                              <span data-v-7ddd6c4e=""><a href="/mypage/${post.userId}">${post.nickname}</a></span><!---->
                                             </span>
                                             <span data-v-12986062="" aria-label="좋아요" role="button" class="btn like">
                                               <img src="/resources/image/icon/icon-heart-off.svg" class="like_icon" />
