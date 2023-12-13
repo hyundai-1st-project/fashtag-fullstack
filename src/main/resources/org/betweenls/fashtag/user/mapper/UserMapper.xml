@@ -64,5 +64,22 @@
             nickname = #{nickname}
     </select>
 
+    <select id="getPost" parameterType="Long" resultType="PostPictureVO">
+        select postId, picture
+        from posts
+        where userId = #{userId}
+    </select>
+
+    <select id="getHashTage" parameterType="Long" resultType="String">
+        SELECT h.HASHTAG
+        FROM HASHTAG h
+                 LEFT JOIN ADMIN.POST_HASHTAG PH ON h.HASHTAGID = PH.HASHTAGID
+                 LEFT JOIN ADMIN.POSTS P ON PH.POSTID = P.POSTID
+        WHERE p.USERID = #{userId}
+        GROUP BY h.HASHTAG
+        HAVING COUNT(ph.HASHTAGID) > 0
+        ORDER BY COUNT(ph.HASHTAGID) DESC
+            FETCH FIRST 5 ROWS ONLY
+    </select>
 
 </mapper>

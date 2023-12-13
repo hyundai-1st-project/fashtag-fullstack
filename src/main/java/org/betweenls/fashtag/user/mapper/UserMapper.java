@@ -1,6 +1,9 @@
 package org.betweenls.fashtag.user.mapper;
 
+import org.betweenls.fashtag.user.domain.PostPictureVO;
 import org.betweenls.fashtag.user.domain.UserVO;
+
+import java.util.List;
 
 public interface UserMapper {
     void join(UserVO userVO);
@@ -13,4 +16,8 @@ public interface UserMapper {
     int idcheck(String id);
 
     int nicknameCheck(String nickname);
+
+    List<PostPictureVO> getPost(long userId);
+
+    List<String> getHashTage(long userId);
 }
