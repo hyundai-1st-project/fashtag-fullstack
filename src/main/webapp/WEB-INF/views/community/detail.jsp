@@ -44,7 +44,7 @@
                 <img src="/resources/image/icon/chat-icon.png" class="icon chat_icon" id="like-count"/>
             </div>
             <div class="post-statistics">
-                좋아요<b><span  data-v-12986062="" class="like_count" id=`${post.postId}-like-count`>${post.likeCount}</span></b>개&nbsp;&nbsp;
+                좋아요<b><span  data-v-12986062="" class="like_count" id="like-count-${post.postId}">${post.likeCount}</span></b>개&nbsp;&nbsp;
                 조회수 <b><span data-v-12986062="" class="read_count">${post.readCount}</span></b>
             </div>
             <div class="post-content">
