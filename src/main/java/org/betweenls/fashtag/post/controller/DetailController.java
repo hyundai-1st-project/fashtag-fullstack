@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.betweenls.fashtag.post.domain.PostVO;
 import org.betweenls.fashtag.post.service.DetailService;
+import org.betweenls.fashtag.user.domain.UserVO;
+import org.betweenls.fashtag.user.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,15 +17,18 @@ import java.text.SimpleDateFormat;
 @Log
 @AllArgsConstructor
 public class DetailController {
-    private DetailService service;
+    private DetailService detailService;
+    private UserService userService;
     @GetMapping("/posts/{postId}")
     public String list(Model model, @PathVariable Long postId) {
-        PostVO postDetail = service.getDetail(postId);
+        PostVO postDetail = detailService.getDetail(postId);
         model.addAttribute("post", postDetail);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
         String formattedCreatedAt = sdf.format(postDetail.getCreatedAt());
         model.addAttribute("formattedCreatedAt", formattedCreatedAt);
+        UserVO userVO = userService.loginCheck();
+        model.addAttribute("user", userVO);
 
         return "community/detail";
     }
