@@ -29,6 +29,14 @@ public class PostServiceImpl implements PostService {
 	public List<PostVO> getHashtagPost(String hashtag) {
 		return mapper.getHashtagPost(hashtag);
 	}
+	public List<PostVO> getPostByHashtagWithPaging(String hashtag,Long userId, Long page, Long limit) {
+		return mapper.getPostByHashtagWithPaging(hashtag,userId, page*limit, limit);
+	}
+
+	@Override
+	public List<PostVO> getPostWithPaging(String order, Long userId, Long page, Long limit) {
+		return mapper.getPostWithPaging(order, userId, page*limit, limit);
+	}
 	@Override
 	public void insertPost(PostVO postVO) {
 		mapper.insertPost(postVO);
