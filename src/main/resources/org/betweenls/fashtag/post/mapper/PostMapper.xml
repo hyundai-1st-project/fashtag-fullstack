@@ -56,6 +56,46 @@
 		]]>
 	</select>
 
+	<select id="getPostWithPaging" resultMap="ResultMap">
+		<![CDATA[
+		select p.postid,p.postContent, p.picture, p.createdat,p.updatedat,p.readcount,p.userid, u.nickname, u.profile, nvl((select count(userid)
+																															from likes
+																															where postid = p.postid
+																															group by postid), 0) likeCount,
+			   (select decode(count(likeId), 1, 'Y', 'N')
+				from likes
+				where userId=#{userId} AND postId=p.postId) likeStatus
+		from posts p inner join users u
+								on p.userid = u.userid
+		order by ${order} desc
+		OFFSET ${page} ROWS FETCH NEXT ${limit} ROWS ONLY
+		]]>
+	</select>
+	<select id="getPostByHashtagWithPaging"
+			resultMap="ResultMap"><![CDATA[
+		select p.postid,postContent, picture, createdat,updatedat,readcount,userid, (select count(userid)
+																					 from likes
+																					 where postid = p.postid
+																					 group by postid) likeCount,
+			   (select nickname
+				from users
+				where userId = p.userId) nickname,
+			   (select profile
+				from users
+				where userId = p.userId) profile,
+			   (select decode(count(likeId), 1, 'Y', 'N')
+				from likes
+				where userId=#{userId} AND postId=p.postId) likeStatus
+		from posts p left outer join post_hashtag ph
+									 on p.postid = ph.postid left outer join hashtag h
+																			 on ph.hashtagId = h.hashtagid
+		where hashtag = #{hashtag}
+		OFFSET ${page} ROWS FETCH NEXT ${limit} ROWS ONLY
+		]]>
+	</select>
+
+
+
 	<insert id="insertPost">
 		<selectKey keyProperty="postId" resultType="java.lang.Long" order="BEFORE">
 			SELECT seq_posts.nextval as postId FROM dual

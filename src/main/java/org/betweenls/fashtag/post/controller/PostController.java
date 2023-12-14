@@ -46,9 +46,9 @@ public class PostController {
 
         List<PostVO> AllPosts = null;
         if (order.equals("popular")) {
-            AllPosts = postService.getAllPost("likeCount", userId); //좋아요 갯수 순서
+            AllPosts = postService.getPostWithPaging("likeCount", userId,0L,20L); //좋아요 갯수 순서
         } else if (order.equals("newest")) {
-            AllPosts = postService.getAllPost("createdAt", userId); //생성일 순서
+            AllPosts = postService.getPostWithPaging("createdAt", userId,0L,20L); //생성일 순서
         }
 
         String DATA_DIRECTORY = request.getServletContext().getRealPath("/resources/image/hashtag-image/");
@@ -57,6 +57,7 @@ public class PostController {
         List<String> hashtagName = new ArrayList<>();
         List<String> hashtagExtension = new ArrayList<>();
         hashtagBarListAdd(files, hashtagName, hashtagExtension);
+        model.addAttribute("userId", userId);
         model.addAttribute("url", s3UploaderService.getUrl());
         model.addAttribute("order", order);
         model.addAttribute("list", AllPosts);
@@ -64,6 +65,32 @@ public class PostController {
         model.addAttribute("hashtagName", hashtagName);
         model.addAttribute("hashtagExtension", hashtagExtension);
 
+        return "community/posts";
+    }
+
+    @GetMapping("/posts/tags/{hashtag}")
+    public String list(HttpServletRequest request ,Model model,
+                       @RequestParam(defaultValue = "popular", required = false) String order,
+                       @PathVariable("hashtag") String hashtag) {
+
+        String DATA_DIRECTORY = request.getServletContext().getRealPath("/resources/image/hashtag-image/");
+        File dir = new File(DATA_DIRECTORY);
+        File[] files = dir.listFiles();
+        List<String> hashtagName = new ArrayList<>();
+        List<String> hashtagExtension = new ArrayList<>();
+        hashtagBarListAdd(files, hashtagName, hashtagExtension);
+        hashtag= "#" + hashtag;
+        UserVO user = userService.loginCheck();
+        Long userId = -1L;
+        if (user != null) {
+            userId = user.getUserId();
+        }
+        model.addAttribute("userId", userId);
+        model.addAttribute("list", postService.getPostByHashtagWithPaging(hashtag,userId, 0L,20L));
+        model.addAttribute("pageTitle", hashtag);
+        model.addAttribute("url", s3UploaderService.getUrl());
+        model.addAttribute("hashtagName", hashtagName);
+        model.addAttribute("hashtagExtension", hashtagExtension);
         return "community/posts";
     }
 
@@ -94,25 +121,7 @@ public class PostController {
     }
 
 
-    @GetMapping("/posts/tags/{hashtag}")
-    public String list(HttpServletRequest request ,Model model,
-                       @RequestParam(defaultValue = "popular", required = false) String order,
-                       @PathVariable("hashtag") String hashtag) {
 
-        String DATA_DIRECTORY = request.getServletContext().getRealPath("/resources/image/hashtag-image/");
-        File dir = new File(DATA_DIRECTORY);
-        File[] files = dir.listFiles();
-        List<String> hashtagName = new ArrayList<>();
-        List<String> hashtagExtension = new ArrayList<>();
-        hashtagBarListAdd(files, hashtagName, hashtagExtension);
-        hashtag= "#" + hashtag;
-        model.addAttribute("list", postService.getHashtagPost(hashtag));
-        model.addAttribute("pageTitle", hashtag);
-        model.addAttribute("url", s3UploaderService.getUrl());
-        model.addAttribute("hashtagName", hashtagName);
-        model.addAttribute("hashtagExtension", hashtagExtension);
-        return "community/posts";
-    }
 
     @PostMapping("/posts/{postId}")
     public String delete(@PathVariable Long postId) {

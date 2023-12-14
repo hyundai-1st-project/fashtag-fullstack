@@ -9,6 +9,8 @@ import java.util.List;
 public interface PostMapper {
 	public List<PostVO> getAllPost( @Param("order") String order, @Param("userId") Long userId);
 	public List<PostVO> getHashtagPost(String hashtag);
+	public List<PostVO> getPostByHashtagWithPaging(@Param("hashtag") String hashtag,@Param("userId") Long userId, @Param("page")Long page, @Param("limit")Long limit);
+	public List<PostVO> getPostWithPaging(@Param("order") String order, @Param("userId") Long userId, @Param("page")Long page, @Param("limit")Long limit);
 	public void insertPost(PostVO postVO);
 	public Long getHashtagIdByHashtagName(String hashtagName);
 	public void insertHashtag(String hashtagName);
