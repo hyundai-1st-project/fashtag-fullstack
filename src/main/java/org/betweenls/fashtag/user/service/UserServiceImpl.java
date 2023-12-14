@@ -39,13 +39,8 @@ public class UserServiceImpl implements UserService {
         userMapper.join(userVO);
         userMapper.setAuth(userVO.getUserId());
 
-        // 파일 저장
-        if(file.getSize() != 0 && !file.equals("") && file != null && !file.isEmpty()){
-            String basicFileName = userVO.getUserId() +"-img" ;
-            String dirName = "user/" + userVO.getUserId();  // 폴더 이름
-            String photoKey = s3UploaderService.convertFile(file, dirName, basicFileName);
-            userMapper.updateProfile(userVO.getUserId(), photoKey);
-        }
+        // 프로필 사진 저장
+        saveProfile(userVO, file);
     }
 
     @Override
@@ -106,9 +101,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean editUser(UserVO userVO) {
+    public boolean editUser(UserVO userVO, MultipartFile file) throws IOException {
+        // 프로필 사진 수정
+        saveProfile(userVO, file);
+        return userMapper.editUser(userVO);
+    }
 
-        return false;
+    private void saveProfile(UserVO userVO, MultipartFile file) throws IOException {
+        if(file.getSize() != 0 && !file.equals("") && file != null && !file.isEmpty()){
+            String basicFileName = userVO.getUserId() +"-img" ;
+            String dirName = "user/" + userVO.getUserId();  // 폴더 이름
+            String photoKey = s3UploaderService.convertFile(file, dirName, basicFileName);
+            userMapper.updateProfile(userVO.getUserId(), photoKey);
+        }
     }
 
     @Override

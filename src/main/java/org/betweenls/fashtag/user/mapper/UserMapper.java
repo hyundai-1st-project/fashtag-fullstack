@@ -27,4 +27,5 @@ public interface UserMapper {
     int deleteAuth(long userId);
     int deleteUser(long userId);
 
+    boolean editUser(UserVO userVO);
 }
