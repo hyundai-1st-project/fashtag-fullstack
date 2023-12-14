@@ -4,7 +4,7 @@ import org.betweenls.fashtag.post.domain.CommentVO;
 import java.util.List;
 
 public interface CommentService {
-	public List<CommentVO> getCommentList(Long postId);
+	public List<CommentVO> getCommentList(Long postId, Long page, int pageNum);
 	public int insertComment(CommentVO comment);
 
 	public int removeComment(Long commentId);
