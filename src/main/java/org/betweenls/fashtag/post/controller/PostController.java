@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.betweenls.fashtag.global.s3.S3UploaderService;
 import org.betweenls.fashtag.post.domain.PostVO;
+import org.betweenls.fashtag.post.service.DetailService;
 import org.betweenls.fashtag.post.service.PostService;
 import org.betweenls.fashtag.user.domain.UserVO;
 import org.betweenls.fashtag.user.service.UserService;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -28,6 +30,7 @@ import java.util.UUID;
 public class PostController {
     private PostService postService;
     private UserService userService;
+    private DetailService detailService;
     private S3UploaderService s3UploaderService;
 
 
@@ -58,18 +61,15 @@ public class PostController {
     }
 
     @PostMapping("/posts")
-    public String register(HttpServletRequest request, PostVO postVO, MultipartFile uploadFile) throws IOException {
+    public String register(PostVO postVO, MultipartFile uploadFile) throws IOException {
 
         UserVO user = userService.loginCheck();
         if (user == null) {
             return "/login";
         }
-
         String dirName = "posts/post-upload-image";  // 폴더 이름
         UUID uuid = UUID.randomUUID();
         String basicFileName = uuid.toString() + "_" + uploadFile.getOriginalFilename(); // 파일 이름
-//        String courseTitlePhotoKey = s3UploaderService.uploadMultipartFile(uploadFile, dirName, basicFileName);
-//        postVO.setPicture(postService.uploadFile(uploadFile, request));
         postVO.setPicture(s3UploaderService.convertFile(uploadFile, dirName, basicFileName));
         postVO.setUserId(user.getUserId());
         log.info(postVO.toString());
@@ -86,6 +86,7 @@ public class PostController {
         return "community/new";
     }
 
+
     @GetMapping("/posts/tags/{hashtag}")
     public String list(Model model,
                        @RequestParam(defaultValue = "popular", required = false) String order,
@@ -94,21 +95,53 @@ public class PostController {
         hashtag= "#" + hashtag;
         model.addAttribute("list", postService.getHashtagPost(hashtag));
         model.addAttribute("pageTitle", hashtag);
+        model.addAttribute("url", s3UploaderService.getUrl());
         return "community/posts";
     }
 
     @PostMapping("/posts/{postId}")
     public String delete(@PathVariable Long postId) {
-
         postService.deletePostWithForeignKey(postId);
         return "redirect:/posts?s=newest";
     }
 
+    @GetMapping("/posts/update/{postId}")
+    public String update(@PathVariable Long postId, Model model) {
+        log.info("update start");
+        PostVO postDetail = detailService.getPostDetail(postId);
+        model.addAttribute("post", postDetail);
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        String formattedCreatedAt = sdf.format(postDetail.getCreatedAt());
+        model.addAttribute("formattedCreatedAt", formattedCreatedAt);
+        UserVO userVO = userService.loginCheck();
+        model.addAttribute("user", userVO);
+        model.addAttribute("url", s3UploaderService.getUrl());
+        return "community/update";
+    }
+    @PostMapping("/posts/update/{postId}")
+    public String update(@PathVariable Long postId, PostVO postVO, MultipartFile uploadFile) throws IOException {
 
+        UserVO user = userService.loginCheck();
+        if (user == null) {
+            return "/login";
+        }
 
-    private void insertPostAndHashtag(PostVO postVO) {
-        postService.insertPost(postVO);
+        if (!uploadFile.isEmpty()) {
+            String dirName = "posts/post-upload-image";  // 폴더 이름
+            UUID uuid = UUID.randomUUID();
+            String basicFileName = uuid.toString() + "_" + uploadFile.getOriginalFilename(); // 파일 이름
+            postVO.setPicture(s3UploaderService.convertFile(uploadFile, dirName, basicFileName));
+        }
+        postVO.setUserId(user.getUserId());
+        log.info(postVO.toString());
+        postService.updatePost(postVO);
+        postService.deletePost_hashtagByPostId(postId);
+        linkPostHashtag(postVO);
+        return "redirect:/posts/"+postId;
+    }
+
+    private void linkPostHashtag(PostVO postVO) {
         List<String> hashtags = postVO.getHashtags();
         if (hashtags != null) {
             for (String hashtag : hashtags) {
@@ -119,6 +152,12 @@ public class PostController {
                 postService.insertPost_hashtag(postVO.getPostId(), hashtagId);
             }
         }
+    }
+
+
+    private void insertPostAndHashtag(PostVO postVO) {
+        postService.insertPost(postVO);
+        linkPostHashtag(postVO);
     }
     private static void hashtagBarListAdd(File[] files, List<String> hashtagName, List<String> hashtagExtension) {
         for (File file : files) {

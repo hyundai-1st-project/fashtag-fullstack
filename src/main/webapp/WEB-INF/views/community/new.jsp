@@ -23,7 +23,6 @@
 <%--                    <button type="button" class="btn-border btn-small"> 이미지 업로드 </button>--%>
                     <input type='file' name='uploadFile' id="input-image" style="display: none">
                 </div>
-
             </div>
             <div data-v-0c9f3f9e="" data-v-257b1b9e="" data-v-708ef468="" class="unit" data-v-8b96a82e="">
                 <div class="hashtag-div">
