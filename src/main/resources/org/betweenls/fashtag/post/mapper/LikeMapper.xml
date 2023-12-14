@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.betweenls.fashtag.post.mapper.LikeMapper">
+
+	<insert id="insertLike" parameterType="org.betweenls.fashtag.post.domain.LikeVO">
+		insert into likes (likeId, userId, postId)
+		values (seq_likes.nextval, #{userId}, #{postId})
+	</insert>
+
+	<delete id="deleteLike" parameterType="org.betweenls.fashtag.post.domain.LikeVO">
+		delete likes
+		where userId=#{userId} AND postId=#{postId}
+	</delete>
+
+	<select id="getLikeStatus" parameterType="org.betweenls.fashtag.post.domain.LikeVO" resultType="string">
+		select decode(count(likeId), 1, 'Y', 'N')
+		from likes
+		where userId=#{userId} AND postId=#{postId}
+	</select>
+
+</mapper>
