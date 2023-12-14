@@ -17,14 +17,15 @@
 }
 
 /*1-1 user_img*/
-.profile-box .userImg-box {
+.userImg-box {
+    margin-bottom: 0;
     display: inline-block;
     height: 50px;
     margin-right: 13px;
 }
 
-.profile-box .userImg {
-    width: 100%; /* 이미지를 부모 요소인 <a> 태그 크기에 맞게 설정 */
+.userImg {
+    width: 50px; /* 이미지를 부모 요소인 <a> 태그 크기에 맞게 설정 */
     height: 100%; /* 가로비율 유지 */
     max-width: 50px; /* 최대 가로 너비 설정 */
     border-radius: 50%; /* 동그란 형태로 설정 */
