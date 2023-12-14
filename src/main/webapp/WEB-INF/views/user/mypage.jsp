@@ -118,9 +118,9 @@
                     </div>
                 </div>
                 <div style="width: 25%; margin-left: 10px;">
-                    <h5>댓글 수</h5>
+                    <h5>작성 댓글 수</h5>
                     <div style="display: flex; align-items: center;">
-                        <span>0</span>
+                        <span>${myPage.commentSize}</span>
                     </div>
                 </div>
                 <!-- 다른 요소들을 추가하려면 여기에 계속해서 작성하시면 됩니다 -->

@@ -31,4 +31,6 @@ public interface UserMapper {
     boolean editUser(@Param("userId") long userId, @Param("user") EditUserVO user);
 
     void removeProfile();
+
+    int getCommentSize(long userId);
 }

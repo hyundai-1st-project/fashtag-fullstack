@@ -104,5 +104,10 @@
         WHERE userId = #{userId}
     </update>
 
+    <select id="getCommentSize" parameterType="Long" resultType="int">
+        select count(COMMENTID)
+        from COMMENTS
+        where USERID = #{userId}
+    </select>
 
 </mapper>
