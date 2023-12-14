@@ -88,6 +88,15 @@
     .horizontal-container a {
         flex: 1; /* 사용 가능한 공간을 차지하도록 설정 */
     }
+
+    .textForm input[type='text'] {
+        margin-right: 100px;
+    }
+
+    .textForm input[type='password'] {
+        margin-right: 100px;
+    }
+
 </style>
 
 <form class="loginForm" method='post' action="/login">

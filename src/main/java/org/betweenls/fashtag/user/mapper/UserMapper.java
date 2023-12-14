@@ -24,4 +24,7 @@ public interface UserMapper {
 
     void updateProfile(@Param("userId") long userId, @Param("photoKey") String photoKey);
 
+    int deleteAuth(long userId);
+    int deleteUser(long userId);
+
 }

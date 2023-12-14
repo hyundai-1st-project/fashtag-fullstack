@@ -87,4 +87,13 @@
         SET  profile = #{photoKey}
         where userId = #{userId}
     </update>
+
+    <delete id="deleteAuth">
+        DELETE FROM auth WHERE userId = #{userId}
+    </delete>
+
+    <delete id="deleteUser">
+        DELETE FROM users WHERE userId = #{userId}
+    </delete>
+
 </mapper>

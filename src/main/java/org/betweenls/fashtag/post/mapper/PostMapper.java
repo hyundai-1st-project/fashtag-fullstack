@@ -19,6 +19,7 @@ public interface PostMapper {
 	public int deleteCommentByPostId(long postId);
 	public int updatePost(PostVO postVO);
 
+    List<Long> getPostByUserId(long userId);
 
 
 //	public void insertSelectKey(PostVO post);

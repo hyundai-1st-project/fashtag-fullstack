@@ -16,15 +16,18 @@
         <security:intercept-url pattern="/login" access="permitAll"/>
         <security:intercept-url pattern="/join" access="permitAll"/>
         <security:intercept-url pattern="/posts" access="permitAll"/>
+        <security:intercept-url pattern="/withdraw/**" access="permitAll" />
         <security:intercept-url pattern="/posts/new" access="hasAnyRole('ROLE_USER')"/>
-        <security:intercept-url pattern="/mypage" access="hasAnyRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/mypage/**" access="hasAnyRole('ROLE_USER')"/>
         <security:intercept-url pattern="/user/**" access="hasAnyRole('ROLE_USER')"/>
         <security:form-login login-page="/login"
                              always-use-default-target="true"
+                             default-target-url="/posts"
                              username-parameter="id"
                              password-parameter="password"
                              authentication-failure-handler-ref="customLoginFail"
-                             authentication-success-handler-ref="customLoginSuccessHandler"/>
+                             authentication-success-handler-ref="customLoginSuccessHandler"
+        />
         <security:logout logout-url="/logout"
                          logout-success-url="/posts"
                          delete-cookies="remember-me, JSESSION_ID"/>

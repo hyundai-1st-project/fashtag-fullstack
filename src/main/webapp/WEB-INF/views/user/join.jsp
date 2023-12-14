@@ -19,7 +19,7 @@
     .joinForm {
         position:absolute;
         width:400px;
-        height:500px;
+        height:580px;
         padding: 30px, 20px;
         background-color:#FFFFFF;
         text-align:center;
@@ -43,7 +43,7 @@
         margin-bottom: 5px;
     }
 
-    input, #join-button {
+    input, #join-button{
         width: calc(100% - 22px); /* Adjusted width */
         border: 0;
         outline: none;
@@ -56,7 +56,7 @@
     input::placeholder {
         color: #ccc; /* Lighter color for placeholder text */
     }
-    #join-button {
+    #join-button{
         width: calc(100% - 22px); /* Adjusted width */
         height: 45px;
         background-color: rgba(204, 204, 204, 0.74);
@@ -96,10 +96,23 @@
         border: none;
     }
 
+    .textForm input[type='text'][id='username'] {
+        margin-right: 100px;
+    }
+    .textForm input[type='password'][id='password'] {
+        margin-right: 100px;
+    }
+
+    .custom-button {
+        border: none;
+        background: none;
+        /* 다른 스타일 필요에 따라 추가적으로 설정할 수 있습니다 */
+    }
+
 </style>
 
 <form class="joinForm" role="form" method='post' action="/join" enctype="multipart/form-data">
-    <h2>회원가입</h2>
+    <h2><br/>회원가입</h2>
     <div class="textForm" id="divInputId">
         <label for='id'>아이디 <br></label>
         <div class="inputWithButton">
@@ -129,7 +142,12 @@
         <input type='text' id='username' name='username' placeholder="본명을 입력해주세요.">
     </div>
     <button id="join-button" type="submit">가입하기</button>
+    <button id="cancel-button" class="custom-button" type="button" onclick="window.history.back()">취소하기</button>
+
 </form>
+<br/>
+<br/>
+<br/>
 
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>

@@ -23,6 +23,8 @@ public interface PostService {
 	public void deletePostWithForeignKey(Long postId);
 	public int updatePost(PostVO postVO);
 
+    List<Long> getPostByUserId(long userId);
+
 //	public PostVO get(Long postId);
 //	public boolean modify(PostVO board);
 //	public boolean remove(Long bno);

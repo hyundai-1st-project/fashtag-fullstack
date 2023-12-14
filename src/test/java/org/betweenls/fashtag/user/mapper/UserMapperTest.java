@@ -3,6 +3,7 @@ package org.betweenls.fashtag.user.mapper;
 import junit.framework.TestCase;
 import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j;
+import org.betweenls.fashtag.post.mapper.PostMapper;
 import org.betweenls.fashtag.user.domain.PostPictureVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,11 +17,18 @@ import java.util.List;
 @Log4j
 @WebAppConfiguration
 @RunWith(SpringRunner.class)
-@ContextConfiguration("file:**/*-context.xml")
 public class UserMapperTest {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private PostMapper postMapper;
+
+    @Test
+    public void getPostId(){
+        List<Long> postIds = postMapper.getPostByUserId(10088);
+    }
     @Test
     public void getPost() {
 
