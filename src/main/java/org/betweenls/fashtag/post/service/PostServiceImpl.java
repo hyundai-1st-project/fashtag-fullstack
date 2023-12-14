@@ -21,9 +21,10 @@ import java.util.UUID;
 public class PostServiceImpl implements PostService {
 	private PostMapper mapper;
 	@Override
-	public List<PostVO> getAllPost(String order) {
-		return mapper.getAllPost(order);
+	public List<PostVO> getAllPost(String order, Long userId) {
+		return mapper.getAllPost(order, userId);
 	}
+
 	@Override
 	public List<PostVO> getHashtagPost(String hashtag) {
 		return mapper.getHashtagPost(hashtag);
