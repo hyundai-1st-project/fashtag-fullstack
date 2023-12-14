@@ -106,7 +106,9 @@ $(function() {
 
 /*********** 댓글 입력창 JS ****************/
 $(function() {
-    $('#commentInput').on('input', function() {
+    const $commentInput = $('#commentInput');
+    //입력할때 등록 버튼 보이게 함. 공백이면 등록버튼 사라지게함.
+    $commentInput.on('input', function() {
         let commentInput = $(this).text().trim();
         let registerButton = $('.register-button');
 
@@ -115,6 +117,13 @@ $(function() {
         } else {
             registerButton.css('display', 'none');
             $(this).html("");
+        }
+    });
+    //엔터키 누를때 등록
+    $commentInput.keydown(function (event) {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault(); // Enter 키 기본 동작 취소
+            $('.register-button').click(); // 등록 버튼 클릭
         }
     });
 });
@@ -156,3 +165,4 @@ $(function() {
         }
     });
 });
+
