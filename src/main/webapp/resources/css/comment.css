@@ -47,6 +47,7 @@
 [contenteditable="true"]:empty:before{
     content: attr(placeholder);
     pointer-events: none;
+    color: #7f7f7f;
 }
 
 
@@ -66,7 +67,7 @@
 
 /* 등록 버튼 스타일 */
 .register-button {
-    bottom: 8px;
+    bottom: 5px;
     font-size: 14px;
     font-weight: 700;
     color: rgba(0, 0, 0, 0.51);
