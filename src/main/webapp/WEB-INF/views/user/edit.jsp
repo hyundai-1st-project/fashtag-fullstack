@@ -132,30 +132,21 @@
 
 <form class="joinForm" role="form" method='post' action="/edit" enctype="multipart/form-data">
     <h2><br/>회원정보 수정</h2>
-    <div class="textForm" id="divInputId">
-        <label for='id'>아이디 <br></label>
-        <div class="inputWithButton">
-            <input type='text' id='id' name='id' value="${user.id}" placeholder="ex) fashionLove1">
-            <button id="revertIdButton" type="button" class="revertButton">
-                <i class="fas fa-undo fa-lg"></i>
-            </button>
-
-            <input type='button' id="checkId" value="중복" />
-        </div>
-        <span id="idAvailability" class="availability"></span> <!-- 결과를 표시할 곳 -->
-    </div>
+<%--    <div class="textForm" id="divInputId">--%>
+<%--        <label for='id'>아이디 <br></label>--%>
+<%--        <div class="inputWithButton">--%>
+<%--            <input type='text' id='id' name='id' value="${user.id}" placeholder="ex) fashionLove1" readonly>--%>
+<%--        </div>--%>
+<%--        <span id="idAvailability" class="availability"></span> <!-- 결과를 표시할 곳 -->--%>
+<%--    </div>--%>
     <div class="textForm">
         <label for="profilePhoto">프로필사진</label>
         <input type="file" id="profilePhoto" value="${user.profile}" name="fileName">
     </div>
-    <div class="textForm">
-        <label for='password'>비밀번호 <br></label>
-        <input type='password' id='password' name='password' placeholder="영문, 숫자, 특수문자 조합 8~16자">
-    </div>
-    <div class="textForm">
-        <label for='password'>비밀번호 확인 <br></label>
-        <input type='password' id='password2' name='password' placeholder="영문, 숫자, 특수문자 조합 8~16자">
-    </div>
+<%--    <div class="textForm">--%>
+<%--        <label for='password'>비밀번호 <br></label>--%>
+<%--        <input type='password' id='password' name='password' placeholder="영문, 숫자, 특수문자 조합 8~16자">--%>
+<%--    </div>--%>
     <div class="textForm">
         <label for='nickname'>닉네임 <br></label>
         <div class="inputWithButton">
@@ -181,28 +172,57 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
+    $("#checkNickname").click(function() {
+        var nickname = $("#nickname").val();
+
+        if (nickname.trim() === '') {
+            alert('닉네임을 입력해주세요.');
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/nicknamecheck',
+            data: { nickname: nickname },
+            success: function(data) {
+                $('#nicknameAvailability')
+                    .removeClass() // 모든 클래스 제거
+                    .text(''); // 텍스트 초기화
+
+                if (data === 'available') {
+                    $('#nicknameAvailability')
+                        .text('사용 가능한 닉네임입니다.')
+                        .addClass('availability available');
+                    // 가입하기 버튼을 활성화/비활성화 등의 동작 수행 가능
+                } else if (data === 'duplicate') {
+                    $('#nicknameAvailability')
+                        .text('닉네임이 이미 존재합니다.')
+                        .addClass('availability duplicate');
+                    // 가입하기 버튼을 활성화/비활성화 등의 동작 수행 가능
+                } else {
+                    $('#nicknameAvailability')
+                        .text('서버 오류 발생')
+                        .addClass('availability error');
+                }
+            },
+            error: function() {
+                $('#nicknameAvailability')
+                    .text('서버 요청 실패')
+                    .addClass('availability error');
+            }
+        });
+    });
+
     // Get original values on page load
-    const originalIdValue = document.getElementById('id').value;
     const originalNicknameValue = document.getElementById('nickname').value;
 
     // Add event listeners to the input fields
-    document.getElementById('id').addEventListener('input', handleInputChange);
     document.getElementById('nickname').addEventListener('input', handleInputChange);
 
     // Function to handle input change
     function handleInputChange() {
-        const idInput = document.getElementById('id');
         const nicknameInput = document.getElementById('nickname');
-
-        // Check if the values have changed from their originals
-        if (idInput.value !== originalIdValue) {
-            // If changed, enable the "Check for Duplicates" button for ID
-            document.getElementById('checkId').disabled = false;
-        } else {
-            // If reverted to original, disable the button
-            document.getElementById('checkId').disabled = true;
-        }
-
         if (nicknameInput.value !== originalNicknameValue) {
             // If changed, enable the "Check for Duplicates" button for nickname
             document.getElementById('checkNickname').disabled = false;
@@ -214,19 +234,12 @@
 
     // Function to revert the values to their originals
     function revertValues() {
-        document.getElementById('id').value = originalIdValue;
         document.getElementById('nickname').value = originalNicknameValue;
-
         // Disable the "Check for Duplicates" buttons after reverting
-        document.getElementById('checkId').disabled = true;
         document.getElementById('checkNickname').disabled = true;
     }
 
     // Add event listeners to the buttons for reverting values
-    document.getElementById('revertIdButton').addEventListener('click', () => {
-        revertValues('id');
-    });
-
     document.getElementById('revertNicknameButton').addEventListener('click', () => {
         revertValues('nickname');
     });

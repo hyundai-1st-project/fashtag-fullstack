@@ -1,6 +1,7 @@
 package org.betweenls.fashtag.user.mapper;
 
 import org.apache.ibatis.annotations.Param;
+import org.betweenls.fashtag.user.domain.EditUserVO;
 import org.betweenls.fashtag.user.domain.PostPictureVO;
 import org.betweenls.fashtag.user.domain.UserVO;
 
@@ -27,5 +28,7 @@ public interface UserMapper {
     int deleteAuth(long userId);
     int deleteUser(long userId);
 
-    boolean editUser(UserVO userVO);
+    boolean editUser(@Param("userId") long userId, @Param("user") EditUserVO user);
+
+    void removeProfile();
 }

@@ -1,6 +1,7 @@
 package org.betweenls.fashtag.user.controller;
 
 import lombok.extern.log4j.Log4j;
+import org.betweenls.fashtag.user.domain.EditUserVO;
 import org.betweenls.fashtag.user.domain.MyPageVO;
 import org.betweenls.fashtag.user.domain.UserVO;
 import org.betweenls.fashtag.user.service.UserService;
@@ -107,10 +108,10 @@ public class UserController {
     }
 
     @PostMapping("/edit")
-    public String editUser(UserVO userVO,
+    public String editUser(EditUserVO editUserVO,
                            @RequestParam("fileName") MultipartFile file,
                            RedirectAttributes rttr) throws IOException {
-        boolean updateSuccess = userService.editUser(userVO, file);
+        boolean updateSuccess = userService.editUser(editUserVO, file);
 
         if (updateSuccess) {
             rttr.addFlashAttribute("successMessage", "수정이 완료되었습니다.");
