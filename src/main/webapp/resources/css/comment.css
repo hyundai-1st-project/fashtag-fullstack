@@ -121,6 +121,8 @@
 }
 
 .comments-content .comment-box .profile-info {
+    width: 300px;
+    word-wrap: break-word;
     line-height: 1.4em;
     flex-grow: 1;
     margin-right: 10px;

@@ -11,6 +11,8 @@ import java.util.List;
 public interface PostService {
 	public List<PostVO> getAllPost(String order, Long userId);
 	public List<PostVO> getHashtagPost(String hashtag);
+	public List<PostVO> getPostByHashtagWithPaging(String hashtag, Long userId, Long page, Long limit);
+	public List<PostVO> getPostWithPaging(String order, Long userId, Long page, Long limit);
 	public String uploadFile(MultipartFile uploadFile, HttpServletRequest request);
 	public void insertPost(PostVO postVO);
 	public Long getHashtagIdByHashtagName(String hashtagName);
