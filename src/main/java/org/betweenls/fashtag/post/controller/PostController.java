@@ -43,11 +43,17 @@ public class PostController {
         List<String> hashtagExtension = new ArrayList<>();
         hashtagBarListAdd(files, hashtagName, hashtagExtension);
 
+        UserVO user = userService.loginCheck();
+        Long userId = -1L;
+        if (user != null) {
+            userId = user.getUserId();
+        }
+
         List<PostVO> AllPosts = null;
         if (order.equals("popular")) {
-            AllPosts = postService.getAllPost("likeCount"); //좋아요 갯수 순서
+            AllPosts = postService.getAllPost("likeCount", userId); //좋아요 갯수 순서
         } else if (order.equals("newest")) {
-            AllPosts = postService.getAllPost("createdAt"); //생성일 순서
+            AllPosts = postService.getAllPost("createdAt", userId); //생성일 순서
         }
 
         model.addAttribute("url", s3UploaderService.getUrl());
