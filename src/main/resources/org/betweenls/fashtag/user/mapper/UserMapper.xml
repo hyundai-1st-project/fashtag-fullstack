@@ -96,13 +96,13 @@
         DELETE FROM users WHERE userId = #{userId}
     </delete>
 
-    <update id="editUser">
-        update users
-        set
-            id = ${id},
-            nickname = ${userVO.nickname},
-            username = ${userVO.username}
-        where userId = ${userVO.userId}
+    <update id="editUser" parameterType="map">
+        UPDATE users
+        SET
+            nickname = #{user.nickname},
+            username = #{user.username}
+        WHERE userId = #{userId}
     </update>
+
 
 </mapper>

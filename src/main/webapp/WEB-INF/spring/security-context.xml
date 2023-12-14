@@ -17,6 +17,7 @@
         <security:intercept-url pattern="/join" access="permitAll"/>
         <security:intercept-url pattern="/posts" access="permitAll"/>
         <security:intercept-url pattern="/withdraw/**" access="permitAll" />
+        <security:intercept-url pattern="/edit" access="hasAnyRole('ROLE_USER')"/>
         <security:intercept-url pattern="/posts/new" access="hasAnyRole('ROLE_USER')"/>
         <security:intercept-url pattern="/user/**" access="hasAnyRole('ROLE_USER')"/>
         <security:form-login login-page="/login"

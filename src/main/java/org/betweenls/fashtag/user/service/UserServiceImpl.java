@@ -1,12 +1,10 @@
 package org.betweenls.fashtag.user.service;
 
+import java.util.UUID;
 import lombok.extern.java.Log;
 import org.betweenls.fashtag.global.s3.S3UploaderService;
 import org.betweenls.fashtag.post.service.PostService;
-import org.betweenls.fashtag.user.domain.CustomUser;
-import org.betweenls.fashtag.user.domain.MyPageVO;
-import org.betweenls.fashtag.user.domain.PostPictureVO;
-import org.betweenls.fashtag.user.domain.UserVO;
+import org.betweenls.fashtag.user.domain.*;
 import org.betweenls.fashtag.user.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -101,15 +99,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean editUser(UserVO userVO, MultipartFile file) throws IOException {
+    public boolean editUser(EditUserVO editUserVO, MultipartFile file) throws IOException {
         // 프로필 사진 수정
+        UserVO userVO = loginCheck();
         saveProfile(userVO, file);
-        return userMapper.editUser(userVO);
+
+        return userMapper.editUser(userVO.getUserId(), editUserVO);
     }
 
     private void saveProfile(UserVO userVO, MultipartFile file) throws IOException {
         if(file.getSize() != 0 && !file.equals("") && file != null && !file.isEmpty()){
-            String basicFileName = userVO.getUserId() +"-img" ;
+            // UUID 생성
+            String uuid = UUID.randomUUID().toString();
+            String basicFileName = userVO.getUserId() + uuid ;
             String dirName = "user/" + userVO.getUserId();  // 폴더 이름
             String photoKey = s3UploaderService.convertFile(file, dirName, basicFileName);
             userMapper.updateProfile(userVO.getUserId(), photoKey);
