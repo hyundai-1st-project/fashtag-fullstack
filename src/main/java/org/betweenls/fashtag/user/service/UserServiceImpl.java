@@ -2,7 +2,7 @@ package org.betweenls.fashtag.user.service;
 
 import lombok.extern.java.Log;
 import org.betweenls.fashtag.global.s3.S3UploaderService;
-import org.betweenls.fashtag.post.domain.PostVO;
+import org.betweenls.fashtag.post.service.PostService;
 import org.betweenls.fashtag.user.domain.CustomUser;
 import org.betweenls.fashtag.user.domain.MyPageVO;
 import org.betweenls.fashtag.user.domain.PostPictureVO;
@@ -11,7 +11,6 @@ import org.betweenls.fashtag.user.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,13 +39,8 @@ public class UserServiceImpl implements UserService {
         userMapper.join(userVO);
         userMapper.setAuth(userVO.getUserId());
 
-        // 파일 저장
-        if(file != null || !file.isEmpty()){
-            String basicFileName = userVO.getUserId() +"-img" ;
-            String dirName = "user/" + userVO.getUserId();  // 폴더 이름
-            String photoKey = s3UploaderService.convertFile(file, dirName, basicFileName);
-            userMapper.updateProfile(userVO.getUserId(), photoKey);
-        }
+        // 프로필 사진 저장
+        saveProfile(userVO, file);
     }
 
     @Override
@@ -74,6 +68,52 @@ public class UserServiceImpl implements UserService {
         List<PostPictureVO> postVO = userMapper.getPost(userVO.getUserId());
         List<String> hashtags = userMapper.getHashTage(userVO.getUserId());
         return MyPageVO.of(userVO,postVO,hashtags);
+    }
+
+    @Autowired
+    private PostService postService;
+
+    @Override
+    @Transactional
+    public boolean deleteUser(UserVO userVo) {
+        String profile = userVo.getProfile();
+
+        // post 삭제하기
+        List<Long> postIdList = postService.getPostByUserId(userVo.getUserId());
+        postIdList.forEach(postService::deletePostByPostId);
+
+        // 유저 삭제
+        int authDelete = userMapper.deleteAuth(userVo.getUserId());
+        if(authDelete < 1){
+            throw new RuntimeException("권한 삭제가 불가능합니다.");
+        }
+
+        int userDelete = userMapper.deleteUser(userVo.getUserId());
+        if(userDelete < 1){
+            throw new RuntimeException("유저 삭제가 불가능합니다.");
+        }
+
+        if(!profile.equals("user/user-profile-image/defaultImage")){
+            s3UploaderService.deleteFile(profile);
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean editUser(UserVO userVO, MultipartFile file) throws IOException {
+        // 프로필 사진 수정
+        saveProfile(userVO, file);
+        return userMapper.editUser(userVO);
+    }
+
+    private void saveProfile(UserVO userVO, MultipartFile file) throws IOException {
+        if(file.getSize() != 0 && !file.equals("") && file != null && !file.isEmpty()){
+            String basicFileName = userVO.getUserId() +"-img" ;
+            String dirName = "user/" + userVO.getUserId();  // 폴더 이름
+            String photoKey = s3UploaderService.convertFile(file, dirName, basicFileName);
+            userMapper.updateProfile(userVO.getUserId(), photoKey);
+        }
     }
 
     @Override

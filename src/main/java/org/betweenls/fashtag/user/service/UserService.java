@@ -20,4 +20,8 @@ public interface UserService {
     public UserVO loginCheck();
 
     MyPageVO getMyPage(UserVO userVO);
+
+    boolean deleteUser(UserVO userId);
+
+    boolean editUser(UserVO userVO, MultipartFile file) throws IOException;
 }
