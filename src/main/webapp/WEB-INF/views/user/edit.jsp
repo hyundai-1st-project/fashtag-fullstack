@@ -215,27 +215,14 @@
     });
 
     // Get original values on page load
-    const originalIdValue = document.getElementById('id').value;
     const originalNicknameValue = document.getElementById('nickname').value;
 
     // Add event listeners to the input fields
-    document.getElementById('id').addEventListener('input', handleInputChange);
     document.getElementById('nickname').addEventListener('input', handleInputChange);
 
     // Function to handle input change
     function handleInputChange() {
-        const idInput = document.getElementById('id');
         const nicknameInput = document.getElementById('nickname');
-
-        // Check if the values have changed from their originals
-        if (idInput.value !== originalIdValue) {
-            // If changed, enable the "Check for Duplicates" button for ID
-            document.getElementById('checkId').disabled = false;
-        } else {
-            // If reverted to original, disable the button
-            document.getElementById('checkId').disabled = true;
-        }
-
         if (nicknameInput.value !== originalNicknameValue) {
             // If changed, enable the "Check for Duplicates" button for nickname
             document.getElementById('checkNickname').disabled = false;
@@ -247,19 +234,12 @@
 
     // Function to revert the values to their originals
     function revertValues() {
-        document.getElementById('id').value = originalIdValue;
         document.getElementById('nickname').value = originalNicknameValue;
-
         // Disable the "Check for Duplicates" buttons after reverting
-        document.getElementById('checkId').disabled = true;
         document.getElementById('checkNickname').disabled = true;
     }
 
     // Add event listeners to the buttons for reverting values
-    document.getElementById('revertIdButton').addEventListener('click', () => {
-        revertValues('id');
-    });
-
     document.getElementById('revertNicknameButton').addEventListener('click', () => {
         revertValues('nickname');
     });
