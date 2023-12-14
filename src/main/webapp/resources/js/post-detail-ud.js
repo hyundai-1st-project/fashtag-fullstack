@@ -1,3 +1,5 @@
+
+//----------------------- delete--------------------------------
 function deletePost(postId) {
     $.ajax({
         url: '/posts/' + postId,
@@ -17,4 +19,11 @@ $('.action_item.delete').click(function () {
     if (isConfirmed) {
         deletePost(postId);
     }
+});
+
+//----------------------- update--------------------------------
+
+$('.action_item.update').click(function () {
+    console.log("/posts/update"+ postId);
+    window.location.href = "/posts/update"+ postId;
 });
