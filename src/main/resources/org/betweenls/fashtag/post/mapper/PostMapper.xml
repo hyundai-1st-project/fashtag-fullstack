@@ -98,6 +98,12 @@
 		where postId = #{postId}
 	</update>
 
+	<select id="getPostByUserId">
+		select postId
+		from posts
+		where userId=#{userId}
+	</select>
+
 	<!--	<select id="getListWithPaging"-->
 <!--		resultType="org.betweenls.fashtag.domain.PostVO">-->
 <!--	 <![CDATA[	-->

@@ -10,6 +10,7 @@ import org.betweenls.fashtag.user.domain.UserVO;
 import org.betweenls.fashtag.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -18,10 +19,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @Log4j
@@ -93,38 +98,46 @@ public class UserController {
     }
 
     @GetMapping("/user/{userId}/edit")
-    public String edit(@PathVariable Long userId,
-                       Model model){
-        // 현재 edit 페이지에 접근한 유저가 나인지 판별
-
-        // 내가 현재 로그인한 사용자의 정보
-
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && "anonymousUser".equals(authentication.getPrincipal())) {
-            // 사용자는 인증되지 않음
-            // 로그인 페이지로 리디렉션하거나 인증을 유도할 수 있음
-        }else{
-            UserVO user = ((CustomUser) authentication.getPrincipal()).getUserVO();
-            long getUserId = user.getUserId();
+    public String edit(@PathVariable Long userId, Model model){
+        UserVO loginUser = userService.loginCheck();
+        if(loginUser.getUserId() != userId){
+            // 로직 처리
         }
-        if (authentication == null) {
-
-
-//            // 내가 접속한 페이지의 유저 정보
-//            UserVO userVO = userService.getUserByUserId(userId);
-//            if(getUserId != userVO.getUserId()){
-//
-//            }
-        }
-
+        model.addAttribute("user", loginUser);
         return "/user/edit";
     }
 
     @PostMapping("/edit")
-    @PreAuthorize("isAuthenticated()")
-    public String editForm(){
-        return "redirect:/mypage";
+    public String editUser(UserVO userVO, RedirectAttributes rttr){
+        boolean updateSuccess = userService.editUser(userVO);
+        if (updateSuccess) {
+            rttr.addFlashAttribute("successMessage", "수정이 완료되었습니다.");
+        } else {
+            rttr.addFlashAttribute("errorMessage", "수정을 실패했습니다");
+        }
+        return "redirect:/posts";
+    }
+
+    @DeleteMapping(value = "/withdraw/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody ResponseEntity<Map<String , String>> deleteUser(@PathVariable long userId,
+                                                                         HttpSession httpSession){
+        UserVO loginUser = userService.loginCheck();
+        Map<String , String> map = new HashMap<>();
+        try {
+            if (loginUser.getUserId() != userId) {
+                return null;
+            }
+            String result = "";
+            if (userService.deleteUser(loginUser)) {
+                result = "탈퇴되었습니다";
+                httpSession.invalidate(); // 세션 삭제
+            }
+            map.put("key", result);
+            return ResponseEntity.ok(map);
+        }catch (Exception e){
+            map.put("key", e.getMessage());
+            return ResponseEntity.badRequest().body(map);
+        }
     }
 
 }

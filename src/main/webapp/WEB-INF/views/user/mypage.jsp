@@ -73,11 +73,11 @@
             <c:choose>
                 <c:when test="${empty myPage.userVO.profile}">
                     <!-- 프로필 정보가 null인 경우 -->
-                    <img src="/resources/image/user-image/profile.png" style="width: 100%;">
+                    <img src="/resources/image/user-image/profile.png" style="width: 100%; height: 170px;  object-fit: cover;">
                 </c:when>
                 <c:otherwise>
                     <!-- 프로필 정보가 null이 아닌 경우 -->
-                    <img src="https://fashtag.s3.ap-northeast-2.amazonaws.com/${myPage.userVO.profile}" style="width: 100%;">
+                    <img src="https://fashtag.s3.ap-northeast-2.amazonaws.com/${myPage.userVO.profile}" style="width: 100%; height: 170px;  object-fit: cover;">
                 </c:otherwise>
             </c:choose>
 
@@ -122,7 +122,7 @@
         <c:choose>
             <c:when test="${empty myPage.posts}">
                 <div class="no-posts-message">
-                    <p>게시글이 존재하지 않습니다.</p>
+                    <p>게시글이 존재하지 않습니다. <br/></p>
                 </div>
             </c:when>
             <c:otherwise>
