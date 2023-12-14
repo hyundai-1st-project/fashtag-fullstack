@@ -25,6 +25,9 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Autowired
+    private PostService postService;
+
+    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
@@ -65,11 +68,9 @@ public class UserServiceImpl implements UserService {
     public MyPageVO getMyPage(UserVO userVO) {
         List<PostPictureVO> postVO = userMapper.getPost(userVO.getUserId());
         List<String> hashtags = userMapper.getHashTage(userVO.getUserId());
-        return MyPageVO.of(userVO,postVO,hashtags);
+        int commentSize = userMapper.getCommentSize(userVO.getUserId());
+        return MyPageVO.of(userVO,postVO,hashtags, commentSize);
     }
-
-    @Autowired
-    private PostService postService;
 
     @Override
     @Transactional

@@ -16,13 +16,15 @@ public class MyPageVO {
     private List<PostPictureVO> posts;
     private int postSize;
     private List<String> hashtags;
+    private int commentSize;
 
-    public static MyPageVO of(UserVO userVO, List<PostPictureVO> postVO, List<String> hashtags) {
+    public static MyPageVO of(UserVO userVO, List<PostPictureVO> postVO, List<String> hashtags, int commentSize) {
         return MyPageVO.builder()
                 .userVO(userVO)
                 .posts(postVO)
                 .postSize(postVO.size())
                 .hashtags(hashtags)
+                .commentSize(commentSize)
                 .build();
     }
 
