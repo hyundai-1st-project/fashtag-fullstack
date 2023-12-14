@@ -10,7 +10,7 @@
 <link rel='stylesheet' href='/resources/css/post-detail.css' type='text/css'/>
 <link rel='stylesheet' href='/resources/css/comment.css' type='text/css'/>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<%! String likeState = "N"; %>
 
 
 
@@ -40,11 +40,11 @@
 
         <div class="contents-box">
             <div class="post-btns">
-                <img src="/resources/image/icon/icon-heart-off.svg" class="icon like_icon"/>
-                <img src="/resources/image/icon/chat-icon.png" class="icon chat_icon"/>
+                <img post-id="${post.postId}" src="/resources/image/icon/${likeStatus == "Y"? "icon-heart-on": "icon-heart-off"}.svg" class="icon like_icon" id="like-btn"/>
+                <img src="/resources/image/icon/chat-icon.png" class="icon chat_icon" id="like-count"/>
             </div>
             <div class="post-statistics">
-                좋아요<b><span data-v-12986062="" class="like_count">${post.likeCount}</span></b>개&nbsp;&nbsp;
+                좋아요<b><span  data-v-12986062="" class="like_count" id="like-count-${post.postId}">${post.likeCount}</span></b>개&nbsp;&nbsp;
                 조회수 <b><span data-v-12986062="" class="read_count">${post.readCount}</span></b>
             </div>
             <div class="post-content">
@@ -61,10 +61,10 @@
                 <div class="comment-input">
                     <a href="#"
                        class="profile_link"><img class="profile-picture"
-                                                 src="https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=0.88847xw:1xh;center,top&resize=1200:*"
+                                                 src="${url}${user!=null?user.profile:"user/user-profile-image/defaultImage"}"
                                                  alt="프로필 사진"></a>
                     <div class="input-wrapper">
-                        <div contenteditable="true" placeholder="댓글을 남기세요…"
+                        <div contenteditable="true" placeholder="${user!=null?"댓글을 남기세요...":"로그인 후 댓글을 작성해주세요."}"
                              autocapitalize="off" spellcheck="false" class="input_txt origin" id="commentInput"></div>
                         <a href="/comment/insert" class="register-button"> 등록 </a></div>
                 </div>
@@ -101,7 +101,7 @@
 
 </section>
 <script>
-    var postId = ${post.postId};
+    const postId = ${post.postId};
 </script>
 
 <script type="text/javascript" src="/resources/js/post-detail.js"></script>

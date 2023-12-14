@@ -21,6 +21,7 @@
 
 /* 댓글 입력창 및 등록 버튼 부분 */
 .input-wrapper {
+    cursor:auto;
     position: relative;
     display: flex;
     align-items: center;
@@ -38,6 +39,7 @@
 /*placeholder 기능하는 코드*/
 [contenteditable="true"]:empty:before{
     content: attr(placeholder);
+    pointer-events: none;
 }
 
 
