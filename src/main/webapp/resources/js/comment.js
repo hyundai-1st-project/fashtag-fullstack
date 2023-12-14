@@ -7,6 +7,7 @@ $(function() {
 
 //전역변수 선언
 let currentCommentId = 0;
+const url = "https://fashtag.s3.ap-northeast-2.amazonaws.com/";
 
 function getCommentList(){
     $.ajax({
@@ -19,7 +20,7 @@ function getCommentList(){
             comments.forEach(function(comment){
                 html += `<div class="comment-box">
                 <a class="userImg-box" href="#">
-                <img class="userImg" src="${comment.profile}" alt="프로필 사진"></a>
+                <img class="userImg" src="${url}${comment.profile}" alt="프로필 사진"></a>
                 <div class="profile-info">
                 <span class="username">${comment.nickname}</span>
                 <span class="content">${comment.commentContent}️</span>
