@@ -9,7 +9,6 @@ import java.util.List;
 public interface PostMapper {
 	public List<PostVO> getAllPost(String order);
 	public List<PostVO> getHashtagPost(String hashtag);
-	public List<String> getHashtagByPostId(Long postId);
 	public void insertPost(PostVO postVO);
 	public Long getHashtagIdByHashtagName(String hashtagName);
 	public void insertHashtag(String hashtagName);
@@ -18,6 +17,9 @@ public interface PostMapper {
 	public int deletePost_hashtagByPostId(long postId);
 	public int deleteLikeByPostId(long postId);
 	public int deleteCommentByPostId(long postId);
+	public int updatePost(PostVO postVO);
+
+
 
 //	public void insertSelectKey(PostVO post);
 //	public PostVO read(Long postId);

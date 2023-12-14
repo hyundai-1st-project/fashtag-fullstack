@@ -87,6 +87,17 @@
 		delete from Comments where postId = #{postId}
 	</delete>
 
+	<update id="updatePost">
+		update posts
+		set
+			postContent=#{postContent},
+		<if test="picture != null">
+			picture = #{picture},
+		</if>
+			updatedAt=sysdate
+		where postId = #{postId}
+	</update>
+
 	<!--	<select id="getListWithPaging"-->
 <!--		resultType="org.betweenls.fashtag.domain.PostVO">-->
 <!--	 <![CDATA[	-->
@@ -122,12 +133,5 @@
 
 
 
-<!--	<update id="update">-->
-<!--		update tbl_board-->
-<!--		set title=#{title},-->
-<!--		content=#{content},-->
-<!--		writer=#{writer},-->
-<!--		updateDate=sysdate-->
-<!--		where bno = #{bno}-->
-<!--	</update>-->
+
 </mapper>

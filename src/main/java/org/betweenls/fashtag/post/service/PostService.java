@@ -21,6 +21,8 @@ public interface PostService {
 	public int deleteLikeByPostId(long postId);
 	public int deleteCommentByPostId(long postId);
 	public void deletePostWithForeignKey(Long postId);
+	public int updatePost(PostVO postVO);
+
 //	public PostVO get(Long postId);
 //	public boolean modify(PostVO board);
 //	public boolean remove(Long bno);
