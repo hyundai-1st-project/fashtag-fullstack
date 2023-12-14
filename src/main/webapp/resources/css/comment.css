@@ -99,7 +99,7 @@
 
 .comments-content .comment-box {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     width: 100%;
     padding: 10px;
@@ -108,7 +108,6 @@
 
 .comments-content .comment-box .userImg-box {
     height: 40px; /* 가로비율 유지 */
-    margin-top: 6px;
     display: inline-block;
     margin-right: 13px;
 }
@@ -122,6 +121,7 @@
 }
 
 .comments-content .comment-box .profile-info {
+    line-height: 1.4em;
     flex-grow: 1;
     margin-right: 10px;
 }
@@ -133,6 +133,7 @@
 }
 
 .comments-content .comment-box .created-date {
+    padding-top: 3px;
     font-size: 0.9em; /* 작성일 크기 조정 */
     color: #888; /* 작성일 색상 지정 */
     opacity: 0.8; /* 텍스트의 투명도 조절 */
@@ -148,6 +149,17 @@
     margin-left: 7px;
 }
 
+.comments-content .btn_more {
+    color: rgba(34,34,34,.5);
+    display: flex;
+    margin-left: 25px;
+    align-items: center;
+    height: 40px;
+}
+
+.btn_more_span {
+    cursor: pointer;
+}
 
 
 
