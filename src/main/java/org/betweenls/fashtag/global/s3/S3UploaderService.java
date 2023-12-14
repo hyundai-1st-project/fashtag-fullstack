@@ -1,10 +1,7 @@
 package org.betweenls.fashtag.global.s3;
 
-import com.amazonaws.AmazonServiceException;
-import com.amazonaws.SdkClientException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
@@ -18,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -39,7 +35,7 @@ public class S3UploaderService {
     @Value("${cloud.aws.s3.bucket.url}")
     private String url;
 
-    public String uploadMultipartFile(MultipartFile multipartFile, String dirName, String basicFileName) throws IOException {
+    public String convertFile(MultipartFile multipartFile, String dirName, String basicFileName) throws IOException {
     
         // MultipartFile -> File로 전환 :: S3에 MultipartFile 타입은 전송 x
         File convFile = new File(multipartFile.getOriginalFilename());

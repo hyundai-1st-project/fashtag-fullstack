@@ -7,11 +7,8 @@ import org.betweenls.fashtag.post.domain.PostVO;
 import org.betweenls.fashtag.post.service.PostService;
 import org.betweenls.fashtag.user.domain.UserVO;
 import org.betweenls.fashtag.user.service.UserService;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.apache.commons.io.FilenameUtils;
@@ -73,7 +70,7 @@ public class PostController {
         String basicFileName = uuid.toString() + "_" + uploadFile.getOriginalFilename(); // 파일 이름
 //        String courseTitlePhotoKey = s3UploaderService.uploadMultipartFile(uploadFile, dirName, basicFileName);
 //        postVO.setPicture(postService.uploadFile(uploadFile, request));
-        postVO.setPicture(s3UploaderService.uploadMultipartFile(uploadFile, dirName, basicFileName));
+        postVO.setPicture(s3UploaderService.convertFile(uploadFile, dirName, basicFileName));
         postVO.setUserId(user.getUserId());
         log.info(postVO.toString());
         insertPostAndHashtag(postVO);

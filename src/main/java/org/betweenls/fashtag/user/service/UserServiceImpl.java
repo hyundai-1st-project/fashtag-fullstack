@@ -1,6 +1,7 @@
 package org.betweenls.fashtag.user.service;
 
 import lombok.extern.java.Log;
+import org.betweenls.fashtag.global.s3.S3UploaderService;
 import org.betweenls.fashtag.post.domain.PostVO;
 import org.betweenls.fashtag.user.domain.CustomUser;
 import org.betweenls.fashtag.user.domain.MyPageVO;
@@ -14,7 +15,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -27,13 +30,23 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private S3UploaderService s3UploaderService;
+
     @Override
     @Transactional
-    public void join(UserVO userVO) {
+    public void join(UserVO userVO, MultipartFile file) throws IOException {
         userVO.setPassword(bCryptPasswordEncoder.encode(userVO.getPassword()));
-
         userMapper.join(userVO);
         userMapper.setAuth(userVO.getUserId());
+
+        // 파일 저장
+        if(file != null || !file.isEmpty()){
+            String basicFileName = userVO.getUserId() +"-img" ;
+            String dirName = "user/" + userVO.getUserId();  // 폴더 이름
+            String photoKey = s3UploaderService.convertFile(file, dirName, basicFileName);
+            userMapper.updateProfile(userVO.getUserId(), photoKey);
+        }
     }
 
     @Override
