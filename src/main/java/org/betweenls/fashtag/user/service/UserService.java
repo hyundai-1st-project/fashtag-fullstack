@@ -23,5 +23,5 @@ public interface UserService {
 
     boolean deleteUser(UserVO userId);
 
-    boolean editUser(UserVO userVO);
+    boolean editUser(UserVO userVO, MultipartFile file) throws IOException;
 }

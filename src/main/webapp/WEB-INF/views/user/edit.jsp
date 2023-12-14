@@ -108,6 +108,25 @@
         /* 다른 스타일 필요에 따라 추가적으로 설정할 수 있습니다 */
     }
 
+    /* 아이콘을 버튼 안에 가운데 정렬하기 위한 스타일 */
+    .revertButton {
+        background-color: transparent;
+        border: none;
+        color: #a49e9e; /* 버튼 색상 */
+        padding: 3px; /* 버튼 내부 패딩 */
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px; /* 폰트 크기 */
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    /* 마우스 호버 효과 */
+    .revertButton:hover {
+        color: #555; /* 호버 시 버튼 색상 변경 */
+    }
 </style>
 
 
@@ -117,6 +136,10 @@
         <label for='id'>아이디 <br></label>
         <div class="inputWithButton">
             <input type='text' id='id' name='id' value="${user.id}" placeholder="ex) fashionLove1">
+            <button id="revertIdButton" type="button" class="revertButton">
+                <i class="fas fa-undo fa-lg"></i>
+            </button>
+
             <input type='button' id="checkId" value="중복" />
         </div>
         <span id="idAvailability" class="availability"></span> <!-- 결과를 표시할 곳 -->
@@ -130,9 +153,16 @@
         <input type='password' id='password' name='password' placeholder="영문, 숫자, 특수문자 조합 8~16자">
     </div>
     <div class="textForm">
+        <label for='password'>비밀번호 확인 <br></label>
+        <input type='password' id='password2' name='password' placeholder="영문, 숫자, 특수문자 조합 8~16자">
+    </div>
+    <div class="textForm">
         <label for='nickname'>닉네임 <br></label>
         <div class="inputWithButton">
             <input type='text' id='nickname' name='nickname' value="${user.nickname}" placeholder="ex) 패션꾸러기">
+            <button id="revertNicknameButton" type="button" class="revertButton">
+                <i class="fas fa-undo fa-lg"></i>
+            </button>
             <input type='button' id="checkNickname" value="중복" />
         </div>
         <span id="nicknameAvailability" class="availability"></span> <!-- 결과를 표시할 곳 -->
@@ -151,6 +181,80 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    // Get original values on page load
+    const originalIdValue = document.getElementById('id').value;
+    const originalNicknameValue = document.getElementById('nickname').value;
+
+    // Add event listeners to the input fields
+    document.getElementById('id').addEventListener('input', handleInputChange);
+    document.getElementById('nickname').addEventListener('input', handleInputChange);
+
+    // Function to handle input change
+    function handleInputChange() {
+        const idInput = document.getElementById('id');
+        const nicknameInput = document.getElementById('nickname');
+
+        // Check if the values have changed from their originals
+        if (idInput.value !== originalIdValue) {
+            // If changed, enable the "Check for Duplicates" button for ID
+            document.getElementById('checkId').disabled = false;
+        } else {
+            // If reverted to original, disable the button
+            document.getElementById('checkId').disabled = true;
+        }
+
+        if (nicknameInput.value !== originalNicknameValue) {
+            // If changed, enable the "Check for Duplicates" button for nickname
+            document.getElementById('checkNickname').disabled = false;
+        } else {
+            // If reverted to original, disable the button
+            document.getElementById('checkNickname').disabled = true;
+        }
+    }
+
+    // Function to revert the values to their originals
+    function revertValues() {
+        document.getElementById('id').value = originalIdValue;
+        document.getElementById('nickname').value = originalNicknameValue;
+
+        // Disable the "Check for Duplicates" buttons after reverting
+        document.getElementById('checkId').disabled = true;
+        document.getElementById('checkNickname').disabled = true;
+    }
+
+    // Add event listeners to the buttons for reverting values
+    document.getElementById('revertIdButton').addEventListener('click', () => {
+        revertValues('id');
+    });
+
+    document.getElementById('revertNicknameButton').addEventListener('click', () => {
+        revertValues('nickname');
+    });
+
+
+
+    // 중복 확인 버튼 상태 변경 함수
+    function toggleCheckButton() {
+        var idInput = document.getElementById('id');
+        var checkIdButton = document.getElementById('checkId');
+        var nicknameInput = document.getElementById('nickname');
+        var checkNicknameButton = document.getElementById('checkNickname');
+
+        // 아이디와 닉네임 입력 값이 변경될 때마다 중복 확인 버튼을 활성/비활성화
+        idInput.addEventListener('input', function() {
+            checkIdButton.disabled = idInput.value === '${user.id}';
+        });
+
+        nicknameInput.addEventListener('input', function() {
+            checkNicknameButton.disabled = nicknameInput.value === '${user.nickname}';
+        });
+    }
+
+    // 페이지 로드 시 버튼 상태 변경 함수 호출
+    window.onload = function() {
+        toggleCheckButton();
+    };
+
     $(document).ready(function() {
         // 탈퇴하기 버튼 클릭 시
         $('#withdrawButton').on('click', function() {
@@ -163,7 +267,6 @@
         // 탈퇴 처리 함수
         function withdrawUser() {
             var userId = $("#userId").val();
-            alert("ddddd");
             $.ajax({
                 url: `/withdraw/${userId}`,
                 type: 'DELETE',

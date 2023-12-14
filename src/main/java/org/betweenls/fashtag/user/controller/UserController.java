@@ -1,10 +1,6 @@
 package org.betweenls.fashtag.user.controller;
 
 import lombok.extern.log4j.Log4j;
-import oracle.jdbc.proxy.annotation.Post;
-import org.betweenls.fashtag.global.s3.S3UploaderService;
-import org.betweenls.fashtag.post.domain.PostVO;
-import org.betweenls.fashtag.user.domain.CustomUser;
 import org.betweenls.fashtag.user.domain.MyPageVO;
 import org.betweenls.fashtag.user.domain.UserVO;
 import org.betweenls.fashtag.user.service.UserService;
@@ -12,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -74,6 +67,12 @@ public class UserController {
     public String login(@RequestParam(value = "error", required = false) String error,
                         @RequestParam(value = "exception", required = false) String exception,
                         Model model) {
+
+        UserVO loginUser = userService.loginCheck();
+        if(loginUser != null){
+            return "redirect:/posts";
+        }
+
         if ("true".equals(error)) {
             model.addAttribute("error", error);
             model.addAttribute("exception", exception);
@@ -89,10 +88,10 @@ public class UserController {
     @GetMapping("/mypage/{userId}")
     public String myPage(Model model, @PathVariable Long userId) { // @AuthenticationPrincipal CustomUser customUser
         UserVO userVO = userService.getUserByUserId(userId);
+        String title = "#"+userVO.getNickname();
         MyPageVO myPage = userService.getMyPage(userVO);
         model.addAttribute("myPage", myPage);
-        log.info(userVO);
-        log.info(myPage);
+        model.addAttribute("pageTitle", title);
 
         return "/user/mypage";
     }
@@ -108,8 +107,11 @@ public class UserController {
     }
 
     @PostMapping("/edit")
-    public String editUser(UserVO userVO, RedirectAttributes rttr){
-        boolean updateSuccess = userService.editUser(userVO);
+    public String editUser(UserVO userVO,
+                           @RequestParam("fileName") MultipartFile file,
+                           RedirectAttributes rttr) throws IOException {
+        boolean updateSuccess = userService.editUser(userVO, file);
+
         if (updateSuccess) {
             rttr.addFlashAttribute("successMessage", "수정이 완료되었습니다.");
         } else {
