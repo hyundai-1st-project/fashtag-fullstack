@@ -69,27 +69,33 @@ $(function () {
 
             e.preventDefault();
             const commentText = $('#commentInput')[0].innerText.replaceAll("\n", "<br/>"); // 입력된 텍스트 가져오기
-            console.log(commentText);
+            const lineNum = (commentText.match(new RegExp("<br/>", 'g')) || []).length + 1;
+            console.log(commentText.length);
+            if (commentText.length > 500) alert("댓글길이는 500자를 넘을수 없습니다.");
+            else if (lineNum > 10) alert("댓글길이는 10줄을 초과할 수 없습니다.")
 
-            $.ajax({
-                url: '/comment/insert',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({commentContent: commentText, postId: postId, userId: loginUserId}), // JSON 형태로 데이터 전송
-                success: function (response) {
-                    console.log('성공: ' + response); // 성공 시 콘솔에 출력
-                    //입력창 비우기
-                    $('#commentInput').html("");
-                    //초기화
-                    commentHtml = "";
-                    commentPage = 1;
-                    getCommentList();
-                },
-                error: function (xhr, status, error) {
-                    console.error('에러: ' + error); // 에러 시 콘솔에 출력
-                    alert('댓글을 추가할 수 없습니다.');
-                }
-            });
+            else {
+
+                $.ajax({
+                    url: '/comment/insert',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({commentContent: commentText, postId: postId, userId: loginUserId}), // JSON 형태로 데이터 전송
+                    success: function (response) {
+                        console.log('성공: ' + response); // 성공 시 콘솔에 출력
+                        //입력창 비우기
+                        $('#commentInput').html("");
+                        //초기화
+                        commentHtml = "";
+                        commentPage = 1;
+                        getCommentList();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('에러: ' + error); // 에러 시 콘솔에 출력
+                        alert('댓글을 추가할 수 없습니다.');
+                    }
+                });
+            }
         });
     }
 });
