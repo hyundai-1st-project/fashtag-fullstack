@@ -1,5 +1,6 @@
 package org.betweenls.fashtag.user.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.betweenls.fashtag.user.domain.PostPictureVO;
 import org.betweenls.fashtag.user.domain.UserVO;
 
@@ -20,4 +21,7 @@ public interface UserMapper {
     List<PostPictureVO> getPost(long userId);
 
     List<String> getHashTage(long userId);
+
+    void updateProfile(@Param("userId") long userId, @Param("photoKey") String photoKey);
+
 }

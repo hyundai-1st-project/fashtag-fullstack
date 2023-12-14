@@ -54,61 +54,92 @@
         display: block;
     }
 
+    .no-posts-message {
+        text-align: center;
+        padding: 20px;
+        /*border: 2px solid #ccc;*/
+        border-radius: 8px;
+        width: 100%; /* 이미지 그리드의 너비에 맞춤 */
+        box-sizing: border-box; /* border 크기를 width에 포함시키기 위해 */
+        font-size: 18px; /* 폰트 크기 조정 */
+    }
 </style>
 
 <div class="container">
     <br/>
     <div style="margin-top: 30px; display: flex;">
-        <div style="width: 200px; height: 200px; overflow: hidden; border-radius: 50%;">
-            <img src="/resources/image/user-image/profile.png" style="width: 100%;">
+        <div style="width: 170px; height: 170px; overflow: hidden; border-radius: 50%;">
+
+            <c:choose>
+                <c:when test="${empty myPage.userVO.profile}">
+                    <!-- 프로필 정보가 null인 경우 -->
+                    <img src="/resources/image/user-image/profile.png" style="width: 100%;">
+                </c:when>
+                <c:otherwise>
+                    <!-- 프로필 정보가 null이 아닌 경우 -->
+                    <img src="https://fashtag.s3.ap-northeast-2.amazonaws.com/${myPage.userVO.profile}" style="width: 100%;">
+                </c:otherwise>
+            </c:choose>
+
         </div>
         <div style="flex: 1; padding-left: 20px;">
             <div style="margin-top: 20px;">
-                <h4>Nickname</h4>
+                <h4><c:out value="${myPage.userVO.id}"/></h4>
                 <button type="button" class="btn-border btn-small"> <a href="/user/${userId}/edit">프로필 편집</a></button>
             </div>
-            <div style="margin-top: 20px;">
-                <div style="width: 25%;">
-                    <h5>게시글 수</h5> ${myPage.postSize}
+
+            <!-- 게시글 및 댓글 수 -->
+            <div style="display: flex; margin-top: 20px;">
+                <div style="width: 25%; margin-right: 10px;">
+                    <h5>게시글 수</h5>
+                    <div style="display: flex; align-items: center;">
+                        <span>${myPage.postSize}</span>
+                    </div>
+                </div>
+                <div style="width: 25%; margin-left: 10px;">
+                    <h5>댓글 수</h5>
+                    <div style="display: flex; align-items: center;">
+                        <span>0</span>
+                    </div>
                 </div>
                 <!-- 다른 요소들을 추가하려면 여기에 계속해서 작성하시면 됩니다 -->
             </div>
+
         </div>
     </div>
+
     <br/>
+
     <div class="row">
-        <div class="col-12">
-
-            <a href="/posts/tags/hashtag" class="btn btn-light btn-sm ig-btn-primary">#오뭐입</a>
-            <a href="/posts/tags/hashtag" class="btn btn-light btn-sm ig-btn-primary">#내뭐입</a>
-            <a href="/posts/tags/hashtag" class="btn btn-light btn-sm ig-btn-primary">#hashtags</a>
-        </div>
+        <c:forEach var="hashtag" items="${myPage.hashtags}">
+            <a href="/posts/tags/${hashtag}" class="btn btn-light btn-sm ig-btn-primary">${hashtag}</a>
+        </c:forEach>
     </div>
 
     <br/>
+
     <div class="image-grid">
-        <div class="image-item">
-            <img src="/resources/image/user-image/profile.png" class="img-fluid">
-        </div>
-        <div class="image-item">
-            <img src="/resources/image/user-image/profile.png" class="img-fluid">
-        </div>
-        <div class="image-item">
-            <img src="/resources/image/user-image/profile.png" class="img-fluid">
-        </div>
-        <div class="image-item">
-            <img src="/resources/image/user-image/profile.png" class="img-fluid">
-        </div>
-        <div class="image-item">
-            <img src="/resources/image/user-image/profile.png" class="img-fluid">
-        </div>
-        <div class="image-item">
-            <img src="/resources/image/user-image/profile.png" class="img-fluid">
-        </div>
-        <!-- 추가적인 이미지들을 원하는 만큼 계속해서 추가하실 수 있습니다 -->
+        <c:choose>
+            <c:when test="${empty myPage.posts}">
+                <div class="no-posts-message">
+                    <p>게시글이 존재하지 않습니다.</p>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <c:forEach var="post" items="${myPage.posts}">
+                    <c:forEach var="picture" items="${post.picture}">
+                        <div class="image-item">
+                            <a href="/posts/${post.postId}">
+                                <img src="https://fashtag.s3.ap-northeast-2.amazonaws.com/${picture}" class="img-fluid">
+                            </a>
+                        </div>
+                    </c:forEach>
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
     </div>
-    <br/>
-    <br/>
+
+    <br/><br/>
 </div>
 
 

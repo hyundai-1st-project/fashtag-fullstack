@@ -19,7 +19,7 @@
     .joinForm {
         position:absolute;
         width:400px;
-        height:400px;
+        height:500px;
         padding: 30px, 20px;
         background-color:#FFFFFF;
         text-align:center;
@@ -98,7 +98,7 @@
 
 </style>
 
-<form class="joinForm" role="form" method='post' action="/join">
+<form class="joinForm" role="form" method='post' action="/join" enctype="multipart/form-data">
     <h2>회원가입</h2>
     <div class="textForm" id="divInputId">
         <label for='id'>아이디 <br></label>
@@ -107,6 +107,10 @@
             <input type='button' id="checkId" value="중복" />
         </div>
         <span id="idAvailability" class="availability"></span> <!-- 결과를 표시할 곳 -->
+    </div>
+    <div class="textForm">
+        <label for="profilePhoto">프로필사진</label>
+        <input type="file" id="profilePhoto" name="fileName">
     </div>
     <div class="textForm">
         <label for='password'>비밀번호 <br></label>
@@ -145,6 +149,12 @@
             // 중복 체크를 완료하지 않은 경우 폼 제출 중단
             if ($('#idAvailability').text().trim() !== '사용 가능한 아이디입니다.') {
                 alert('아이디 중복을 확인해주세요.');
+                event.preventDefault(); // 폼 제출 중단
+            }
+
+            // 중복 체크를 완료하지 않은 경우 폼 제출 중단
+            if ($('#nicknameAvailability').text().trim() !== '사용 가능한 닉네임입니다.') {
+                alert('닉네임 중복을 확인해주세요.');
                 event.preventDefault(); // 폼 제출 중단
             }
         });
