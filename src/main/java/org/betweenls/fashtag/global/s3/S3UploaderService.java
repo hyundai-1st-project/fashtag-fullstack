@@ -47,7 +47,7 @@ public class S3UploaderService {
     }
 
     // S3로 파일 업로드
-    private String upload(File uploadFile, String dirName, String basicFileName) {
+    public String upload(File uploadFile, String dirName, String basicFileName) {
         String fileName = dirName + "/" + basicFileName;
         String uploadImageUrl = putS3(uploadFile, fileName);
 //        removeNewFile(uploadFile);
