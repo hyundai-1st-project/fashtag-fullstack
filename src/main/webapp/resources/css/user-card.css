@@ -21,8 +21,10 @@
 }
 
 .image.full_width[data-v-44ba780a] {
-    height: 100%;
     width: 100%;
+    min-width: 40px;
+    min-height: 40px;
+    height: 100%;
 }
 
 .user_name[data-v-12986062] {

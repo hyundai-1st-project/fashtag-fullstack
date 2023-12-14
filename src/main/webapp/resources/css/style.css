@@ -61,8 +61,7 @@ a:hover,a:active,a:focus {
 /*}*/
 
 .post_image {
-	border: 2px solid;
-	border-radius: 7px;
+	border-radius: 11px;
 }
 
 .post_userProfile{

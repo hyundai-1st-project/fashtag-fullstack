@@ -13,11 +13,10 @@
 <%! String likeState = "N"; %>
 
 
-
 <section class="post-detail-section">
     <div class="post-detail">
         <div class="profile-box">
-            <a class="userImg-box" href="#">
+            <a class="userImg-box" href="/mypage/${post.userId}">
                 <img class="userImg" src="${url}${post.profile}" alt="프로필 사진">
             </a>
             <div class="profile-info">
@@ -40,11 +39,14 @@
 
         <div class="contents-box">
             <div class="post-btns">
-                <img post-id="${post.postId}" src="/resources/image/icon/${likeStatus == "Y"? "icon-heart-on": "icon-heart-off"}.svg" class="icon like_icon" id="like-btn"/>
+                <img post-id="${post.postId}"
+                     src="/resources/image/icon/${likeStatus == "Y"? "icon-heart-on": "icon-heart-off"}.svg"
+                     class="icon like_icon" id="like-btn"/>
                 <img src="/resources/image/icon/chat-icon.png" class="icon chat_icon" id="like-count"/>
             </div>
             <div class="post-statistics">
-                좋아요<b><span  data-v-12986062="" class="like_count" id="like-count-${post.postId}">${post.likeCount}</span></b>개&nbsp;&nbsp;
+                좋아요<b><span data-v-12986062="" class="like_count"
+                            id="like-count-${post.postId}">${post.likeCount}</span></b>개&nbsp;&nbsp;
                 조회수 <b><span data-v-12986062="" class="read_count">${post.readCount}</span></b>
             </div>
             <div class="post-content">
@@ -59,14 +61,22 @@
             <div class="post-comments">
                 <div class="comments-count">댓글 <b class="commentNum"></b>개</div>
                 <div class="comment-input">
-                    <a href="#"
-                       class="profile_link"><img class="profile-picture"
-                                                 src="${url}${user!=null?user.profile:"user/user-profile-image/defaultImage"}"
-                                                 alt="프로필 사진"></a>
-                    <div class="input-wrapper">
-                        <div contenteditable="true" placeholder="${user!=null?"댓글을 남기세요...":"로그인 후 댓글을 작성해주세요."}"
-                             autocapitalize="off" spellcheck="false" class="input_txt origin" id="commentInput"></div>
-                        <a href="/comment/insert" class="register-button"> 등록 </a></div>
+                    <c:choose>
+                        <c:when test="${user != null}">
+                            <a href="/mypage/${user.userId}" class="profile_link">
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/login" class="profile_link">
+                        </c:otherwise>
+                    </c:choose>
+                            <img class="profile-picture"
+                                 src="${url}${user!=null?user.profile:"user/user-profile-image/defaultImage"}"
+                                 alt="프로필 사진"></a>
+                        <div class="input-wrapper">
+                            <div contenteditable="true" placeholder="${user!=null?"댓글을 남기세요...":"로그인 후 댓글을 작성해주세요."}"
+                                 autocapitalize="off" spellcheck="false" class="input_txt origin"
+                                 id="commentInput"></div>
+                            <a href="/comment/insert" class="register-button"> 등록 </a></div>
                 </div>
                 <div class="comments-content"></div>
             </div>

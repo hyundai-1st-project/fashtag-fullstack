@@ -8,15 +8,22 @@
     bottom: 15px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
+.profile_link {
+    height: 40px;
+    display: inline-block;
+    margin-top: 4px;
+    margin-right: 10px;
+    margin-bottom: 3px;
+}
 
 /* 프로필 사진 스타일 */
 .profile-picture {
     width: 40px;
-    height: 40px;
+    min-width: 40px;
+    height: 100%;
     border-radius: 50%;
     background-color: #ccc;
-    margin-right: 10px;
-    margin-top: 3px;
+    object-fit: cover;
 }
 
 /* 댓글 입력창 및 등록 버튼 부분 */

@@ -7,7 +7,7 @@ import org.betweenls.fashtag.post.domain.PostVO;
 import java.util.List;
 
 public interface PostMapper {
-	public List<PostVO> getAllPost(String order);
+	public List<PostVO> getAllPost( @Param("order") String order, @Param("userId") Long userId);
 	public List<PostVO> getHashtagPost(String hashtag);
 	public void insertPost(PostVO postVO);
 	public Long getHashtagIdByHashtagName(String hashtagName);

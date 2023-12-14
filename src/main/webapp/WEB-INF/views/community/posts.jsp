@@ -15,7 +15,7 @@
             <div id="primary" class="content-area column full">
                 <div style="height: 20px"></div>
                 <div data-v-838ba4a0="" class="container tag_container">
-                    <c:if test="${pageTitle eq '#POSTS'}">
+
                         <div data-v-621b99be="" data-v-838ba4a0="" class="social_tag_shortcuts tag_shortcuts">
 
                             <c:forEach items="${hashtagName}" var="hashtag" varStatus="status">
@@ -43,12 +43,14 @@
                                 </a>
                             </c:forEach>
                         </div>
-                    </c:if>
+
                 </div>
                 <div data-v-838ba4a0="" class="container top-container">
+                    <c:if test="${pageTitle eq '#POSTS'}">
                     <button onclick="location.href='/posts/new'" type="button" class="btn-border btn-small">
                         게시글 작성
                     </button>
+                    </c:if>
                     <ul data-v-34267d59="" data-v-838ba4a0="" class="social_sorting sorting">
                         <c:if test="${pageTitle eq '#POSTS'}">
                             <c:choose>
@@ -95,8 +97,8 @@
                                               <span data-v-7ddd6c4e=""><a href="/mypage/${post.userId}">${post.nickname}</a></span><!---->
                                             </span>
 <%--                                            <span data-v-12986062="" aria-label="좋아요" role="button" class="btn like">--%>
-                                              <img post-id="${post.postId}" src="/resources/image/icon/${"LikeState" == "Y"? "icon-heart-on": "icon-heart-off"}.svg" class="like_icon" id="like-btn"/>
-                                              <span data-v-12986062="" class="like_count" id="like-count-${post.postId}">${post.likeCount}</span>
+                                            <img post-id="${post.postId}" src="/resources/image/icon/${post.likeStatus == "Y"? "icon-heart-on": "icon-heart-off"}.svg" class="like_icon" id="like-btn"/>
+                                            <span data-v-12986062="" class="like_count" id="like-count-${post.postId}">${post.likeCount}</span>
 <%--                                            </span>--%>
                                         </div>
                                         <p data-v-12986062="" class="text_box">

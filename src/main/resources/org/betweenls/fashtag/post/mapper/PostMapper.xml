@@ -12,6 +12,7 @@
 		<result property="readCount" column="readCount"></result>
 		<result property="userId" column="userId"></result>
 		<result property="likeCount" column="likeCount"></result>
+		<result property="likeStatus" column="likeStatus"></result>
 		<result property="nickname" column="nickname"></result>
 		<collection property="hashtags" column="postId" javaType="List" ofType="String" select="findHashtagByPostId"></collection>
 	</resultMap>
@@ -21,7 +22,10 @@
 		select p.postid,p.postContent, p.picture, p.createdat,p.updatedat,p.readcount,p.userid, u.nickname, u.profile, nvl((select count(userid)
 																														  from likes
 																														  where postid = p.postid
-																														  group by postid), 0) likeCount
+																														  group by postid), 0) likeCount,
+																													   (select decode(count(likeId), 1, 'Y', 'N')
+																														from likes
+																														where userId=#{userId} AND postId=p.postId) likeStatus
 		from posts p inner join users u
 								on p.userid = u.userid
 		order by ${order} desc

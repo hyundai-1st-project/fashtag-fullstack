@@ -19,7 +19,7 @@ function getCommentList(){
             $(".commentNum").html(`${comments.length}`);
             comments.forEach(function(comment){
                 html += `<div class="comment-box">
-                <a class="userImg-box" href="#">
+                <a class="userImg-box" href="/mypage/${comment.userId}">
                 <img class="userImg" src="${url}${comment.profile}" alt="프로필 사진"></a>
                 <div class="profile-info">
                 <span class="username">${comment.nickname}</span>

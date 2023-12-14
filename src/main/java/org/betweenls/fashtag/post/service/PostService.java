@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.List;
 
 public interface PostService {
-	public List<PostVO> getAllPost(String order);
+	public List<PostVO> getAllPost(String order, Long userId);
 	public List<PostVO> getHashtagPost(String hashtag);
 	public String uploadFile(MultipartFile uploadFile, HttpServletRequest request);
 	public void insertPost(PostVO postVO);

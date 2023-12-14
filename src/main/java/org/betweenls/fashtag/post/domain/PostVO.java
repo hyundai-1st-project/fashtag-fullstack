@@ -15,6 +15,7 @@ public class PostVO {
     private Long readCount;
     private Long userId;
     private Long likeCount;
+    private String likeStatus;
     private String nickname;
     private String profile;
     private List<String> hashtags;
