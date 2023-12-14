@@ -69,8 +69,11 @@ $(function () {
 
             e.preventDefault();
             const commentText = $('#commentInput')[0].innerText.replaceAll("\n", "<br/>"); // 입력된 텍스트 가져오기
-            console.log(commentText);
+            const lineNum = (commentText.match(new RegExp("<br/>", 'g')) || []).length + 1;
+            if (commentText.length > 500) alert("댓글길이는 500자를 넘을수 없습니다.");
+            else if (lineNum > 10) alert("댓글길이는 10줄을 초과할 수 없습니다.")
 
+            else{
             $.ajax({
                 url: '/comment/insert',
                 type: 'POST',
@@ -89,7 +92,7 @@ $(function () {
                     console.error('에러: ' + error); // 에러 시 콘솔에 출력
                     alert('댓글을 추가할 수 없습니다.');
                 }
-            });
+            });}
         });
     }
 });
