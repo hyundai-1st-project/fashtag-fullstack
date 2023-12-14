@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @Controller
 @Log4j
@@ -36,9 +37,9 @@ public class UserController {
     }
 
     @PostMapping( "/join")
-    public String postJoin(UserVO joinUser){
+    public String postJoin(UserVO joinUser, @RequestParam("fileName") MultipartFile file) throws IOException {
         log.info("회원 가입 : " + joinUser);
-        userService.join(joinUser);
+        userService.join(joinUser,file);
         return "redirect:/login";
     }
 
@@ -84,8 +85,10 @@ public class UserController {
     public String myPage(Model model, @PathVariable Long userId) { // @AuthenticationPrincipal CustomUser customUser
         UserVO userVO = userService.getUserByUserId(userId);
         MyPageVO myPage = userService.getMyPage(userVO);
-        model.addAttribute("myPageVO", myPage);
-        log.info(userId);
+        model.addAttribute("myPage", myPage);
+        log.info(userVO);
+        log.info(myPage);
+
         return "/user/mypage";
     }
 

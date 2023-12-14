@@ -82,4 +82,9 @@
             FETCH FIRST 5 ROWS ONLY
     </select>
 
+    <update id="updateProfile">
+        UPDATE users
+        SET  profile = #{photoKey}
+        where userId = #{userId}
+    </update>
 </mapper>

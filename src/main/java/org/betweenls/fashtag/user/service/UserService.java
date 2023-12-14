@@ -2,10 +2,13 @@ package org.betweenls.fashtag.user.service;
 
 import org.betweenls.fashtag.user.domain.MyPageVO;
 import org.betweenls.fashtag.user.domain.UserVO;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 public interface UserService {
 
-    void join(UserVO userVO);
+    void join(UserVO userVO, MultipartFile file) throws IOException;
 
     UserVO getUserByUserId(long id);
 
