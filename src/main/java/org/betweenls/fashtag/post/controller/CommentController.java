@@ -23,13 +23,14 @@ import java.util.List;
 public class CommentController {
     private CommentService service;
 
-    @GetMapping(value ="/{postId}", produces = "application/json; charset=utf-8")
+    @PostMapping(value ="/{postId}")
     @ResponseBody
-    public ResponseEntity<List<CommentVO>> getCommentList(@PathVariable Long postId) {
+    public ResponseEntity<List<CommentVO>> getCommentList(@PathVariable Long postId,
+                                                          @RequestParam("page") Long page,
+                                                          @RequestParam("pageNum") int pageNum) {
 
-        log.info("get Comment List postId: " + postId);
-
-        return new ResponseEntity<>(service.getCommentList(postId), HttpStatus.OK);
+        log.info("get Comment List postId: " + postId + "page: "+ page + "pageNum: " + pageNum);
+        return new ResponseEntity<>(service.getCommentList(postId, page, pageNum), HttpStatus.OK);
     }
 
     @PostMapping("/insert")
