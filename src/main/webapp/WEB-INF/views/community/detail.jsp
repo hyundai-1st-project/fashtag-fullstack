@@ -62,13 +62,13 @@
                 <div class="comments-count">댓글 <b class="commentNum"></b>개</div>
                 <div class="comment-input">
                     <c:choose>
-                        <c:when test="${user != null}">
-                            <a href="/mypage/${user.userId}" class="profile_link">
+                    <c:when test="${user != null}">
+                    <a href="/mypage/${user.userId}" class="profile_link">
                         </c:when>
                         <c:otherwise>
-                            <a href="/login" class="profile_link">
-                        </c:otherwise>
-                    </c:choose>
+                        <a href="/login" class="profile_link">
+                            </c:otherwise>
+                            </c:choose>
                             <img class="profile-picture"
                                  src="${url}${user!=null?user.profile:"user/user-profile-image/defaultImage"}"
                                  alt="프로필 사진"></a>

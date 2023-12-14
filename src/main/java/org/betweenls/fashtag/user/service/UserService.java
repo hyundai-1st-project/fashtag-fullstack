@@ -1,5 +1,6 @@
 package org.betweenls.fashtag.user.service;
 
+import org.betweenls.fashtag.user.domain.EditUserVO;
 import org.betweenls.fashtag.user.domain.MyPageVO;
 import org.betweenls.fashtag.user.domain.UserVO;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,4 +21,8 @@ public interface UserService {
     public UserVO loginCheck();
 
     MyPageVO getMyPage(UserVO userVO);
+
+    boolean deleteUser(UserVO userId);
+
+    boolean editUser(EditUserVO userVO, MultipartFile file) throws IOException;
 }

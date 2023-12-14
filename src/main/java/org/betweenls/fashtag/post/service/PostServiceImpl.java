@@ -105,6 +105,11 @@ public class PostServiceImpl implements PostService {
 		return mapper.updatePost(postVO);
 	}
 
+	@Override
+	public List<Long> getPostByUserId(long userId) {
+		return mapper.getPostByUserId(userId);
+	}
+
 	//	@Autowired
 //	public PostServiceImpl(PostMapper mapper) {
 //		this.mapper = mapper;
