@@ -11,28 +11,30 @@
 <link rel='stylesheet' href='/resources/css/comment.css' type='text/css'/>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<%--히든Id--%>
-<p class="hidden-postId" style="visibility: hidden;" data-post-id="${post.postId}"></p>
+
+
 
 <section class="post-detail-section">
     <div class="post-detail">
         <div class="profile-box">
             <a class="userImg-box" href="#">
-                <img class="userImg" src="${post.profile}" alt="프로필 사진">
+                <img class="userImg" src="${url}${post.profile}" alt="프로필 사진">
             </a>
             <div class="profile-info">
                 <p class="username">${post.nickname}</p>
                 <p class="created-date" data-formatted-date="${formattedCreatedAt}"></p>
             </div>
             <div>
-                <button class="profile-btn">
-                    <img class="action-btnImg" src="/resources/image/post-detail-image/detail-info-btn.png"/>
-                </button>
+                <c:if test="${post.userId eq user.userId}">
+                    <button class="profile-btn">
+                        <img class="action-btnImg" src="/resources/image/post-detail-image/detail-info-btn.png"/>
+                    </button>
+                </c:if>
             </div>
         </div>
 
         <div class="fashionImg-box">
-            <img class="fashionImg" src="${post.picture}">
+            <img class="fashionImg" src="${url}${post.picture}">
         </div>
 
 
@@ -98,7 +100,9 @@
     </div>
 
 </section>
-
+<script>
+    var postId = ${post.postId};
+</script>
 
 <script type="text/javascript" src="/resources/js/post-detail.js"></script>
 <script type="text/javascript" src="/resources/js/comment.js"></script>

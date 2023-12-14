@@ -58,15 +58,9 @@ $(document).ready(function() {
         }
     });
 
-    const postId = $('.hidden-postId').data('post-id');
     // 수정 버튼 클릭 시 /update로 이동
     $('.update').click(function() {
         window.location.href =  `/posts/update/${postId}`;
-    });
-
-    // 삭제 버튼 클릭 시 /delete로 이동
-    $('.delete').click(function() {
-        window.location.href = `/posts/delete/${postId}`;
     });
 
     // 취소 버튼 클릭 시 모달 닫기

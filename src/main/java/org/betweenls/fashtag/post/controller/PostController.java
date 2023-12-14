@@ -2,24 +2,27 @@ package org.betweenls.fashtag.post.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.betweenls.fashtag.global.s3.S3UploaderService;
 import org.betweenls.fashtag.post.domain.PostVO;
 import org.betweenls.fashtag.post.service.PostService;
 import org.betweenls.fashtag.user.domain.UserVO;
 import org.betweenls.fashtag.user.service.UserService;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
@@ -28,6 +31,8 @@ import java.util.List;
 public class PostController {
     private PostService postService;
     private UserService userService;
+    private S3UploaderService s3UploaderService;
+
 
     @GetMapping("/posts")
     public String list(HttpServletRequest request, Model model, @RequestParam(name="s",defaultValue = "popular", required = false) String order) {
@@ -44,6 +49,8 @@ public class PostController {
         } else if (order.equals("newest")) {
             AllPosts = postService.getAllPost("createdAt"); //생성일 순서
         }
+
+        model.addAttribute("url", s3UploaderService.getUrl());
         model.addAttribute("order", order);
         model.addAttribute("list", AllPosts);
         model.addAttribute("pageTitle", "#POSTS");
@@ -54,14 +61,21 @@ public class PostController {
     }
 
     @PostMapping("/posts")
-    public String register(HttpServletRequest request, PostVO postVO, MultipartFile uploadFile) {
+    public String register(HttpServletRequest request, PostVO postVO, MultipartFile uploadFile) throws IOException {
 
         UserVO user = userService.loginCheck();
         if (user == null) {
-            return "user/login";
+            return "/login";
         }
-        postVO.setPicture(postService.uploadFile(uploadFile, request));
+
+        String dirName = "posts/post-upload-image";  // 폴더 이름
+        UUID uuid = UUID.randomUUID();
+        String basicFileName = uuid.toString() + "_" + uploadFile.getOriginalFilename(); // 파일 이름
+//        String courseTitlePhotoKey = s3UploaderService.uploadMultipartFile(uploadFile, dirName, basicFileName);
+//        postVO.setPicture(postService.uploadFile(uploadFile, request));
+        postVO.setPicture(s3UploaderService.uploadMultipartFile(uploadFile, dirName, basicFileName));
         postVO.setUserId(user.getUserId());
+        log.info(postVO.toString());
         insertPostAndHashtag(postVO);
 
         return "redirect:/posts?s=newest";
@@ -85,6 +99,16 @@ public class PostController {
         model.addAttribute("pageTitle", hashtag);
         return "community/posts";
     }
+
+    @PostMapping("/posts/{postId}")
+    public String delete(@PathVariable Long postId) {
+
+        postService.deletePostWithForeignKey(postId);
+        return "redirect:/posts?s=newest";
+    }
+
+
+
 
     private void insertPostAndHashtag(PostVO postVO) {
         postService.insertPost(postVO);
