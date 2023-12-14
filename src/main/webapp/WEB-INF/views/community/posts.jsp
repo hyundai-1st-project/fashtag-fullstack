@@ -15,7 +15,7 @@
             <div id="primary" class="content-area column full">
                 <div style="height: 20px"></div>
                 <div data-v-838ba4a0="" class="container tag_container">
-                    <c:if test="${pageTitle eq '#POSTS'}">
+
                         <div data-v-621b99be="" data-v-838ba4a0="" class="social_tag_shortcuts tag_shortcuts">
 
                             <c:forEach items="${hashtagName}" var="hashtag" varStatus="status">
@@ -43,12 +43,14 @@
                                 </a>
                             </c:forEach>
                         </div>
-                    </c:if>
+
                 </div>
                 <div data-v-838ba4a0="" class="container top-container">
+                    <c:if test="${pageTitle eq '#POSTS'}">
                     <button onclick="location.href='/posts/new'" type="button" class="btn-border btn-small">
                         게시글 작성
                     </button>
+                    </c:if>
                     <ul data-v-34267d59="" data-v-838ba4a0="" class="social_sorting sorting">
                         <c:if test="${pageTitle eq '#POSTS'}">
                             <c:choose>

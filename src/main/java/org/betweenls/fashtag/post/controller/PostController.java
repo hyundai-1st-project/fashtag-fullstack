@@ -36,12 +36,7 @@ public class PostController {
 
     @GetMapping("/posts")
     public String list(HttpServletRequest request, Model model, @RequestParam(name="s",defaultValue = "popular", required = false) String order) {
-        String DATA_DIRECTORY = request.getServletContext().getRealPath("/resources/image/hashtag-image/");
-        File dir = new File(DATA_DIRECTORY);
-        File[] files = dir.listFiles();
-        List<String> hashtagName = new ArrayList<>();
-        List<String> hashtagExtension = new ArrayList<>();
-        hashtagBarListAdd(files, hashtagName, hashtagExtension);
+
 
         UserVO user = userService.loginCheck();
         Long userId = -1L;
@@ -56,6 +51,12 @@ public class PostController {
             AllPosts = postService.getAllPost("createdAt", userId); //생성일 순서
         }
 
+        String DATA_DIRECTORY = request.getServletContext().getRealPath("/resources/image/hashtag-image/");
+        File dir = new File(DATA_DIRECTORY);
+        File[] files = dir.listFiles();
+        List<String> hashtagName = new ArrayList<>();
+        List<String> hashtagExtension = new ArrayList<>();
+        hashtagBarListAdd(files, hashtagName, hashtagExtension);
         model.addAttribute("url", s3UploaderService.getUrl());
         model.addAttribute("order", order);
         model.addAttribute("list", AllPosts);
@@ -94,14 +95,22 @@ public class PostController {
 
 
     @GetMapping("/posts/tags/{hashtag}")
-    public String list(Model model,
+    public String list(HttpServletRequest request ,Model model,
                        @RequestParam(defaultValue = "popular", required = false) String order,
                        @PathVariable("hashtag") String hashtag) {
 
+        String DATA_DIRECTORY = request.getServletContext().getRealPath("/resources/image/hashtag-image/");
+        File dir = new File(DATA_DIRECTORY);
+        File[] files = dir.listFiles();
+        List<String> hashtagName = new ArrayList<>();
+        List<String> hashtagExtension = new ArrayList<>();
+        hashtagBarListAdd(files, hashtagName, hashtagExtension);
         hashtag= "#" + hashtag;
         model.addAttribute("list", postService.getHashtagPost(hashtag));
         model.addAttribute("pageTitle", hashtag);
         model.addAttribute("url", s3UploaderService.getUrl());
+        model.addAttribute("hashtagName", hashtagName);
+        model.addAttribute("hashtagExtension", hashtagExtension);
         return "community/posts";
     }
 
@@ -147,6 +156,14 @@ public class PostController {
         return "redirect:/posts/"+postId;
     }
 
+
+
+
+    private void insertPostAndHashtag(PostVO postVO) {
+        postService.insertPost(postVO);
+        linkPostHashtag(postVO);
+    }
+
     private void linkPostHashtag(PostVO postVO) {
         List<String> hashtags = postVO.getHashtags();
         if (hashtags != null) {
@@ -158,12 +175,6 @@ public class PostController {
                 postService.insertPost_hashtag(postVO.getPostId(), hashtagId);
             }
         }
-    }
-
-
-    private void insertPostAndHashtag(PostVO postVO) {
-        postService.insertPost(postVO);
-        linkPostHashtag(postVO);
     }
     private static void hashtagBarListAdd(File[] files, List<String> hashtagName, List<String> hashtagExtension) {
         for (File file : files) {
