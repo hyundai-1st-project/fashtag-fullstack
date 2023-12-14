@@ -99,6 +99,10 @@ public class PostServiceImpl implements PostService {
 		return "/resources/image/posts-upload-image/" + uploadFileName;
 
 	}
+	@Override
+	public int updatePost(PostVO postVO) {
+		return mapper.updatePost(postVO);
+	}
 
 	//	@Autowired
 //	public PostServiceImpl(PostMapper mapper) {
