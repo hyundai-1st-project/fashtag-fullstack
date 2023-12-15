@@ -20,7 +20,7 @@
         position:absolute;
         width:400px;
         height:580px;
-        padding: 30px, 20px;
+        padding: 30px 20px;
         background-color:#FFFFFF;
         text-align:center;
         top:40%;
@@ -108,6 +108,11 @@
         background: none;
         /* 다른 스타일 필요에 따라 추가적으로 설정할 수 있습니다 */
     }
+    .profile-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+    }
 
 </style>
 
@@ -122,8 +127,9 @@
         <span id="idAvailability" class="availability"></span> <!-- 결과를 표시할 곳 -->
     </div>
     <div class="textForm">
-        <label for="profilePhoto">프로필사진</label>
-        <input type="file" id="profilePhoto" name="fileName">
+        <img id="previewImage" src="/resources/image/post-new/notRegi.png" alt="이미지를 등록하세요." class="profile-img">
+        <label for="profilePhoto" class="label-button">사진 선택</label>
+        <input type="file" name="fileName" id="profilePhoto" style="display: none">
     </div>
     <div class="textForm">
         <label for='password'>비밀번호 <br></label>
@@ -149,8 +155,24 @@
 <br/>
 <br/>
 
-
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#profilePhoto").on("change", function () {
+            var file = this.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#previewImage").attr("src", e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
+
+
 <script type="text/javascript">
     $(function() {
         var alertShown = false;
