@@ -3,9 +3,11 @@ let commentPage = 1;
 const commentPageNum = 10;
 let commentHtml = ""
 const addMoreBtn = '<p class="btn_more"><span class="btn_more_span">댓글 더 보기...</span></p>'
+let commentCount = 0;
 
 //렌더링할때마다 getCommentList함수 호출
 $(function () {
+    getCommentCount();
     getCommentList();
 });
 
@@ -16,6 +18,7 @@ $(document).on('click', '.btn_more_span', function(e) {
     commentHtml = commentHtml.replace(addMoreBtn, '');
     console.log(commentHtml);
     e.preventDefault();
+    getCommentCount();
     getCommentList();
 });
 
@@ -27,14 +30,13 @@ const url = "https://fashtag.s3.ap-northeast-2.amazonaws.com/";
 
 function getCommentList() {
     $.ajax({
-        url: `/comment/${postId}`,
+        url: `/api/comment/${postId}`,
         type: "POST",
         data: {
             page: commentPage,
             pageNum: commentPageNum
         },
         success: function (comments) {
-            $(".commentNum").html(`${comments[0].commentNum}`);
             comments.forEach(function (comment) {
                 commentHtml += `<div class="comment-box">
                 <a class="userImg-box" href="/mypage/${comment.userId}">
@@ -47,7 +49,7 @@ function getCommentList() {
                 if (loginUserId === comment.userId) commentHtml += `<span class="delete-btn">삭제<b style="display:none">${comment.commentId}</b></span>`//댓글 등록한 이용자만 삭제 버튼 보임
                 commentHtml += `</p> </div></div>`
             })
-            if (comments.length === 10) commentHtml += addMoreBtn;
+            if (comments.length === 10 && commentPage*commentPageNum < commentCount) commentHtml += addMoreBtn;
             const $comments = $(".comments-content");
             $comments.html(commentHtml);
             $comments.find('.delete-btn').on('click', function () {
@@ -55,6 +57,20 @@ function getCommentList() {
                 deleteBtnAction()
             });
             commentPage++;
+        },
+        error: function () {
+            alert('댓글을 가져올 수 없습니다.');
+        }
+    })
+}
+
+function getCommentCount() {
+    $.ajax({
+        url: `/api/comment/${postId}`,
+        type: "GET",
+        success: function (commentNum) {
+            $(".commentNum").html(`${commentNum}`);
+            commentCount = commentNum;
         },
         error: function () {
             alert('댓글을 가져올 수 없습니다.');
@@ -77,7 +93,7 @@ $(function () {
             else {
 
                 $.ajax({
-                    url: '/comment/insert',
+                    url: '/api/comment/insert',
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify({commentContent: commentText, postId: postId, userId: loginUserId}), // JSON 형태로 데이터 전송
@@ -89,6 +105,7 @@ $(function () {
                         commentHtml = "";
                         commentPage = 1;
                         getCommentList();
+                        getCommentCount();
                     },
                     error: function (xhr, status, error) {
                         console.error('에러: ' + error); // 에러 시 콘솔에 출력
@@ -169,7 +186,7 @@ $(function () {
         e.preventDefault();
         $.ajax({
             type: 'delete',
-            url: `/comment/delete/${currentCommentId}`,
+            url: `/api/comment/delete/${currentCommentId}`,
             success: function (deleteResult, status, xhr) {
                 console.log(`삭제성공: ${deleteResult}`);
                 $('.layer_yes-or-no[data-v-4be3d37a]').fadeOut();
@@ -178,6 +195,7 @@ $(function () {
                 //초기화
                 commentHtml = "";
                 commentPage = 1;
+                getCommentCount();
                 getCommentList();
             },
             error: function (xhr, status, error) {

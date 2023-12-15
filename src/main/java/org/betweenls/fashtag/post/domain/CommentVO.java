@@ -19,5 +19,4 @@ public class CommentVO {
     private String nickname;
     private String profile;
     private String formattedCreatedAt;
-    private Long commentNum;
 }

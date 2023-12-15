@@ -33,6 +33,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public Long getCommentNum(Long postId){
+        return mapper.getCommentNum(postId);
+    }
+
+    @Override
     public int insertComment(CommentVO comment) {
         log.info("insert..." + comment);
         return mapper.insertComment(comment);
