@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
 
         // post 삭제하기
         List<Long> postIdList = postService.getPostByUserId(userVo.getUserId());
-        postIdList.forEach(postService::deletePostByPostId);
+        postIdList.forEach(postService::deletePostWithForeignKey);
 
         // 유저 삭제
         int authDelete = userMapper.deleteAuth(userVo.getUserId());
