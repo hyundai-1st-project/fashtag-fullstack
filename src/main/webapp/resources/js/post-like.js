@@ -23,7 +23,7 @@ $('.like_icon').on('click', function(e) {
 //좋아요 C
 function addLike() {
     $.ajax({
-        url: '/like/insert',
+        url: '/api/like/insert',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ postId: post_id, userId: loginUserId}), // JSON 형태로 데이터 전송
@@ -42,7 +42,7 @@ function addLike() {
 //좋아요 D
 function cancelLike() {
     $.ajax({
-        url: '/like/delete',
+        url: '/api/like/delete',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ postId: post_id, userId: loginUserId}), // JSON 형태로 데이터 전송
