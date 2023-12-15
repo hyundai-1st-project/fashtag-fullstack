@@ -6,21 +6,26 @@
 
 
 	<select id="getCommentListByPostId" resultType="org.betweenls.fashtag.post.domain.CommentVO">
-		select y.commentId, y.commentContent, y.createdAt, y.updatedAt, y.postId, y.userId, y.nickname, y.profile, y.commentNum
+		select y.commentId, y.commentContent, y.createdAt, y.updatedAt, y.postId, y.userId, y.nickname, y.profile
 		from
 			(select x.*, rownum rnum
 			 from
 				 (select c.commentId, c.commentContent, c.createdAt, c.updatedAt, c.postId, c.userId,  (select nickname
 																										from users
-																										where userId = c.userId) nickname,
-						 (select profile
-						  from users
-						  where userId = c.userId) profile,
-						 COUNT(*) OVER(PARTITION BY 1) commentNum
+																											where userId = c.userId) nickname,
+																									   (select profile
+																									    from users
+																									    where userId = c.userId) profile
 				  from comments c
 				  where c.postId = #{postId}
 				  order by commentId desc)x)y
 		where y.rnum between #{startPage} and #{endPage}
+	</select>
+
+	<select id="getCommentNum">
+		select count(*)
+		from comments
+		where postid = ${postId}
 	</select>
 
 	<insert id="insertComment" parameterType="org.betweenls.fashtag.post.domain.CommentVO">
