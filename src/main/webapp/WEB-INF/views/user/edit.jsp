@@ -308,9 +308,12 @@
                 type: 'DELETE',
                 success: function(data) {
                     alert(data.key);
+                    // 성공한 경우 로그아웃 URL로 리다이렉트
+                    window.location.href = '/logout'; // 로그아웃 URL로 변경해야 합니다.
                 },
                 error: function(data) {
-                    alert(`${data.key}`); // 서버 오류 시 처리
+                    <%--alert(`${data.key}`); // 서버 오류 시 처리--%>
+                    window.location.href = '/logout';
                 }
             });
         }
