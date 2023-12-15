@@ -18,9 +18,7 @@
                 <h4 data-v-0c9f3f9e="" class="title">게시물 이미지</h4>
                 <div data-v-0c9f3f9e="" class="unit_content">
                     <img for="input-image" src="/resources/image/post-new/notRegi.png" alt="이미지를 등록하세요." class="post-image"/>
-<%--                    <p data-v-24a03828="" data-v-257b1b9e="" class="desc desc_modify" data-v-0c9f3f9e=""> r5f1oq </p>--%>
                     <label for="input-image" class="label-button">이미지 업로드</label>
-<%--                    <button type="button" class="btn-border btn-small"> 이미지 업로드 </button>--%>
                     <input type='file' name='uploadFile' id="input-image" style="display: none">
                 </div>
             </div>

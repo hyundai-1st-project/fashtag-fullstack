@@ -106,7 +106,11 @@
         <div style="flex: 1; padding-left: 20px;">
             <div style="margin-top: 20px;">
                 <h4><c:out value="${myPage.userVO.id}"/></h4>
-                <button type="button" class="btn-border btn-small"> <a href="/user/${userId}/edit">프로필 편집</a></button>
+            <c:choose>
+                <c:when test="${user.userId == userId}">
+                    <button type="button" class="btn-border btn-small"> <a href="/user/${userId}/edit">프로필 편집</a></button>
+                </c:when>
+            </c:choose>
             </div>
 
             <!-- 게시글 및 댓글 수 -->

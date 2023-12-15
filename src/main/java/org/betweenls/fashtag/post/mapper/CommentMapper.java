@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface CommentMapper {
 	public List<CommentVO> getCommentListByPostId(@Param("postId") Long postId, @Param("startPage") Long startPage, @Param("endPage") Long endPage);
+	Long getCommentNum(Long postId);
+
 	public int insertComment(CommentVO comment);
 
 	public int deleteCommentByCommentId(Long commentId);

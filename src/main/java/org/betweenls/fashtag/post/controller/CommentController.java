@@ -19,9 +19,18 @@ import java.util.List;
 @RestController
 @Log
 @AllArgsConstructor
-@RequestMapping("comment")
+@RequestMapping("/api/comment")
 public class CommentController {
     private CommentService service;
+
+    @GetMapping(value ="/{postId}")
+    @ResponseBody
+    public ResponseEntity<Long> getCommentNum(@PathVariable Long postId) {
+
+        log.info("get CommentNum postId: " + postId);
+
+        return new ResponseEntity<>(service.getCommentNum(postId), HttpStatus.OK);
+    }
 
     @PostMapping(value ="/{postId}")
     @ResponseBody
