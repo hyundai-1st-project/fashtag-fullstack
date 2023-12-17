@@ -22,16 +22,12 @@ public class LikeController {
 
     @PostMapping("/insert")
     public ResponseEntity<String> addLike(@RequestBody LikeVO likeRequest) {
-        log.info("likeRequest: " + likeRequest);
-
         return service.addLike(likeRequest) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @PostMapping("/delete")
     public ResponseEntity<String> cancelLike(@RequestBody LikeVO likeRequest) {
-        log.info("likeRequest: " + likeRequest);
-
         return service.cancelLike(likeRequest) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }

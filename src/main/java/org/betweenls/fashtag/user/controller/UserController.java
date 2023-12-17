@@ -31,13 +31,11 @@ public class UserController {
 
     @GetMapping("/join")
     public String getJoin(){
-        log.info("회원가입 페이지");
         return "/user/join";
     }
 
     @PostMapping( "/join")
     public String postJoin(UserVO joinUser, @RequestParam("fileName") MultipartFile file) throws IOException {
-        log.info("회원 가입 : " + joinUser);
         userService.join(joinUser,file);
         return "redirect:/login";
     }

@@ -1,13 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: sangwon
-  Date: 2023-12-03
-  Time: 오후 3:19
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page pageEncoding="utf-8" %>
 <%@include file="../includes/header.jsp" %>
-<%--<link rel='stylesheet' href='/resources/css/post-new.css' type='text/css'/>--%>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <section class="post-new-section">
 <div data-v-708ef468 class="my_profile">
@@ -44,13 +36,10 @@
                 <button type="submit" class="btn-border btn-small" id="submitBtn"> 등록 </button>
                 <button type="button" class="btn-border btn-small" id="cancelButton">취소</button>
 
-<%--                <input type='file' name='userId' style="display: none" value="${user.userId}">--%>
             </div>
         </form>
     </div>
 </div>
 </section>
 
-<%--<script type="text/javascript" src="/resources/js/post-detail.js"></script>--%>
-<%--<div style="height: 200px"></div>--%>
 <%@include file="../includes/footer.jsp" %>

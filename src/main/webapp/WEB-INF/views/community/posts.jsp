@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: sangwon
-  Date: 2023-12-02
-  Time: 오후 3:09
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page pageEncoding="utf-8"%>
 <%@include file="../includes/header.jsp"%>
 
@@ -87,8 +80,6 @@
                                     <div data-v-12986062="" class="card_detail">
                                         <div data-v-12986062="" class="user_box">
                                             <picture data-v-44ba780a="" data-v-12986062="" class="picture img_profile">
-                                                    <%--                                                <source data-v-44ba780a="" type="image/webp" srcset="https://kream-phinf.pstatic.net/MjAyMDExMDZfMjAz/MDAxNjA0NjQ5OTM1NDk5.edZ7v2ODWVS7_M8PXg8B0PNU5UlsTWup2XHwuKkEEXsg.lNHXDE66TKM0yl1nIOO70PWNUtK4TcdgD1lImetPB48g.JPEG/p_8d36c20aaeb94c6681619dcd775f5286.jpeg?type=s_webp">--%>
-                                                    <%--                                                <source data-v-44ba780a="" srcset="https://kream-phinf.pstatic.net/MjAyMDExMDZfMjAz/MDAxNjA0NjQ5OTM1NDk5.edZ7v2ODWVS7_M8PXg8B0PNU5UlsTWup2XHwuKkEEXsg.lNHXDE66TKM0yl1nIOO70PWNUtK4TcdgD1lImetPB48g.JPEG/p_8d36c20aaeb94c6681619dcd775f5286.jpeg?type=s">--%>
                                                 <a href="/mypage/${post.userId}">
                                                     <img data-v-44ba780a="" alt="사용자 프로필 이미지" src="${url}${post.profile}" loading="lazy" class="image full_width">
                                                 </a>
@@ -96,10 +87,8 @@
                                             <span data-v-7ddd6c4e="" data-v-12986062="" class="user_name">
                                               <span data-v-7ddd6c4e=""><a href="/mypage/${post.userId}">${post.nickname}</a></span><!---->
                                             </span>
-                                                <%--                                            <span data-v-12986062="" aria-label="좋아요" role="button" class="btn like">--%>
                                             <img post-id="${post.postId}" src="/resources/image/icon/${post.likeStatus == "Y"? "icon-heart-on": "icon-heart-off"}.svg" class="like_icon" id="like-btn"/>
                                             <span data-v-12986062="" class="like_count" id="like-count-${post.postId}">${post.likeCount}</span>
-                                                <%--                                            </span>--%>
                                         </div>
                                         <p data-v-12986062="" class="text_box">
                                             <c:forEach items="${post.hashtags}" var="hashtag">

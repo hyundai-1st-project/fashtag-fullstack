@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: sangwon
-  Date: 2023-12-03
-  Time: 오후 3:19
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page pageEncoding="utf-8" %>
 <%@include file="../includes/header.jsp" %>
 <link rel='stylesheet' href='/resources/css/post-detail.css' type='text/css'/>

@@ -14,8 +14,6 @@ public class DetailServiceImpl implements DetailService {
     private DetailMapper mapper;
     @Override
     public PostVO getPostDetail(Long postId) {
-        log.info("get...." + postId);
-
         return mapper.getPostDetailByPostId(postId);
     }
 

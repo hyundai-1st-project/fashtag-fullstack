@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: sangwon
-  Date: 2023-12-02
-  Time: 오후 3:37
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -48,7 +41,6 @@
         <h1 data-v-7546c27e="" data-v-77726920="">
           <a data-v-7546c27e="" href="/posts" aria-label="홈" class="logo">
             <h1 class="main-logo">#fashtag</h1>
-<%--           https://danmarshall.github.io/google-font-to-svg-path/ 로고 부분!! svg--%>
           </a>
         </h1>
         <div data-v-77726920="" class="center"></div>
@@ -69,7 +61,6 @@
                         <a data-v-70a33782="" href="/mypage/${user.userId}" class="gnb_link">MYPAGE</a>
                     </sec:authorize>
 
-<%--                  <a data-v-70a33782="" href="/mypage" class="nuxt-link-active gnb_link"> MYPAGE </a>--%>
                 </li>
                 <li data-v-70a33782="" data-v-21940b30="" class="gnb_item">
                   <sec:authorize access="isAnonymous()">
@@ -79,21 +70,9 @@
                     <a data-v-70a33782="" href="/logout" class="gnb_link">LOGOUT</a>
                   </sec:authorize>
 
-<%--                  <a data-v-70a33782="" href="/user/login" class="gnb_link" > LOGIN </a>--%>
                 </li>
               </ul>
             </nav>
-<%--            <div data-v-060bad62="" data-v-21940b30="" class="search_btn_box">--%>
-<%--              <a data-v-060bad62="" aria-label="검색" href="#" class="btn_search"--%>
-<%--              ><svg data-v-060bad62="" xmlns="http://www.w3.org/2000/svg" class="nav-search icon sprite-icons">--%>
-<%--                <use--%>
-<%--                        data-v-060bad62=""--%>
-<%--                        href="/_nuxt/e72fd9e874df2e60bd653f838dce3aab.svg#i-nav-search"--%>
-<%--                        xlink:href="/_nuxt/e72fd9e874df2e60bd653f838dce3aab.svg#i-nav-search"--%>
-<%--                ></use></svg--%>
-<%--              ></a>--%>
-<%--            </div>--%>
-<%--            search button box--%>
           </div>
         </div>
       </div> <%--      main_inner--%>
@@ -103,35 +82,4 @@
     <div data-v-77726920="" class="portal_target vue-portal-target"></div>
   </div>
   <!---->
-
 </div>
-
-
-
-<%--    <header id="masthead" class="site-header">--%>
-<%--      <div class="site-branding">--%>
-<%--        <h1 class="site-title"><a href="index.html" rel="home">Kream</a></h1>--%>
-<%--      </div>--%>
-<%--      <nav id="site-navigation" class="main-navigation">--%>
-<%--        <button class="menu-toggle">Menu</button>--%>
-<%--        <a class="skip-link screen-reader-text" href="#content">Skip to content</a>--%>
-<%--        <div class="menu-menu-1-container">--%>
-<%--          <ul id="menu-menu-1" class="menu">--%>
-<%--            <li><a href="index.html">Home</a></li>--%>
-<%--            <li><a href="about.html">About</a></li>--%>
-<%--            <li><a href="shop.html">Shop</a></li>--%>
-<%--            <li><a href="blog.html">Blog</a></li>--%>
-<%--            <li><a href="elements.html">Elements</a></li>--%>
-<%--            <li><a href="#">Pages</a>--%>
-<%--              <ul class="sub-menu">--%>
-<%--                <li><a href="portfolio-item.html">Portfolio Item</a></li>--%>
-<%--                <li><a href="blog-single.html">Blog Article</a></li>--%>
-<%--                <li><a href="shop-single.html">Shop Item</a></li>--%>
-<%--                <li><a href="portfolio-category.html">Portfolio Category</a></li>--%>
-<%--              </ul>--%>
-<%--            </li>--%>
-<%--            <li><a href="contact.html">Contact</a></li>--%>
-<%--          </ul>--%>
-<%--        </div>--%>
-<%--      </nav>--%>
-<%--    </header>--%>
