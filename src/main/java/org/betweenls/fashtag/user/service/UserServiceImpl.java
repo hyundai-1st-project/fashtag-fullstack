@@ -81,16 +81,22 @@ public class UserServiceImpl implements UserService {
         List<Long> postIdList = postService.getPostByUserId(userVo.getUserId());
         postIdList.forEach(postService::deletePostWithForeignKey);
 
+        // 게시글 좋아요 삭제
+        int likeDelete = userMapper.deletePostLike(userVo.getUserId());
+
+        // 댓글 삭제
+        int commentDelete = userMapper.deleteComment(userVo.getUserId());
+
         // 유저 삭제
         int authDelete = userMapper.deleteAuth(userVo.getUserId());
-        if(authDelete < 1){
-            throw new RuntimeException("권한 삭제가 불가능합니다.");
-        }
+//        if(authDelete < 1){
+//            throw new RuntimeException("권한 삭제가 불가능합니다.");
+//        }
 
         int userDelete = userMapper.deleteUser(userVo.getUserId());
-        if(userDelete < 1){
-            throw new RuntimeException("유저 삭제가 불가능합니다.");
-        }
+//        if(userDelete < 1){
+//            throw new RuntimeException("유저 삭제가 불가능합니다.");
+//        }
 
         if(!profile.equals("user/user-profile-image/defaultImage")){
             s3UploaderService.deleteFile(profile);

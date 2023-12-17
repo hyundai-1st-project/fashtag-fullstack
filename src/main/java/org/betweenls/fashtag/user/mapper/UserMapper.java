@@ -33,4 +33,8 @@ public interface UserMapper {
     void removeProfile();
 
     int getCommentSize(long userId);
+
+    int deletePostLike(long userId);
+
+    int deleteComment(long userId);
 }

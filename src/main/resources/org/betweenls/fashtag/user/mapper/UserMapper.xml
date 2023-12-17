@@ -110,4 +110,12 @@
         where USERID = #{userId}
     </select>
 
+    <delete id="deletePostLike">
+        DELETE FROM Likes WHERE userId = #{userId}
+    </delete>
+
+    <delete id="deleteComment">
+        DELETE FROM COMMENTS WHERE userId = #{userId}
+    </delete>
+
 </mapper>

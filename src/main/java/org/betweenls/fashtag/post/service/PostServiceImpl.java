@@ -80,8 +80,8 @@ public class PostServiceImpl implements PostService {
 //	@Transactional
 	@Override
 	public void deletePostWithForeignKey(Long postId) {
-		deleteCommentByPostId(postId);
 		deleteLikeByPostId(postId);
+		deleteCommentByPostId(postId);
 		deletePost_hashtagByPostId(postId);
 		deletePostByPostId(postId);
 	}
