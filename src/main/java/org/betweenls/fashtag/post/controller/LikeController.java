@@ -20,15 +20,6 @@ import java.util.List;
 public class LikeController {
     private LikeService service;
 
-//    @GetMapping(value ="/{postId}", produces = "application/json; charset=utf-8")
-//    @ResponseBody
-//    public ResponseEntity<List<CommentVO>> getCommentList(@PathVariable Long postId) {
-//
-//        log.info("get Comment List postId: " + postId);
-//
-//        return new ResponseEntity<>(service.getCommentList(postId), HttpStatus.OK);
-//    }
-
     @PostMapping("/insert")
     public ResponseEntity<String> addLike(@RequestBody LikeVO likeRequest) {
         log.info("likeRequest: " + likeRequest);
