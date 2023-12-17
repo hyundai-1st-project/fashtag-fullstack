@@ -47,7 +47,6 @@
             <div class="post-statistics">
                 좋아요<b><span data-v-12986062="" class="like_count"
                             id="like-count-${post.postId}">${post.likeCount}</span></b>개&nbsp;&nbsp;
-                <%--조회수 <b><span data-v-12986062="" class="read_count">${post.readCount}</span></b>--%>
             </div>
             <div class="post-content">
                 <p>${post.postContent}</p>
@@ -56,7 +55,6 @@
                         <a href="/posts/tags/${hashtag}" class="content_hashtag">#${hashtag} </a>
                     </c:forEach>
                 </p>
-                <%--추후 글 길어질때 더보기 창 나오게 할 예정--%>
             </div>
             <div class="post-comments">
                 <div class="comments-count">댓글 <b class="commentNum"></b>개</div>
@@ -83,7 +81,7 @@
 
 
             <%--팝업창--%>
-            <%--글 수정 삭제 팝업창--%> <%--추후에 작성자랑 작성자아닌경우 다르게 팝업창 설정할 예정--%>
+            <%--글 수정 삭제 팝업창--%>
             <div data-v-4be3d37a="" class="layer_container">
                 <div data-v-4be3d37a="" class="layer_header"></div>
                 <div data-v-4be3d37a="" class="layer_content">

@@ -4,41 +4,6 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.betweenls.fashtag.post.mapper.DetailMapper">
 
-	<!--	<select id="getAllPost"-->
-	<!--		resultType="net.developia.fashion.post.domain.PostVO"><![CDATA[-->
-	<!--	 SELECT * FROM posts-->
-	<!--	]]></select>-->
-
-	<!--	<select id="getListWithPaging"-->
-	<!--		resultType="net.developia.fashion.domain.PostVO">-->
-	<!--	 <![CDATA[	-->
-	<!--	 	select -->
-	<!--	 		bno, title, content, writer, updatedate-->
-	<!--	 	from-->
-	<!--	 		(-->
-	<!--	 			select /*+INDEX_DESC(tbl_board pk_board) */-->
-	<!--	 				rownum rn, bno, title, content, writer, updatedate-->
-	<!--	 			from -->
-	<!--	 				tbl_board-->
-	<!--	 			where rownum <= #{pageNum} * #{amout})-->
-	<!--	 	where rn > (#{pageNum} -1) * #{amout}-->
-	<!--	 ]]>-->
-	<!--	</select>-->
-
-	<!--	<insert id="insert">-->
-	<!--		insert into tbl_board (bno, title, content, writer)-->
-	<!--		values (seq_board.nextval, #{title}, #{content}, #{writer})-->
-	<!--	</insert>-->
-
-	<!--	<insert id="insertSelectKey">-->
-	<!--		<selectKey keyProperty="bno" order="BEFORE"-->
-	<!--			resultType="long">-->
-	<!--			select seq_board.nextval from dual-->
-	<!--		</selectKey>-->
-	<!--		insert into tbl_board (bno, title, content, writer)-->
-	<!--		values-->
-	<!--		(seq_board.nextval, #{title}, #{content}, #{writer})-->
-	<!--	</insert>-->
 	<resultMap id="ResultMap" type="org.betweenls.fashtag.post.domain.PostVO">
 		<id property="postId" column="postId"></id>
 		<result property="postContent" column="postContent"></result>
@@ -68,28 +33,4 @@
 	</select>
 
 
-<!--	<select id="getPostDetail"-->
-<!--			resultType="org.betweenls.fashtag.post.domain.PostVO">-->
-<!--		select p.postid,postContent, picture, createdat,updatedat,readcount,userid, nvl((select count(userid)-->
-<!--																						 from likes-->
-<!--																						 where postid = p.postid-->
-<!--																						 group by postid), 0) likeCount,-->
-<!--			   (select nickname-->
-<!--				from users-->
-<!--				where userId = p.userId) nickname-->
-<!--		from posts p-->
-<!--		where postId = #{postId}-->
-<!--	</select>-->
-	<!--	<delete id="delete">-->
-	<!--		delete from tbl_board where bno = #{bno}-->
-	<!--	</delete>-->
-
-	<!--	<update id="update">-->
-	<!--		update tbl_board-->
-	<!--		set title=#{title},-->
-	<!--		content=#{content},-->
-	<!--		writer=#{writer},-->
-	<!--		updateDate=sysdate-->
-	<!--		where bno = #{bno}-->
-	<!--	</update>-->
 </mapper>
