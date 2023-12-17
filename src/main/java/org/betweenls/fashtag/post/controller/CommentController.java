@@ -26,9 +26,6 @@ public class CommentController {
     @GetMapping(value ="/{postId}")
     @ResponseBody
     public ResponseEntity<Long> getCommentNum(@PathVariable Long postId) {
-
-        log.info("get CommentNum postId: " + postId);
-
         return new ResponseEntity<>(service.getCommentNum(postId), HttpStatus.OK);
     }
 
@@ -37,24 +34,17 @@ public class CommentController {
     public ResponseEntity<List<CommentVO>> getCommentList(@PathVariable Long postId,
                                                           @RequestParam("page") Long page,
                                                           @RequestParam("pageNum") int pageNum) {
-
-        log.info("get Comment List postId: " + postId + "page: "+ page + "pageNum: " + pageNum);
         return new ResponseEntity<>(service.getCommentList(postId, page, pageNum), HttpStatus.OK);
     }
 
     @PostMapping("/insert")
     public ResponseEntity<String> insertComment(@RequestBody CommentVO commentRequest) {
-        log.info("commentRequest: " + commentRequest);
-
         return service.insertComment(commentRequest) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @DeleteMapping(value = "/delete/{commentId}", produces = { MediaType.TEXT_PLAIN_VALUE })
     public ResponseEntity<String> removeComment(@PathVariable("commentId") Long commentId) {
-
-        log.info("remove: " + commentId);
-
         return service.removeComment(commentId) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 

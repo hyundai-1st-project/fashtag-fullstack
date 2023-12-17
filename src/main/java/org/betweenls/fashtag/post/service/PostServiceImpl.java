@@ -118,45 +118,4 @@ public class PostServiceImpl implements PostService {
 		return mapper.getPostByUserId(userId);
 	}
 
-	//	@Autowired
-//	public PostServiceImpl(PostMapper mapper) {
-//		this.mapper = mapper;
-//	}
-
-	//	@Override
-//	public void register(PostVO board) {
-//		log.info("register...." + board);
-//		mapper.insertSelectKey(board);
-//	}
-//
-//	@Override
-//	public PostVO get(Long postId) {
-//		log.info("get...." + postId);
-//		return mapper.read(postId);
-//	}
-//
-//	@Override
-//	public boolean modify(PostVO board) {
-//		log.info("modify...." + board);
-//
-//		return mapper.update(board) == 1;
-//	}
-//
-//	@Override
-//	public boolean remove(Long bno) {
-//		log.info("remove...." + bno);
-//		return mapper.delete(bno) == 1;
-//	}
-//
-////	@Override
-////	public List<PostVO> getList() {
-////		log.info("getList .......");
-////		return mapper.getList();
-////	}
-//
-//	@Override
-//	public List<PostVO> getList(Criteria cri) {
-//		log.info("get List with criteria: " + cri);
-//		return mapper.getListWithPaging(cri);
-//	}
 }

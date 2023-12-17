@@ -123,7 +123,6 @@ public class UserServiceImpl implements UserService {
     public UserVO loginCheck() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && "anonymousUser".equals(authentication.getPrincipal())) {
-            log.info("not Login");
             return null;
         }else{
             return ((CustomUser) authentication.getPrincipal()).getUserVO();

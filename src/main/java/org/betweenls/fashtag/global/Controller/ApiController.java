@@ -29,10 +29,8 @@ public class ApiController {
 
         List<PostVO> posts = null;
         if (order.equals("popular")) {
-            log.info("popular가 호출됨 likecount");
             posts = postService.getPostWithPaging("likeCount", userId, page, limit);
         } else if (order.equals("newest")) {
-            log.info("newest가 호출됨 createdAt");
             posts = postService.getPostWithPaging("createdAt", userId, page, limit);
         }
 
@@ -45,10 +43,7 @@ public class ApiController {
                                                  @RequestParam(defaultValue = "-1") Long userId,
                                                  @RequestParam(defaultValue = "") String hashtag ) {
 
-//        log.info("api link");
         List<PostVO> posts = postService.getPostByHashtagWithPaging(hashtag, userId, page, limit);;
-
-
         return ResponseEntity.ok(posts);
     }
 }

@@ -14,19 +14,16 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
     public int addLike(LikeVO like) {
-        log.info("insert..." + like);
         return mapper.insertLike(like);
     }
 
     @Override
     public int cancelLike(LikeVO like){
-        log.info("delete..."+like);
         return mapper.deleteLike(like);
     }
 
     @Override
     public String getLikeStatus(Long postId, Long userId){
-        log.info("getLikeStatus..."+"postId: " + postId+" userId: "+ userId);
         LikeVO like = new LikeVO();
         like.setPostId(postId);
         like.setUserId(userId);

@@ -106,7 +106,6 @@ public class PostController {
         String basicFileName = uuid.toString() + "_" + uploadFile.getOriginalFilename(); // 파일 이름
         postVO.setPicture(s3UploaderService.convertFile(uploadFile, dirName, basicFileName));
         postVO.setUserId(user.getUserId());
-        log.info(postVO.toString());
         insertPostAndHashtag(postVO);
 
         return "redirect:/posts?s=newest";
@@ -131,7 +130,6 @@ public class PostController {
 
     @GetMapping("/posts/update/{postId}")
     public String update(@PathVariable Long postId, Model model) {
-        log.info("update start");
         PostVO postDetail = detailService.getPostDetail(postId);
         model.addAttribute("post", postDetail);
 
@@ -158,7 +156,6 @@ public class PostController {
             postVO.setPicture(s3UploaderService.convertFile(uploadFile, dirName, basicFileName));
         }
         postVO.setUserId(user.getUserId());
-        log.info(postVO.toString());
         postService.updatePost(postVO);
         postService.deletePost_hashtagByPostId(postId);
         linkPostHashtag(postVO);

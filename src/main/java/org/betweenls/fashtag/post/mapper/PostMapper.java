@@ -20,14 +20,5 @@ public interface PostMapper {
 	public int deleteLikeByPostId(long postId);
 	public int deleteCommentByPostId(long postId);
 	public int updatePost(PostVO postVO);
-
     List<Long> getPostByUserId(long userId);
-
-
-//	public void insertSelectKey(PostVO post);
-//	public PostVO read(Long postId);
-
-//	public int update(PostVO post);
-//	public List<PostVO> getListWithPaging(Criteria cri);
-// 	public List<PostVO> getPost();
 }
